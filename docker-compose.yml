@@ -20,4 +20,3 @@ services:
 networks:
   nginx-proxy:
     external: true
-    
