@@ -405,7 +405,7 @@ export default function ProcessusPage() {
             <div className="space-y-40">
                 {/* Asset Deal */}
                 <ParallaxCard id="asset-deal" className="group">
-                    <div className="relative p-12 md:p-24 rounded-sm overflow-hidden min-h-[600px] flex items-center justify-center">
+                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0 z-0">
@@ -418,13 +418,13 @@ export default function ProcessusPage() {
                             <div className="absolute inset-0 bg-black/40"></div>
                         </div>
 
-                        <div className="absolute top-0 right-0 p-12 opacity-10 text-[15rem] font-serif leading-none select-none text-white z-0">AD</div>
+                        <div className="absolute top-0 right-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">AD</div>
                         
                         <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-5xl md:text-7xl font-serif mb-6 text-white">Asset Deal</h3>
-                            <p className="text-white/80 italic text-xl mb-12">Vente en nom</p>
+                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Asset Deal</h3>
+                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Vente en nom</p>
                             
-                            <p className="text-2xl text-white font-light leading-relaxed drop-shadow-sm">
+                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
                                 Dans le cadre d’un Asset Deal c’est l’immeuble lui-même qui est vendu.
                                 <br/><br/>
                                 La vente en nom présente moins de risque pour l’investisseur car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.
@@ -437,7 +437,7 @@ export default function ProcessusPage() {
 
                 {/* Share Deal */}
                 <ParallaxCard id="share-deal" className="group">
-                    <div className="relative p-12 md:p-24 rounded-sm overflow-hidden min-h-[600px] flex items-center justify-center">
+                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0 z-0">
@@ -450,13 +450,13 @@ export default function ProcessusPage() {
                             <div className="absolute inset-0 bg-black/40"></div>
                         </div>
 
-                        <div className="absolute top-0 left-0 p-12 opacity-10 text-[15rem] font-serif leading-none select-none text-white z-0">SD</div>
+                        <div className="absolute top-0 left-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">SD</div>
                         
                         <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-5xl md:text-7xl font-serif mb-6 text-white">Share Deal</h3>
-                            <p className="text-white/80 italic text-xl mb-12">Vente en société</p>
+                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Share Deal</h3>
+                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Vente en société</p>
                             
-                            <p className="text-2xl text-white font-light leading-relaxed drop-shadow-sm">
+                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
                                 Dans le cadre d’un Share Deal, ce sont les actions de la société propriétaire de l’immeuble qui sont vendues.
                                 <br/><br/>
                                 La vente en société présente des avantages financiers et fiscaux pour le vendeur et l’acquéreur. Toutefois, une due diligence plus approfondie devra intervenir ici car l’acquéreur reprend tous les risques liés à l’historique de la société.
@@ -469,7 +469,7 @@ export default function ProcessusPage() {
 
                 {/* Sale & Leaseback */}
                 <ParallaxCard id="sale-leaseback" className="group">
-                    <div className="relative p-12 md:p-24 rounded-sm overflow-hidden min-h-[600px] flex items-center justify-center">
+                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
                         <div className="absolute inset-0 z-0">
@@ -482,13 +482,13 @@ export default function ProcessusPage() {
                             <div className="absolute inset-0 bg-black/40"></div>
                         </div>
 
-                        <div className="absolute top-0 right-0 p-12 opacity-10 text-[15rem] font-serif leading-none select-none text-white z-0">S&L</div>
+                        <div className="absolute top-0 right-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">S&L</div>
                         
                         <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-5xl md:text-7xl font-serif mb-6 text-white">Sale & Leaseback</h3>
-                            <p className="text-white/80 italic text-xl mb-12">Cession-bail</p>
+                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Sale & Leaseback</h3>
+                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Cession-bail</p>
                             
-                            <p className="text-2xl text-white font-light leading-relaxed drop-shadow-sm">
+                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
                                 Le sale and leaseback peut prendre la forme soit d’un Asset Deal, soit d’un Share Deal.
                                 <br/><br/>
                                 Dans ce cadre, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : s’agit-il de maximiser le prix de vente ou, à l’inverse, d’optimiser les conditions de location ?
