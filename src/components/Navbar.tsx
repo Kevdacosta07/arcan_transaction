@@ -28,7 +28,7 @@ export default function Navbar() {
                 
                 <div className="relative group h-full flex items-center">
                     <a href="/processus" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
-                        Processus
+                        Processus de vente
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
                     
@@ -92,9 +92,6 @@ export default function Navbar() {
                 <a href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
                     Réalisations
                 </a>
-                <a href="/#qui-sommes-nous" className="text-gray-600 hover:text-primary font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
-                    Qui Sommes-Nous
-                </a>
             </div>
             
             <div className="h-8 w-[1px] bg-gray-200"></div>
@@ -149,7 +146,7 @@ export default function Navbar() {
                         <div className={`group transition-all duration-700 delay-150 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">02</span>
                             <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsProcessusOpen(!isProcessusOpen)}>
-                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Processus</span>
+                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Processus de vente</span>
                                 <div className={`w-6 h-6 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 ${isProcessusOpen ? 'bg-[#5483B3] border-[#5483B3] rotate-180' : 'group-hover:border-[#5483B3]'}`}>
                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
@@ -159,7 +156,7 @@ export default function Navbar() {
                             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isProcessusOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                                 <div className="pl-4 border-l border-white/10 space-y-3">
                                     <div className="space-y-2">
-                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Processus de Vente</h4>
+                                        <a href="/processus" className="text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors block" onClick={() => setIsOpen(false)}>Processus de Vente</a>
                                         <a href="/processus#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Vente Directe</a>
                                         <a href="/processus#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Appel d&apos;Offres</a>
                                     </div>
@@ -194,18 +191,6 @@ export default function Navbar() {
                                 onClick={() => setIsOpen(false)}
                             >
                                 Réalisations
-                            </a>
-                        </div>
-
-                        {/* 05. Qui Sommes-Nous */}
-                        <div className={`group transition-all duration-700 delay-300 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                            <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">05</span>
-                            <a 
-                                href="/#qui-sommes-nous" 
-                                className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Qui Sommes-Nous
                             </a>
                         </div>
                     </div>
