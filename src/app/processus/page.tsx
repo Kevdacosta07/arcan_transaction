@@ -220,7 +220,7 @@ export default function ProcessusPage() {
 
 
       {/* Vente Directe - Corporate Accordion */}
-      <section id="vente-directe" className="relative py-32 px-6 bg-white overflow-hidden">
+      <section id="vente-directe" className="scroll-mt-32 relative py-32 px-6 bg-white overflow-hidden">
         {/* Background Design Elements - SVG Circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Top Left Cluster */}
@@ -371,7 +371,7 @@ export default function ProcessusPage() {
       </section>
 
       {/* Appel d'Offres - Corporate Accordion */}
-      <section id="appel-d-offres" className="relative py-32 px-6 bg-[#F8F9FA] overflow-hidden">
+      <section id="appel-d-offres" className="scroll-mt-32 relative py-32 px-6 bg-[#F8F9FA] overflow-hidden">
         {/* Background Design Elements - SVG Circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Top Right Cluster */}
@@ -535,7 +535,7 @@ export default function ProcessusPage() {
 
             <div className="space-y-40">
                 {/* Asset Deal */}
-                <ParallaxCard id="asset-deal" className="group">
+                <ParallaxCard id="asset-deal" className="group scroll-mt-32">
                     <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
@@ -567,7 +567,7 @@ export default function ProcessusPage() {
                 </ParallaxCard>
 
                 {/* Share Deal */}
-                <ParallaxCard id="share-deal" className="group">
+                <ParallaxCard id="share-deal" className="group scroll-mt-32">
                     <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
@@ -599,7 +599,7 @@ export default function ProcessusPage() {
                 </ParallaxCard>
 
                 {/* Sale & Leaseback */}
-                <ParallaxCard id="sale-leaseback" className="group">
+                <ParallaxCard id="sale-leaseback" className="group scroll-mt-32">
                     <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
                         
                         {/* Background Image with Overlay */}
