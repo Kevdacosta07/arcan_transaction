@@ -1,0 +1,321 @@
+"use client";
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { useEffect, useRef, useState } from "react";
+
+function RevealOnScroll({ 
+    children, 
+    className = "", 
+    delay = 0,
+    variant = "blur",
+    triggerOnMount = false
+}: { 
+    children: React.ReactNode, 
+    className?: string, 
+    delay?: number,
+    variant?: "blur" | "fade" | "slide" | "zoom" | "mask"
+    triggerOnMount?: boolean
+}) {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (triggerOnMount) {
+            const timer = setTimeout(() => setIsVisible(true), 100);
+            return () => clearTimeout(timer);
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => observer.disconnect();
+    }, [triggerOnMount]);
+
+    const getVariantClasses = () => {
+        switch (variant) {
+            case "mask":
+                return isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-[110%] opacity-0";
+            case "blur": // Cinematic Blur Reveal
+                return isVisible 
+                    ? "opacity-100 blur-0 translate-y-0 scale-100" 
+                    : "opacity-0 blur-xl translate-y-12 scale-90";
+            case "slide": // Lateral Slide
+                return isVisible
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-12";
+            case "zoom": // Subtle Zoom Out
+                return isVisible
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-110";
+            case "fade": // Classic Fade Up
+            default:
+                return isVisible 
+                    ? "opacity-100 translate-y-0" 
+                    : "opacity-0 translate-y-10";
+        }
+    };
+
+    if (variant === "mask") {
+        return (
+            <div ref={ref} className={`overflow-hidden ${className}`}>
+                <div 
+                    className={`transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`}
+                    style={{ transitionDelay: `${delay}ms` }}
+                >
+                    {children}
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div 
+            ref={ref} 
+            className={`${className} transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`} 
+            style={{ transitionDelay: `${delay}ms` }}
+        >
+            {children}
+        </div>
+    );
+}
+
+const projects = [
+  {
+    title: "Portefeuille de 11 immeubles",
+    amount: "> 250 mios",
+    seller: "Privé",
+    buyer: "Institutionnel",
+    location: "Genève, Suisse",
+    date: "2022",
+    color: "bg-[#FDFBF7]",
+    textColor: "text-[#021024]",
+    borderColor: "border-[#021024]/10"
+  },
+  {
+    title: "Portefeuille de 15 immeubles",
+    amount: "> 500 mios",
+    seller: "Privé",
+    buyer: "Institutionnel",
+    location: "Genève, Suisse",
+    date: "2021",
+    color: "bg-[#021024]",
+    textColor: "text-[#FDFBF7]",
+    borderColor: "border-[#FDFBF7]/10"
+  },
+  {
+    title: "Immeubles Mixte",
+    amount: "CHF 14 mios",
+    seller: "Privé",
+    buyer: "Institutionnel",
+    location: "Mies, Vaud",
+    date: "2025",
+    color: "bg-[#FDFBF7]",
+    textColor: "text-[#021024]",
+    borderColor: "border-[#021024]/10"
+  },
+  {
+    title: "Hotel proche de la gare",
+    amount: "CHF 26 mios",
+    seller: "Privé",
+    buyer: "Fondation",
+    location: "Genève",
+    date: "2023",
+    color: "bg-[#021024]",
+    textColor: "text-[#FDFBF7]",
+    borderColor: "border-[#FDFBF7]/10"
+  }
+];
+
+export default function RealisationsPage() {
+  return (
+    <main className="relative bg-[#FDFBF7]">
+      <Navbar />
+      
+      {/* Hero Section - Portfolio / Gallery Style */}
+      <section className="h-[calc(100vh-6rem)] sticky top-24 flex flex-col justify-end pb-12 md:pb-20 px-6 md:px-12 overflow-hidden">
+         
+         {/* Background Image */}
+         <div className="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1530136015037-cd8ef889cbff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Realisations Background" 
+                className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#021024]/70 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#021024] via-transparent to-transparent"></div>
+         </div>
+
+         {/* Top Label - Absolute Positioned in Section */}
+         <div className="absolute top-12 right-6 md:right-12 z-20 hidden md:block">
+             <RevealOnScroll variant="fade" delay={200} triggerOnMount>
+                <div className="text-right">
+                    <span className="block text-xs uppercase tracking-[0.3em] text-white/60 mb-2">Portfolio</span>
+                    <span className="block text-4xl font-serif text-white">2020 — 2025</span>
+                </div>
+             </RevealOnScroll>
+         </div>
+
+         {/* Content */}
+         <div className="relative z-10 w-full max-w-[1800px] mx-auto">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end border-t border-white/10 pt-12">
+                
+                {/* Main Title */}
+                <div className="lg:col-span-7">
+                    <h1 className="font-serif text-white leading-none">
+                        <RevealOnScroll variant="slide" delay={200} triggerOnMount>
+                            <span className="block text-2xl md:text-3xl font-sans font-light tracking-widest uppercase mb-4 text-[#5483B3]">Nos</span>
+                        </RevealOnScroll>
+                        <RevealOnScroll variant="mask" delay={400} triggerOnMount>
+                            <span className="block text-[15vw] lg:text-[10rem] tracking-tighter opacity-90">Réalisations</span>
+                        </RevealOnScroll>
+                    </h1>
+                </div>
+
+                {/* Stats & Description */}
+                <div className="lg:col-span-5 flex flex-col justify-between h-full">
+                    
+                    <RevealOnScroll variant="fade" delay={600} triggerOnMount>
+                        <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed mb-12 max-w-md">
+                            L&apos;art de la transaction immobilière. <br/>
+                            <span className="text-[#5483B3] italic">Discrétion absolue, résultats exceptionnels.</span>
+                        </p>
+                    </RevealOnScroll>
+
+                    <div className="grid grid-cols-2 gap-12">
+                        <RevealOnScroll variant="fade" delay={800} triggerOnMount>
+                            <div>
+                                <span className="block text-5xl md:text-6xl font-serif text-white mb-2">&gt;750M</span>
+                                <span className="text-xs uppercase tracking-widest text-white/50">Volume Transacté</span>
+                            </div>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll variant="fade" delay={1000} triggerOnMount>
+                            <div>
+                                <span className="block text-5xl md:text-6xl font-serif text-white mb-2">100%</span>
+                                <span className="text-xs uppercase tracking-widest text-white/50">Off-Market</span>
+                            </div>
+                        </RevealOnScroll>
+                    </div>
+                </div>
+            </div>
+         </div>
+      </section>
+
+      {/* Stacking Cards Container */}
+      <div className="relative z-10">
+        {projects.map((project, index) => (
+          <div 
+            key={index} 
+            className={`sticky top-0 h-screen flex flex-col justify-center items-center ${project.color} ${project.textColor} overflow-hidden transition-transform duration-700 ease-out`}
+          >
+             {/* Decorative Background Elements */}
+             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute -top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full border border-current opacity-5"></div>
+                <div className="absolute top-[40%] -left-[10%] w-[40vw] h-[40vw] rounded-full border border-current opacity-5"></div>
+                
+                {/* Large Number Background */}
+                <div className="absolute bottom-[-5vh] left-[-2vw] text-[30vw] font-serif font-bold leading-none opacity-[0.04] select-none tracking-tighter">
+                    0{index + 1}
+                </div>
+             </div>
+
+             {/* Content Layout */}
+             <div className="max-w-6xl w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                
+                {/* Left: Title & Main Info (7 cols) */}
+                <div className="lg:col-span-7">
+                    <div className="flex flex-col gap-8">
+                        <RevealOnScroll delay={100} variant="slide">
+                            <div className="flex items-center gap-4 opacity-60">
+                                <span className="text-sm tracking-[0.2em] uppercase">{project.date}</span>
+                                <span className="w-12 h-[1px] bg-current"></span>
+                                <span className="text-sm tracking-[0.2em] uppercase">{project.location}</span>
+                            </div>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll delay={200} variant="blur">
+                            <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight">
+                                {project.title}
+                            </h2>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll delay={400} variant="blur">
+                            <div className="inline-block border-b border-current pb-2">
+                                <span className="text-3xl md:text-4xl font-light">{project.amount}</span>
+                            </div>
+                        </RevealOnScroll>
+                    </div>
+                </div>
+
+                {/* Right: Details Table (5 cols) */}
+                <div className={`lg:col-span-5 lg:border-l ${project.borderColor} lg:pl-12 pt-8 lg:pt-0 flex flex-col h-full justify-center`}>
+                    
+                    <div className="space-y-12">
+                        <RevealOnScroll delay={500} variant="fade">
+                            <div className="grid grid-cols-2 gap-8">
+                                <div>
+                                    <span className="block text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Vendeur</span>
+                                    <span className="font-serif text-2xl">{project.seller}</span>
+                                </div>
+                                <div>
+                                    <span className="block text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Acquéreur</span>
+                                    <span className="font-serif text-2xl">{project.buyer}</span>
+                                </div>
+                            </div>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll delay={600} variant="fade">
+                            <div>
+                                <span className="block text-xs uppercase tracking-[0.2em] opacity-50 mb-2">Localisation</span>
+                                <span className="font-serif text-2xl">{project.location}</span>
+                            </div>
+                        </RevealOnScroll>
+
+                        <RevealOnScroll delay={700} variant="fade">
+                            <div className="pt-8 opacity-40 text-sm max-w-xs leading-relaxed">
+                                Transaction réalisée avec succès par nos équipes, démontrant notre capacité à gérer des actifs complexes.
+                            </div>
+                        </RevealOnScroll>
+                    </div>
+                </div>
+             </div>
+             
+             {/* Slide Number */}
+             <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-sm font-mono opacity-30">
+                <span className="text-3xl">{index + 1}</span>
+                <span className="mx-2">/</span>
+                <span>{projects.length}</span>
+             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Final CTA Section */}
+      <section className="relative z-10 bg-[#FDFBF7] py-32 flex flex-col items-center justify-center text-center px-6">
+        <h2 className="text-4xl md:text-5xl font-serif text-[#021024] mb-8">Un projet en tête ?</h2>
+        <a href="/contact" className="inline-block border-b border-[#021024] pb-1 text-xl text-[#021024] hover:opacity-50 transition-opacity">
+            Contactez-nous
+        </a>
+      </section>
+
+      <div className="relative z-10">
+        <Footer />
+      </div>
+    </main>
+  );
+}

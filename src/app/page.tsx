@@ -1,8 +1,10 @@
 import Image from "next/image";
 import HeroSlider from "@/components/HeroSlider";
 import FadeIn from "@/components/FadeIn";
+import ScrollLine from "@/components/ScrollLine";
+import TypologieSection from "@/components/TypologieSection";
 import Navbar from "@/components/Navbar";
-import ExpertiseSection from "@/components/ExpertiseSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -40,255 +42,231 @@ export default function Home() {
         </section>
 
         <div className="relative z-10 bg-background">
-          {/* Portfolio Style About & Team Section */}
-          <section id="qui-sommes-nous" className="py-16 md:py-32 px-6 bg-white">
-            <div className="max-w-[1800px] mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                {/* Left Column: Sticky Title & Image */}
-                <div className="lg:col-span-5 flex flex-col gap-8 lg:sticky lg:top-32 lg:h-fit">
-                   <FadeIn direction="right">
-                     <span className="text-xs font-bold tracking-[0.2em] text-secondary uppercase">À Propos</span>
-                     <h2 className="text-4xl md:text-5xl font-serif text-primary leading-none mt-4">Qui Sommes Nous ?</h2>
-                     <div className="relative w-full aspect-[4/5] mt-12 overflow-hidden shadow-2xl">
-                        <Image 
-                          src="https://plus.unsplash.com/premium_photo-1742418026796-886301c359a9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                          alt="Architecture Suisse Moderne" 
-                          fill 
-                          className="object-cover"
-                        />
-                     </div>
-                   </FadeIn>
+          {/* Redesigned About Section - Overlapping Layout */}
+          <section id="qui-sommes-nous" className="py-24 bg-white overflow-hidden">
+            <div className="max-w-[1800px] mx-auto px-6">
+              
+              {/* Main Content Area */}
+              <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 mb-32 relative">
+                
+                {/* Left Column: Typography & Text */}
+                <div className="lg:w-5/12 pt-12 z-10">
+                    <FadeIn>
+                        <div className="flex flex-col gap-4 mb-8">
+                            <span className="text-xs font-bold tracking-[0.2em] text-secondary uppercase block">À Propos</span>
+                            <div className="w-12 h-px relative">
+                                <ScrollLine color="bg-secondary" />
+                            </div>
+                        </div>
+                        <h2 className="text-6xl md:text-8xl font-serif text-primary leading-[0.9] mb-12">
+                            Qui <br/> Sommes <br/> <span className="italic text-gray-300">Nous ?</span>
+                        </h2>
+                    </FadeIn>
+                    
+                    <FadeIn delay={200}>
+                        <div className="space-y-8 text-lg text-gray-600 font-light leading-relaxed max-w-xl relative pl-8">
+                            {/* Vertical Line Decoration */}
+                            <div className="absolute left-0 top-2 bottom-2 w-px">
+                                <ScrollLine direction="vertical" color="bg-secondary/30" />
+                            </div>
+                            
+                            <p className="text-2xl text-primary font-normal leading-tight">
+                                ARCAN Transactions SA est une société spécialisée dans les transactions d&apos;immeubles de rendement en Suisse.
+                            </p>
+                            <p>
+                                Nous intervenons exclusivement sur le segment institutionnel et professionnel, en lien direct avec les acteurs du marché immobilier.
+                            </p>
+                            <p>
+                                Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l&apos;acquisition et dans la structuration de transactions immobilières.
+                            </p>
+
+                            <div className="pt-4">
+                                <a href="#realisations" className="inline-block px-8 py-3 bg-[#03081f] text-white text-base font-medium hover:bg-[#5483B3] transition-colors duration-300">
+                                    Consulter nos réalisations
+                                </a>
+                            </div>
+                        </div>
+                    </FadeIn>
                 </div>
 
-                {/* Right Column: Content & Team */}
-                <div className="lg:col-span-7 flex flex-col gap-24 pt-8">
-                   <FadeIn direction="left" delay={200}>
-                     {/* Text Content */}
-                     <div className="space-y-8 text-xl font-light text-gray-600 leading-relaxed">
-                        <p>
-                          <strong className="font-medium text-primary">ARCAN Transactions SA</strong> est une société spécialisée dans les transactions d&apos;immeubles de rendement en Suisse.
-                        </p>
-                        <p>
-                          Nous intervenons exclusivement sur le segment institutionnel et professionnel, en lien direct avec les acteurs du marché immobilier.
-                        </p>
-                        <p>
-                          Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l&apos;acquisition et dans la structuration de transactions immobilières, tous segments confondus.
-                        </p>
-                     </div>
+                {/* Right Column: Image & Floating Stats */}
+                <div className="lg:w-7/12 relative mt-12 lg:mt-0">
+                    <FadeIn direction="left" delay={300}>
+                        <div className="relative">
+                            <div className="relative h-[600px] w-full bg-gray-100 group overflow-hidden">
+                                <Image 
+                                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" 
+                                    alt="Architecture Suisse" 
+                                    fill 
+                                    className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                                />
+                                {/* Overlay Pattern */}
+                                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                            </div>
 
-                     {/* Quote */}
-                     <div className="border-l-2 border-primary pl-8 py-2 my-12">
-                        <p className="text-3xl font-serif text-primary italic leading-tight">
-                          &quot;Arcan Transactions SA est un acteur clé du Real Estate Capital Market en Suisse.&quot;
-                        </p>
-                     </div>
+                            {/* Stats Box - Horizontal & Overlapping */}
+                            <div className="absolute -bottom-12 -left-4 lg:-bottom-16 lg:-left-24 bg-[#03081f] p-8 lg:p-10 shadow-2xl z-20 max-w-[90vw] lg:max-w-none">
+                                <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+                                    <div className="group">
+                                        <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">30+</span>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Plus de 30 ans d’expériences cumulées</p>
+                                    </div>
+                                    
+                                    <div className="hidden md:block w-px bg-white/10"></div>
+                                    
+                                    <div className="group">
+                                        <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">100+</span>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Plus de 100 immeubles vendus</p>
+                                    </div>
 
-                     {/* Key Figures */}
-                     <div className="relative my-20 p-8 md:p-12 bg-gray-50 border border-gray-100">
-                        {/* Decorative Corner */}
-                        <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-secondary/30 -translate-x-2 -translate-y-2"></div>
-                        <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-secondary/30 translate-x-2 translate-y-2"></div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-                           <div className="text-center md:text-left">
-                              <p className="text-5xl md:text-6xl font-serif text-primary mb-2 relative inline-block">
-                                30
-                                <span className="absolute -top-2 -right-6 text-2xl text-secondary font-sans font-bold">+</span>
-                              </p>
-                              <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mt-2">Années d&apos;expérience cumulées</p>
-                           </div>
-                           
-                           <div className="text-center md:text-left md:border-l md:border-gray-200 md:pl-12">
-                              <p className="text-5xl md:text-6xl font-serif text-primary mb-2 relative inline-block">
-                                100
-                                <span className="absolute -top-2 -right-6 text-2xl text-secondary font-sans font-bold">+</span>
-                              </p>
-                              <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mt-2">Immeubles vendus</p>
-                           </div>
-                           
-                           <div className="text-center md:text-left md:border-l md:border-gray-200 md:pl-12">
-                              <p className="text-5xl md:text-6xl font-serif text-primary mb-2 relative inline-block">
-                                2 Mrd
-                                <span className="absolute -top-2 -right-8 text-2xl text-secondary font-sans font-bold">+</span>
-                              </p>
-                              <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mt-2">CHF Volume de transaction</p>
-                           </div>
+                                    <div className="hidden md:block w-px bg-white/10"></div>
+
+                                    <div className="group">
+                                        <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">2 Mrd+</span>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Volume de transaction cumulé</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-
-                     {/* Button */}
-                     <div className="mb-24">
-                        <a href="#realisations" className="inline-block px-12 py-5 bg-primary text-white hover:bg-secondary transition-all duration-300 uppercase tracking-widest text-xs font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                          Nos réalisations
-                        </a>
-                     </div>
-
-                     {/* Divider */}
-                     <div className="w-full h-px bg-gray-200 mb-24"></div>
-
-                     {/* Team Section */}
-                     <div>
-                        <h3 className="text-sm font-bold tracking-[0.2em] text-secondary uppercase mb-16">L&apos;Équipe</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-                           {/* Member 1: Aurèle */}
-                           <div className="group cursor-pointer max-w-[200px] mx-auto md:mx-0">
-                              <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-gray-100">
-                                 <Image 
-                                    src="/assets/employe/aurele_arthur_laya.webp" 
-                                    alt="Aurèle Arthur LAYA" 
-                                    fill 
-                                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                 />
-                              </div>
-                              <div className="border-t border-gray-200 pt-4 group-hover:border-primary transition-colors duration-500">
-                                 <h4 className="text-xl font-serif text-primary mb-1">Aurèle Arthur LAYA</h4>
-                                 <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Managing Partner</p>
-                                 <div className="space-y-1 text-xs font-light text-gray-400 group-hover:text-gray-600 transition-colors">
-                                    <a href="mailto:a.laya@arcan-transactions.ch" className="block hover:text-primary">a.laya@arcan-transactions.ch</a>
-                                    <a href="tel:+41792063736" className="block hover:text-primary">+41 79 206 37 36</a>
-                                 </div>
-                              </div>
-                           </div>
-
-                           {/* Member 2: Gilles */}
-                           <div className="group cursor-pointer max-w-[200px] mx-auto md:mx-0">
-                              <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-gray-100">
-                                 <Image 
-                                    src="/assets/employe/gilles_cohen.webp" 
-                                    alt="Gilles COHEN" 
-                                    fill 
-                                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                 />
-                              </div>
-                              <div className="border-t border-gray-200 pt-4 group-hover:border-primary transition-colors duration-500">
-                                 <h4 className="text-xl font-serif text-primary mb-1">Gilles COHEN</h4>
-                                 <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Transaction Director</p>
-                                 <div className="space-y-1 text-xs font-light text-gray-400 group-hover:text-gray-600 transition-colors">
-                                    <a href="mailto:g.cohen@arcan-transactions.ch" className="block hover:text-primary">g.cohen@arcan-transactions.ch</a>
-                                    <a href="tel:+41786709121" className="block hover:text-primary">+41 78 670 91 21</a>
-                                 </div>
-                              </div>
-                           </div>
-
-                           {/* Member 3: Alexandre */}
-                           <div className="group cursor-pointer max-w-[200px] mx-auto md:mx-0">
-                              <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-gray-100">
-                                 <Image 
-                                    src="/assets/employe/alexandre_arazi.webp" 
-                                    alt="Alexandre ARAZI" 
-                                    fill 
-                                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out transform group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                 />
-                              </div>
-                              <div className="border-t border-gray-200 pt-4 group-hover:border-primary transition-colors duration-500">
-                                 <h4 className="text-xl font-serif text-primary mb-1">Alexandre ARAZI</h4>
-                                 <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Managing Partner</p>
-                                 <div className="space-y-1 text-xs font-light text-gray-400 group-hover:text-gray-600 transition-colors">
-                                    <a href="mailto:a.arazi@arcan-transactions.ch" className="block hover:text-primary">a.arazi@arcan-transactions.ch</a>
-                                    <a href="tel:+41795665204" className="block hover:text-primary">+41 79 566 52 04</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                   </FadeIn>
+                    </FadeIn>
                 </div>
               </div>
+
+              {/* Team Section */}
+              <div className="pt-12 lg:pt-0">
+                  <div className="flex justify-between items-end mb-16 border-b border-gray-100 pb-8">
+                      <FadeIn>
+                        <h3 className="text-4xl font-serif text-primary">L&apos;Équipe</h3>
+                      </FadeIn>
+                      <FadeIn delay={200}>
+                        <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                            Nos réalisations <span className="text-lg">→</span>
+                        </a>
+                      </FadeIn>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+                       {[
+                         { name: "Aurèle Arthur LAYA", role: "Managing Partner", email: "a.laya@arcan-transactions.ch", phone: "+41 79 206 37 36", img: "/assets/employe/aurele_arthur_laya.webp" },
+                         { name: "Gilles COHEN", role: "Transaction Director", email: "g.cohen@arcan-transactions.ch", phone: "+41 78 670 91 21", img: "/assets/employe/gilles_cohen.webp" },
+                         { name: "Alexandre ARAZI", role: "Managing Partner", email: "a.arazi@arcan-transactions.ch", phone: "+41 79 566 52 04", img: "/assets/employe/alexandre_arazi.webp" }
+                       ].map((member, index) => (
+                           <FadeIn key={index} delay={index * 150}>
+                               <div className="group cursor-pointer">
+                                   <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-gray-50">
+                                       <Image 
+                                           src={member.img} 
+                                           alt={member.name} 
+                                           fill 
+                                           className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
+                                       />
+                                   </div>
+                                   <div className="flex flex-col">
+                                       <h4 className="text-xl font-serif text-primary mb-1 group-hover:text-secondary transition-colors">{member.name}</h4>
+                                       <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-3">{member.role}</p>
+                                       <div className="space-y-1 text-xs font-light text-gray-500">
+                                           <a href={`mailto:${member.email}`} className="block hover:text-primary transition-colors">{member.email}</a>
+                                           <a href={`tel:${member.phone.replace(/\s/g, '')}`} className="block hover:text-primary transition-colors">{member.phone}</a>
+                                       </div>
+                                   </div>
+                               </div>
+                           </FadeIn>
+                       ))}
+                  </div>
+              </div>
+
             </div>
           </section>
 
-          {/* Process Transition */}
-          <section className="py-24 bg-[#021024] px-6 border-t border-white/10">
-            <div className="max-w-6xl mx-auto text-center">
-               <p className="text-3xl md:text-4xl font-serif text-white leading-relaxed italic mb-12">
-                 Une maîtrise rigoureuse des processus de vente pour sécuriser et optimiser vos transactions.
-               </p>
-               <a href="#processus" className="inline-block px-8 py-4 border border-white text-white hover:bg-white hover:text-[#021024] transition-all duration-300 uppercase tracking-widest text-xs font-bold">
-                  Découvrez nos processus de vente
-               </a>
+          {/* Process Transition & Atouts */}
+          <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <Image 
+                src="https://images.unsplash.com/photo-1644661154323-5022528d2857?q=80&w=2054&auto=format&fit=crop"
+                alt="Architecture"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[#03081f]/85" />
+            </div>
+            
+            <div className="relative z-10 w-full py-24 lg:py-32">
+              
+              {/* Header */}
+              <div className="max-w-[1400px] mx-auto px-6 mb-20">
+                <FadeIn>
+                  <span className="inline-block text-accent text-xs font-bold tracking-[0.3em] uppercase mb-6">Nos processus de vente</span>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.15] mb-8 max-w-4xl">
+                    Une maîtrise rigoureuse des processus de vente pour <span className="text-accent">sécuriser</span> et <span className="text-accent">optimiser</span> vos transactions.
+                  </h2>
+                  <a href="/processus" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
+                    <span>Découvrez nos processus de vente</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </FadeIn>
+              </div>
+
+              {/* Infinite Scrolling Atouts */}
+              <div className="relative">
+                {/* Gradient Masks */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#03081f]/90 to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#03081f]/90 to-transparent z-10 pointer-events-none" />
+                
+                {/* Scrolling Track */}
+                <div className="flex animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
+                  {/* First Set */}
+                  {[
+                    { num: "01", title: "Professionnalisme", desc: "Excellence & rigueur" },
+                    { num: "02", title: "Efficacité", desc: "Résultats rapides" },
+                    { num: "03", title: "Réseau", desc: "Relations clés" },
+                    { num: "04", title: "Confiance", desc: "Partenariat durable" },
+                    { num: "05", title: "Transparence", desc: "Communication claire" },
+                    { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-16 px-16 shrink-0">
+                      <span className="text-8xl md:text-9xl font-serif text-white/5">{item.num}</span>
+                      <div>
+                        <h3 className="text-2xl md:text-3xl font-light text-white mb-1">{item.title}</h3>
+                        <p className="text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
+                      </div>
+                      <span className="text-accent/40 text-4xl">✦</span>
+                    </div>
+                  ))}
+                  {/* Duplicate Set for Seamless Loop */}
+                  {[
+                    { num: "01", title: "Professionnalisme", desc: "Excellence & rigueur" },
+                    { num: "02", title: "Efficacité", desc: "Résultats rapides" },
+                    { num: "03", title: "Réseau", desc: "Relations clés" },
+                    { num: "04", title: "Confiance", desc: "Partenariat durable" },
+                    { num: "05", title: "Transparence", desc: "Communication claire" },
+                    { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
+                  ].map((item, index) => (
+                    <div key={`dup-${index}`} className="flex items-center gap-16 px-16 shrink-0">
+                      <span className="text-8xl md:text-9xl font-serif text-white/5">{item.num}</span>
+                      <div>
+                        <h3 className="text-2xl md:text-3xl font-light text-white mb-1">{item.title}</h3>
+                        <p className="text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
+                      </div>
+                      <span className="text-accent/40 text-4xl">✦</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+
             </div>
           </section>
 
-          {/* Expertise Section */}
-          <ExpertiseSection />
+          {/* Typologie d'actifs Section */}
+          <TypologieSection />
+
         </div>
       </main>
 
-      <footer className="bg-[#021024] text-white pt-20 pb-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-20 mb-20">
-            <div>
-              <div className="relative w-80 h-24 mb-8">
-                <Image 
-                  src="/assets/logo/Arcan_Logo_Blanc.webp" 
-                  alt="Arcan Transaction" 
-                  fill 
-                  className="object-contain object-left" 
-                  quality={100} 
-                />
-              </div>
-              <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">
-                Pour toute demande d&apos;information ou pour convenir d&apos;un entretien confidentiel.
-              </p>
-              <a href="mailto:contact@arcan-transaction.com" className="inline-block mt-8 text-2xl border-b border-white/30 pb-2 hover:text-accent hover:border-accent transition-all">
-                contact@arcan-transaction.com
-              </a>
-            </div>
-            
-            <div className="grid gap-12">
-              {/* Partner 1 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Gilles COHEN</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Transaction Director</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:g.cohen@arcan-transactions.ch" className="block hover:text-white">g.cohen@arcan-transactions.ch</a>
-                  <a href="tel:+41786709121" className="block hover:text-white">+41 78 670 91 21</a>
-                </div>
-              </div>
-
-              {/* Partner 2 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Aurèle Arthur LAYA</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Managing Partner</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:a.laya@arcan-transactions.ch" className="block hover:text-white">a.laya@arcan-transactions.ch</a>
-                  <a href="tel:+41792063736" className="block hover:text-white">+41 79 206 37 36</a>
-                </div>
-              </div>
-
-              {/* Partner 3 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Alexandre ARAZI</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Managing Partner</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:a.arazi@arcan-transactions.ch" className="block hover:text-white">a.arazi@arcan-transactions.ch</a>
-                  <a href="tel:+41795665204" className="block hover:text-white">+41 79 566 52 04</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-end pt-10 border-t border-white/10">
-             <div className="relative w-48 h-12 mb-6 md:mb-0 opacity-80">
-                <Image src="/assets/logo/Arcan_Logo_Blanc.webp" alt="Logo" fill className="object-contain object-left" quality={100} />
-             </div>
-             <div className="flex flex-col md:flex-row gap-8 text-xs text-gray-600 uppercase tracking-widest">
-               <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
-               <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-               <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
-             </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

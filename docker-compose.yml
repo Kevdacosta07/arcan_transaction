@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  arcane_app:
+    build: .
+    image: arcan/app:latest
+    container_name: arcan_app
+    restart: always
+    expose:
+      - "3000"
+      
+    environment:
+      - VIRTUAL_HOST=arcan.helveit.ch
+      - LETSENCRYPT_HOST=arcan.helveit.ch
+      - LETSENCRYPT_EMAIL=info@arcan.ch
+      - VIRTUAL_PORT=3000
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
