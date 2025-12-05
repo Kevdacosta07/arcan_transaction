@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${libreBaskerville.variable} ${montserrat.variable} ${roboto.variable} antialiased`}
       >
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

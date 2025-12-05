@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CookieSettingsLink from "./CookieSettingsLink";
 
 export default function Footer() {
   return (
@@ -82,6 +83,7 @@ export default function Footer() {
                <div className="flex gap-6">
                    <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
                    <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+                   <CookieSettingsLink />
                </div>
              </div>
           </div>
