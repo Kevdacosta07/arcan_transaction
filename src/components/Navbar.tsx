@@ -23,11 +23,11 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-12">
-            <div className="flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-12">
+            <div className="flex items-center gap-4 xl:gap-8">
                 
                 <div className="relative group h-full flex items-center">
-                    <a href="/processus" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8">
+                    <a href="/processus" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
                         Processus
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
@@ -85,29 +85,29 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <a href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors">
+                <a href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
                     Critères d&apos;investissement
                 </a>
 
-                <a href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors">
+                <a href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
                     Réalisations
                 </a>
-                <a href="/#qui-sommes-nous" className="text-gray-600 hover:text-primary font-sans text-xs uppercase tracking-widest transition-colors">
+                <a href="/#qui-sommes-nous" className="text-gray-600 hover:text-primary font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
                     Qui Sommes-Nous
                 </a>
             </div>
             
             <div className="h-8 w-[1px] bg-gray-200"></div>
 
-            <a href="/contact" className="group flex items-center gap-3 text-primary hover:text-secondary transition-colors">
-                <span className="font-serif italic text-lg">Prendre rendez-vous</span>
+            <a href="/contact" className="group flex items-center gap-3 text-primary hover:text-secondary transition-colors whitespace-nowrap">
+                <span className="font-serif italic text-lg">Contactez nous</span>
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </a>
         </nav>
 
         {/* Mobile Menu Button */}
         <button 
-            className="md:hidden z-[60] relative w-12 h-12 flex flex-col justify-center items-end gap-1.5 group"
+            className="lg:hidden z-[60] relative w-12 h-12 flex flex-col justify-center items-end gap-1.5 group"
             onClick={() => setIsOpen(!isOpen)}
         >
             <span className={`h-[2px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'w-6 rotate-45 translate-y-2 bg-white' : 'w-8 bg-[#021024]'}`}></span>
@@ -117,7 +117,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay - Portfolio Style */}
         <div 
-            className="fixed inset-0 z-50 bg-[#021024] transition-all duration-1000 ease-[cubic-bezier(0.86,0,0.07,1)] md:hidden"
+            className="fixed inset-0 z-50 bg-[#021024] transition-all duration-1000 ease-[cubic-bezier(0.86,0,0.07,1)] lg:hidden"
             style={{ 
                 clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)',
                 WebkitClipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)'
@@ -219,7 +219,7 @@ export default function Navbar() {
                             <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Contact</span>
                         </div>
                         <a href="/contact" onClick={() => setIsOpen(false)} className="flex items-center justify-between bg-[#021024] text-white px-5 py-4 rounded-xl group hover:bg-[#5483B3] transition-colors">
-                            <span className="uppercase tracking-widest text-[10px] font-bold">Prendre rendez-vous</span>
+                            <span className="uppercase tracking-widest text-[10px] font-bold">Contactez nous</span>
                             <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                                 <span className="group-hover:translate-x-0.5 transition-transform text-xs">→</span>
                             </span>

@@ -55,6 +55,16 @@ export default function TypologieSection() {
                   </FadeIn>
                 ))}
               </div>
+
+              {/* CTA Button */}
+              <div className="mt-12">
+                <FadeIn delay={600}>
+                  <a href="/criteres" className="inline-flex items-center gap-3 px-8 py-4 bg-[#021024] text-white rounded-sm hover:bg-[#5483B3] transition-colors group">
+                      <span className="text-sm font-medium">Critères d&apos;investissement</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                </FadeIn>
+              </div>
            </div>
 
            {/* Right Column: Image & Quote */}

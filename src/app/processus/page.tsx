@@ -133,9 +133,42 @@ function ParallaxCard({ children, className = "", id = "" }: { children: React.R
     );
 }
 
+function AccordionItem({ title, children, isOpen, onClick }: { title: string, children: React.ReactNode, isOpen: boolean, onClick: () => void }) {
+    return (
+        <div className="border-b border-gray-200">
+            <button 
+                onClick={onClick}
+                className="w-full py-6 md:py-8 flex items-center justify-between text-left group"
+            >
+                <span className={`text-xl md:text-2xl font-serif transition-colors duration-300 ${isOpen ? 'text-[#5483B3]' : 'text-[#021024] group-hover:text-[#5483B3]'}`}>
+                    {title}
+                </span>
+                <div className={`relative w-6 h-6 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>
+                    <span className={`absolute w-full h-[1px] bg-current ${isOpen ? 'bg-[#5483B3]' : 'bg-gray-400'}`}></span>
+                    <span className={`absolute h-full w-[1px] bg-current ${isOpen ? 'bg-[#5483B3]' : 'bg-gray-400'}`}></span>
+                </div>
+            </button>
+            <div 
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+            >
+                <div className="text-gray-600 font-light leading-relaxed text-base md:text-lg pt-2">
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function ProcessusPage() {
+  // Independent state for each section to allow default open on both
+  const [venteAccordion, setVenteAccordion] = useState<string | null>("vente-types");
+  const [appelAccordion, setAppelAccordion] = useState<string | null>("appel-types");
+
+  const toggleVente = (id: string) => setVenteAccordion(venteAccordion === id ? null : id);
+  const toggleAppel = (id: string) => setAppelAccordion(appelAccordion === id ? null : id);
+
   return (
-    <main className="bg-[#FDFBF7] min-h-screen">
+    <main className="bg-white min-h-screen">
       <Navbar />
 
       {/* Hero Section - Corporate Portfolio */}
@@ -186,206 +219,304 @@ export default function ProcessusPage() {
 
 
 
-      {/* Vente Directe - Sticky Split */}
-      <section id="vente-directe" className="relative z-10 bg-[#FDFBF7]">
-        <div className="flex flex-col lg:flex-row">
-            {/* Sticky Header (Left) */}
-            <div className="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 bg-[#021024] text-[#FDFBF7] p-12 flex flex-col justify-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] border border-[#FDFBF7] rounded-full"></div>
-                </div>
-                
-                <div className="relative z-10">
-                    <RevealOnScroll variant="slide" delay={200}>
-                        <h2 className="text-6xl md:text-8xl font-serif leading-none mb-6">
-                            Vente<br/>
-                            <span className="text-[#5483B3] italic">Directe</span>
-                        </h2>
-                    </RevealOnScroll>
-                    
-                    <RevealOnScroll variant="fade" delay={400}>
-                        <p className="text-xl font-light opacity-70 max-w-md mt-8 border-l border-[#5483B3] pl-6">
-                            Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées.
-                        </p>
-                    </RevealOnScroll>
-                </div>
+      {/* Vente Directe - Corporate Accordion */}
+      <section id="vente-directe" className="relative py-32 px-6 bg-white overflow-hidden">
+        {/* Background Design Elements - SVG Circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Top Left Cluster */}
+            <svg className="absolute -left-[5%] -top-[5%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] text-[#021024] opacity-[0.03]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg className="absolute left-[10%] -top-[2%] w-[25vw] h-[25vw] max-w-[300px] max-h-[300px] text-[#5483B3] opacity-[0.05]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            
+            {/* Bottom Right Cluster */}
+            <svg className="absolute -right-[5%] bottom-[5%] w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] text-[#5483B3] opacity-[0.04]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg className="absolute right-[15%] bottom-[15%] w-[15vw] h-[15vw] max-w-[200px] max-h-[200px] text-[#021024] opacity-[0.06]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+        </div>
 
-                <div className="absolute bottom-12 left-12 text-[12rem] font-serif opacity-5 font-bold leading-none select-none">01</div>
-            </div>
-
-            {/* Scrollable Content (Right) */}
-            <div className="lg:w-1/2 p-12 md:p-24 space-y-32 bg-[#FDFBF7]">
-                {/* Definitions */}
-                <RevealOnScroll variant="fade">
-                    <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-12">Types de Mandat</h3>
-                    <div className="space-y-16">
-                        <div className="group">
-                            <h4 className="text-4xl font-serif mb-6 group-hover:text-[#5483B3] transition-colors duration-300">Exclusive</h4>
-                            <p className="text-gray-600 font-light leading-relaxed text-lg">
-                                L’objet est présenté à un seul prospect, au prix fixé. La vente se concrétise uniquement si le prix est accepté, garantissant une confidentialité totale.
+        <div className="max-w-7xl mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                {/* Header (Left) */}
+                <div className="lg:col-span-5">
+                    <div className="sticky top-32">
+                        <RevealOnScroll variant="slide">
+                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">01. Méthodologie</span>
+                            <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
+                                Vente<br/><span className="italic text-[#5483B3]">Directe</span>
+                            </h2>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll variant="fade" delay={200}>
+                            <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
+                                Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et efficacité.
                             </p>
-                        </div>
-                        <div className="group">
-                            <h4 className="text-4xl font-serif mb-6 group-hover:text-[#5483B3] transition-colors duration-300">Sélective</h4>
-                            <p className="text-gray-600 font-light leading-relaxed text-lg">
-                                L’objet est présenté au prix fixé à plusieurs investisseurs qualifiés. Le principe est simple : le premier offrant au prix obtient l’attribution (« first in, first served »).
-                            </p>
-                        </div>
-                    </div>
-                </RevealOnScroll>
+                        </RevealOnScroll>
 
-                {/* Timeline */}
-                <RevealOnScroll variant="fade">
-                    <div className="flex items-center justify-between mb-12">
-                        <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400">Timeline</h3>
-                        <span className="text-lg font-serif text-[#5483B3]">3 sem. - 1.5 mois</span>
-                    </div>
-                    
-                    <div className="relative border-l border-[#021024]/10 pl-12 space-y-12">
-                        {[
-                            "Sélection de deux ou trois investisseurs",
-                            "Envoi teaser + NDA",
-                            "Réception NDA signées & ouverture short-dataroom",
-                            "Réception NBO & ouverture full dataroom",
-                            "Réception des BO et acceptation",
-                            "Revue du projet d’acte notarié",
-                            "Signing & closing"
-                        ].map((step, i) => (
-                            <div key={i} className="relative group">
-                                <span className="absolute -left-[53px] top-2 w-3 h-3 rounded-full bg-[#021024]/20 group-hover:bg-[#5483B3] transition-colors duration-300"></span>
-                                <p className="text-xl font-light text-gray-800 group-hover:text-[#5483B3] transition-colors duration-300">{step}</p>
+                        <RevealOnScroll variant="zoom" delay={400}>
+                            <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" 
+                                    alt="Meeting" 
+                                    className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+                                />
                             </div>
-                        ))}
+                        </RevealOnScroll>
                     </div>
-                </RevealOnScroll>
+                </div>
 
-                {/* Pros/Cons */}
-                <RevealOnScroll variant="fade">
-                    <div className="grid grid-cols-1 gap-8">
-                        <div className="bg-white p-10 shadow-lg border-t-4 border-[#5483B3]">
-                            <h4 className="text-sm uppercase tracking-widest text-[#5483B3] mb-6">Avantages</h4>
-                            <ul className="space-y-4">
-                                {["Prix de vente fixé à l’avance", "Approche ciblée", "Souplesse de négociation", "Rapidité de la procédure", "Procédure d’attribution de gré à gré"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-gray-600 font-light">
-                                        <span className="text-[#5483B3] text-xl leading-none">+</span> {item}
-                                    </li>
-                                ))}
-                            </ul>
+                {/* Accordions (Right) */}
+                <div className="lg:col-span-7">
+                    <RevealOnScroll variant="fade" delay={300}>
+                        <div className="border-t border-gray-200">
+                            <AccordionItem 
+                                title="Types de Mandat" 
+                                isOpen={venteAccordion === "vente-types"} 
+                                onClick={() => toggleVente("vente-types")}
+                            >
+                                <div className="space-y-8 pb-4">
+                                    <div>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Exclusive</h4>
+                                        <p>L’objet est présenté à un seul prospect, au prix fixé. La vente se concrétise uniquement si le prix est accepté, garantissant une confidentialité totale.</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Sélective</h4>
+                                        <p>L’objet est présenté au prix fixé à plusieurs investisseurs qualifiés. Le principe est simple : le premier offrant au prix obtient l’attribution (« first in, first served »).</p>
+                                    </div>
+                                </div>
+                            </AccordionItem>
+
+                            <AccordionItem 
+                                title="Timeline" 
+                                isOpen={venteAccordion === "vente-timeline"} 
+                                onClick={() => toggleVente("vente-timeline")}
+                            >
+                                <div className="relative pb-4 pt-2">
+                                    <div className="flex items-center justify-between mb-10 relative z-10">
+                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Processus & Timing</span>
+                                        <div className="px-4 py-1.5 bg-white border border-gray-200 text-[#5483B3] text-sm font-serif rounded-full shadow-sm">
+                                            3 sem. - 1.5 mois
+                                        </div>
+                                    </div>
+
+                                    <div className="relative space-y-0 z-10">
+                                        {[
+                                            "Sélection de deux ou trois investisseurs",
+                                            "Envoi teaser + NDA",
+                                            "Réception NDA signées & ouverture short-dataroom",
+                                            "Réception NBO & ouverture full dataroom",
+                                            "Réception des BO et acceptation",
+                                            "Revue du projet d’acte notarié",
+                                            "Signing & closing"
+                                        ].map((step, i, arr) => (
+                                            <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
+                                                {/* Connecting Line */}
+                                                {i !== arr.length - 1 && (
+                                                    <div className="absolute left-[15px] top-8 bottom-0 w-[1px] bg-[#5483B3]/30"></div>
+                                                )}
+
+                                                {/* Node */}
+                                                <div className="absolute left-0 top-0 w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-full shadow-sm group-hover:border-[#5483B3] group-hover:text-[#5483B3] transition-all duration-300 z-10">
+                                                    <span className="text-xs font-medium text-gray-400 group-hover:text-[#5483B3]">{i + 1}</span>
+                                                </div>
+                                                
+                                                {/* Content */}
+                                                <p className="text-gray-600 font-light text-base pt-1 group-hover:text-[#021024] transition-colors duration-300">
+                                                    {step}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </AccordionItem>
+
+                            <AccordionItem 
+                                title="Avantages & Inconvénients" 
+                                isOpen={venteAccordion === "vente-proscons"} 
+                                onClick={() => toggleVente("vente-proscons")}
+                            >
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-4">
+                                    <div>
+                                        <h4 className="text-xs uppercase tracking-widest text-[#5483B3] mb-4">Avantages</h4>
+                                        <ul className="space-y-2">
+                                            {["Prix de vente fixé à l’avance", "Approche ciblée", "Souplesse de négociation", "Rapidité de la procédure", "Procédure d’attribution de gré à gré"].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm">
+                                                    <span className="text-[#5483B3]">+</span> {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Inconvénients</h4>
+                                        <ul className="space-y-2">
+                                            {["Transaction moins structurée", "Délais non-impératifs", "Moins de concurrence", "Moins de surenchère"].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
+                                                    <span className="text-gray-400">-</span> {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </AccordionItem>
                         </div>
-                        <div className="bg-white p-10 shadow-lg border-t-4 border-gray-200">
-                            <h4 className="text-sm uppercase tracking-widest text-gray-400 mb-6">Inconvénients</h4>
-                            <ul className="space-y-4">
-                                {["Transaction moins structurée", "Délais non-impératifs", "Moins de concurrence", "Moins de surenchère"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-gray-600 font-light">
-                                        <span className="text-gray-400 text-xl leading-none">-</span> {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </RevealOnScroll>
+                    </RevealOnScroll>
+                </div>
             </div>
         </div>
       </section>
 
-      {/* Appel d'Offres - Sticky Split (Reversed) */}
-      <section id="appel-d-offres" className="relative z-10 bg-[#FDFBF7]">
-        <div className="flex flex-col lg:flex-row-reverse">
-            {/* Sticky Header (Right) */}
-            <div className="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 bg-[#021024] text-[#FDFBF7] p-12 flex flex-col justify-center relative overflow-hidden border-l border-[#FDFBF7]/5">
-                <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
-                     <div className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] border border-[#FDFBF7] rounded-full"></div>
-                </div>
+      {/* Appel d'Offres - Corporate Accordion */}
+      <section id="appel-d-offres" className="relative py-32 px-6 bg-[#F8F9FA] overflow-hidden">
+        {/* Background Design Elements - SVG Circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Top Right Cluster */}
+            <svg className="absolute -right-[10%] -top-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] text-[#021024] opacity-[0.03]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg className="absolute right-[15%] top-[5%] w-[30vw] h-[30vw] max-w-[350px] max-h-[350px] text-[#5483B3] opacity-[0.05]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
 
-                <div className="relative z-10 text-right">
-                    <RevealOnScroll variant="slide" delay={200}>
-                        <h2 className="text-6xl md:text-8xl font-serif leading-none mb-6">
-                            Appel<br/>
-                            <span className="text-[#5483B3] italic">d'Offres</span>
-                        </h2>
-                    </RevealOnScroll>
-                    
-                    <RevealOnScroll variant="fade" delay={400}>
-                        <p className="text-xl font-light opacity-70 max-w-md mt-8 border-r border-[#5483B3] pr-6 ml-auto">
-                            Un processus structuré pour maximiser la valeur par la concurrence.
-                        </p>
-                    </RevealOnScroll>
-                </div>
+            {/* Bottom Left Cluster */}
+            <svg className="absolute -left-[5%] bottom-[10%] w-[20vw] h-[20vw] max-w-[250px] max-h-[250px] text-[#5483B3] opacity-[0.06]" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+            <svg className="absolute left-[5%] bottom-[5%] w-[15vw] h-[15vw] max-w-[180px] max-h-[180px] text-[#021024] opacity-[0.04]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="50" cy="50" r="49" />
+            </svg>
+        </div>
 
-                <div className="absolute bottom-12 right-12 text-[12rem] font-serif opacity-5 font-bold leading-none select-none">02</div>
-            </div>
-
-            {/* Scrollable Content (Left) */}
-            <div className="lg:w-1/2 p-12 md:p-24 space-y-32 bg-[#FDFBF7]">
-                {/* Definitions */}
-                <RevealOnScroll variant="fade">
-                    <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-12">Types de Mandat</h3>
-                    <div className="space-y-16">
-                        <div className="group">
-                            <h4 className="text-4xl font-serif mb-6 group-hover:text-[#5483B3] transition-colors duration-300">Sélective</h4>
-                            <p className="text-gray-600 font-light leading-relaxed text-lg">
-                                Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs à 5 ou 10 prospects triés sur le volet.
+        <div className="max-w-7xl mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                {/* Header (Left) */}
+                <div className="lg:col-span-5 lg:order-2">
+                    <div className="sticky top-32">
+                        <RevealOnScroll variant="slide">
+                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">02. Méthodologie</span>
+                            <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
+                                Appel<br/><span className="italic text-[#5483B3]">d'Offres</span>
+                            </h2>
+                        </RevealOnScroll>
+                        
+                        <RevealOnScroll variant="fade" delay={200}>
+                            <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
+                                Un processus structuré pour maximiser la valeur par la concurrence. Recommandé pour les actifs à fort potentiel de marché.
                             </p>
-                        </div>
-                        <div className="group">
-                            <h4 className="text-4xl font-serif mb-6 group-hover:text-[#5483B3] transition-colors duration-300">Ouverte</h4>
-                            <p className="text-gray-600 font-light leading-relaxed text-lg">
-                                Pour des objets très recherchés par le marché, il convient d’ouvrir au maximum au cercle des investisseurs pour créer une émulation.
-                            </p>
-                        </div>
-                    </div>
-                </RevealOnScroll>
+                        </RevealOnScroll>
 
-                {/* Timeline */}
-                <RevealOnScroll variant="fade">
-                    <div className="flex items-center justify-between mb-12">
-                        <h3 className="text-xs uppercase tracking-[0.3em] text-gray-400">Timeline</h3>
-                        <span className="text-lg font-serif text-[#5483B3]">3 à 4 mois</span>
-                    </div>
-                    
-                    <div className="relative border-l border-[#021024]/10 pl-12 space-y-12">
-                        {[
-                            "Sélection d’une vingtaine d’investisseurs",
-                            "Envoi teaser + NDA",
-                            "Réception NDA & envoi Information Memorandum",
-                            "Réception NBO & sélection short list",
-                            "Ouverture dataroom complète",
-                            "Réception BO & adjudication",
-                            "Revue acte notarié & closing"
-                        ].map((step, i) => (
-                            <div key={i} className="relative group">
-                                <span className="absolute -left-[53px] top-2 w-3 h-3 rounded-full bg-[#021024]/20 group-hover:bg-[#5483B3] transition-colors duration-300"></span>
-                                <p className="text-xl font-light text-gray-800 group-hover:text-[#5483B3] transition-colors duration-300">{step}</p>
+                        <RevealOnScroll variant="zoom" delay={400}>
+                            <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1470&auto=format&fit=crop" 
+                                    alt="Signing" 
+                                    className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+                                />
                             </div>
-                        ))}
+                        </RevealOnScroll>
                     </div>
-                </RevealOnScroll>
+                </div>
 
-                {/* Pros/Cons */}
-                <RevealOnScroll variant="fade">
-                    <div className="grid grid-cols-1 gap-8">
-                        <div className="bg-white p-10 shadow-lg border-t-4 border-[#5483B3]">
-                            <h4 className="text-sm uppercase tracking-widest text-[#5483B3] mb-6">Avantages</h4>
-                            <ul className="space-y-4">
-                                {["Prix de vente « plancher »", "Processus structuré et contrôlé", "Délais fixés impératifs", "Concurrence & Surenchère", "Adapté aux institutionnels"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-gray-600 font-light">
-                                        <span className="text-[#5483B3] text-xl leading-none">+</span> {item}
-                                    </li>
-                                ))}
-                            </ul>
+                {/* Accordions (Right) */}
+                <div className="lg:col-span-7 lg:order-1">
+                    <RevealOnScroll variant="fade" delay={300}>
+                        <div className="border-t border-gray-200">
+                            <AccordionItem 
+                                title="Types de Mandat" 
+                                isOpen={appelAccordion === "appel-types"} 
+                                onClick={() => toggleAppel("appel-types")}
+                            >
+                                <div className="space-y-8 pb-4">
+                                    <div>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Sélective</h4>
+                                        <p>Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs à 5 ou 10 prospects triés sur le volet.</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Ouverte</h4>
+                                        <p>Pour des objets très recherchés par le marché, il convient d’ouvrir au maximum au cercle des investisseurs pour créer une émulation.</p>
+                                    </div>
+                                </div>
+                            </AccordionItem>
+
+                            <AccordionItem 
+                                title="Timeline" 
+                                isOpen={appelAccordion === "appel-timeline"} 
+                                onClick={() => toggleAppel("appel-timeline")}
+                            >
+                                <div className="relative pb-4 pt-2">
+                                    <div className="flex items-center justify-between mb-10 relative z-10">
+                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Processus & Timing</span>
+                                        <div className="px-4 py-1.5 bg-white border border-gray-200 text-[#5483B3] text-sm font-serif rounded-full shadow-sm">
+                                            3 à 4 mois
+                                        </div>
+                                    </div>
+
+                                    <div className="relative space-y-0 z-10">
+                                        {[
+                                            "Sélection d’une vingtaine d’investisseurs",
+                                            "Envoi teaser + NDA",
+                                            "Réception NDA & envoi Information Memorandum",
+                                            "Réception NBO & sélection short list",
+                                            "Ouverture dataroom complète",
+                                            "Réception BO & adjudication",
+                                            "Revue acte notarié & closing"
+                                        ].map((step, i, arr) => (
+                                            <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
+                                                {/* Connecting Line */}
+                                                {i !== arr.length - 1 && (
+                                                    <div className="absolute left-[15px] top-8 bottom-0 w-[1px] bg-[#5483B3]/30"></div>
+                                                )}
+
+                                                {/* Node */}
+                                                <div className="absolute left-0 top-0 w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-full shadow-sm group-hover:border-[#5483B3] group-hover:text-[#5483B3] transition-all duration-300 z-10">
+                                                    <span className="text-xs font-medium text-gray-400 group-hover:text-[#5483B3]">{i + 1}</span>
+                                                </div>
+                                                
+                                                {/* Content */}
+                                                <p className="text-gray-600 font-light text-base pt-1 group-hover:text-[#021024] transition-colors duration-300">
+                                                    {step}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </AccordionItem>
+
+                            <AccordionItem 
+                                title="Avantages & Inconvénients" 
+                                isOpen={appelAccordion === "appel-proscons"} 
+                                onClick={() => toggleAppel("appel-proscons")}
+                            >
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-4">
+                                    <div>
+                                        <h4 className="text-xs uppercase tracking-widest text-[#5483B3] mb-4">Avantages</h4>
+                                        <ul className="space-y-2">
+                                            {["Prix de vente « plancher »", "Processus structuré et contrôlé", "Délais fixés impératifs", "Concurrence & Surenchère", "Adapté aux institutionnels"].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm">
+                                                    <span className="text-[#5483B3]">+</span> {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Inconvénients</h4>
+                                        <ul className="space-y-2">
+                                            {["Risque sans offre au prix", "Lenteur de la procédure", "Objet diffusé si échec", "Moins adapté aux privés"].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
+                                                    <span className="text-gray-400">-</span> {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </AccordionItem>
                         </div>
-                        <div className="bg-white p-10 shadow-lg border-t-4 border-gray-200">
-                            <h4 className="text-sm uppercase tracking-widest text-gray-400 mb-6">Inconvénients</h4>
-                            <ul className="space-y-4">
-                                {["Risque sans offre au prix", "Lenteur de la procédure", "Objet diffusé si échec", "Moins adapté aux privés"].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-gray-600 font-light">
-                                        <span className="text-gray-400 text-xl leading-none">-</span> {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </RevealOnScroll>
+                    </RevealOnScroll>
+                </div>
             </div>
         </div>
       </section>

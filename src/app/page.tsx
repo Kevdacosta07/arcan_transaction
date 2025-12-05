@@ -211,12 +211,9 @@ export default function Home() {
 
               {/* Infinite Scrolling Atouts */}
               <div className="relative">
-                {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#03081f]/90 to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#03081f]/90 to-transparent z-10 pointer-events-none" />
                 
                 {/* Scrolling Track */}
-                <div className="flex animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
+                <div className="flex w-max animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
                   {/* First Set */}
                   {[
                     { num: "01", title: "Professionnalisme", desc: "Excellence & rigueur" },
@@ -226,13 +223,13 @@ export default function Home() {
                     { num: "05", title: "Transparence", desc: "Communication claire" },
                     { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-16 px-16 shrink-0">
-                      <span className="text-8xl md:text-9xl font-serif text-white/5">{item.num}</span>
+                    <div key={index} className="flex items-center gap-8 md:gap-16 px-8 md:px-16 shrink-0">
+                      <span className="text-6xl md:text-8xl lg:text-9xl font-serif text-white/15">{item.num}</span>
                       <div>
-                        <h3 className="text-2xl md:text-3xl font-light text-white mb-1">{item.title}</h3>
-                        <p className="text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-1">{item.title}</h3>
+                        <p className="text-xs md:text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
                       </div>
-                      <span className="text-accent/40 text-4xl">✦</span>
+                      <span className="text-accent/40 text-2xl md:text-4xl">✦</span>
                     </div>
                   ))}
                   {/* Duplicate Set for Seamless Loop */}
@@ -244,13 +241,13 @@ export default function Home() {
                     { num: "05", title: "Transparence", desc: "Communication claire" },
                     { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
                   ].map((item, index) => (
-                    <div key={`dup-${index}`} className="flex items-center gap-16 px-16 shrink-0">
-                      <span className="text-8xl md:text-9xl font-serif text-white/5">{item.num}</span>
+                    <div key={`dup-${index}`} className="flex items-center gap-8 md:gap-16 px-8 md:px-16 shrink-0">
+                      <span className="text-6xl md:text-8xl lg:text-9xl font-serif text-white/15">{item.num}</span>
                       <div>
-                        <h3 className="text-2xl md:text-3xl font-light text-white mb-1">{item.title}</h3>
-                        <p className="text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-1">{item.title}</h3>
+                        <p className="text-xs md:text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
                       </div>
-                      <span className="text-accent/40 text-4xl">✦</span>
+                      <span className="text-accent/40 text-2xl md:text-4xl">✦</span>
                     </div>
                   ))}
                 </div>
