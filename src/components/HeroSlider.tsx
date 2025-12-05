@@ -55,7 +55,7 @@ export default function HeroSlider() {
             alt={image.alt}
             fill
             className={`object-cover ${image.position || "object-center"}`}
-            priority={index === 0}
+            priority
             quality={100}
             sizes="100vw"
           />
