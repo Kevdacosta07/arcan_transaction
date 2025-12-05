@@ -30,7 +30,7 @@ export default function Footer() {
                 />
               </div>
               <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">
-                Pour toute demande d&apos;information ou pour convenir d&apos;un entretien confidentiel.
+                Contactez-nous pour toute demande d&apos;information ou pour convenir un entretien confidentiel.
               </p>
             </div>
             
@@ -73,14 +73,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-end pt-10 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end pt-10 border-t border-white/10">
              <div className="relative w-48 h-12 mb-6 md:mb-0 opacity-80">
-                <Image src="/assets/logo/Arcan_Logo_Blanc.webp" alt="Logo" fill className="object-contain object-left" quality={100} />
+                <Image src="/assets/logo/Arcan_Logo_Blanc.webp" alt="Logo" fill className="object-contain object-center md:object-left" quality={100} />
              </div>
-             <div className="flex flex-col md:flex-row gap-8 text-xs text-gray-600 uppercase tracking-widest">
+             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-xs text-gray-600 uppercase tracking-widest">
                <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
-               <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-               <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+               <div className="flex gap-6">
+                   <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
+                   <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+               </div>
              </div>
           </div>
 

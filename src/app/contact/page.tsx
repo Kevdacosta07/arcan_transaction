@@ -22,6 +22,21 @@ export default function ContactPage() {
                         Une question, un projet ? Notre équipe est à votre écoute pour vous accompagner dans vos démarches immobilières.
                     </p>
 
+                    {/* Mobile Map */}
+                    <div className="w-full h-64 mb-12 lg:hidden rounded-sm overflow-hidden animate-fade-in delay-100">
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            title="Arcan Transactions Location"
+                            src="https://maps.google.com/maps?q=81+route+de+Florissant+1206+Genève&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="w-full h-full"
+                        ></iframe>
+                    </div>
+
                     {/* Office */}
                     <div className="mb-12 animate-fade-in-up delay-200">
                         <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Bureau</h3>
@@ -84,8 +99,8 @@ export default function ContactPage() {
             </div>
         </div>
 
-        {/* Right Column: Map - Fixed/Sticky */}
-        <div className="w-full h-96 lg:h-screen lg:w-1/2 lg:sticky lg:top-0">
+        {/* Right Column: Map - Fixed/Sticky - Desktop Only */}
+        <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-0 lg:h-screen">
             <div className="relative h-full w-full animate-fade-in delay-200 transition-all duration-700">
                 <iframe 
                     width="100%" 
