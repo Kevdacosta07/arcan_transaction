@@ -157,19 +157,19 @@ export default function Home() {
                             name: "Aurèle Arthur LAYA", 
                             role: "Managing Partner", 
                             description: "Expert en investissement immobilier et structuration de transactions complexes, Aurèle accompagne les investisseurs institutionnels et privés dans leurs stratégies d'acquisition et de cession.", 
-                            linkedin: "https://www.linkedin.com/in/aur%C3%A8le-arthur-laya-9a1a6b1a/" 
+                            linkedin: "https://www.linkedin.com/in/aur%C3%A8le-arthur-laya-495a10206/" 
                          },
                          { 
                             name: "Alexandre ARAZI", 
                             role: "Managing Partner", 
                             description: "Fort d'une solide expérience en finance et immobilier, Alexandre conseille les grands comptes et family offices dans l'optimisation de leurs portefeuilles immobiliers.", 
-                            linkedin: "https://www.linkedin.com/in/alexandre-arazi-0a1a6b1a/" 
+                            linkedin: "https://www.linkedin.com/in/alexandre-arazi-a92466132/" 
                          },
                          { 
                             name: "Gilles COHEN", 
                             role: "Transaction Director", 
                             description: "Spécialiste du marché immobilier suisse romand, Gilles dirige les opérations de transaction avec une approche axée sur la création de valeur et la confidentialité.", 
-                            linkedin: "https://www.linkedin.com/in/gilles-cohen-a8b4a21b/" 
+                            linkedin: "https://www.linkedin.com/in/gilles-cohen-690b02210/" 
                          }
                        ].map((member, index) => (
                            <FadeIn key={index} delay={index * 150}>
