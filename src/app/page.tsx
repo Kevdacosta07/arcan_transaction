@@ -22,10 +22,10 @@ export default function Home() {
 
           <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-6">
             <div className="flex flex-col items-center w-fit mb-8 animate-fade-in-up">
-                <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-serif font-normal text-white uppercase leading-none tracking-widest">
+                <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-serif font-normal text-white uppercase leading-none tracking-widest pl-[0.1em]">
                     ARCAN
                 </h1>
-                <span className="text-xl md:text-4xl lg:text-5xl font-serif font-normal text-white uppercase tracking-[0.8em] mr-[-0.8em] leading-none mt-2 md:mt-6 block w-full text-center">
+                <span className="text-xl md:text-4xl lg:text-5xl font-serif font-normal text-white uppercase tracking-[0.8em] pl-[0.8em] leading-none mt-2 md:mt-6 block w-full text-center">
                     Transactions
                 </span>
             </div>

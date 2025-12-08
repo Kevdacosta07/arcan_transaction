@@ -117,7 +117,7 @@ export default function TypologieSection() {
                     {/* Image */}
                     <div className="relative h-full w-full overflow-hidden bg-gray-200 z-10">
                         <img 
-                            src="https://images.unsplash.com/photo-1555439878-0c9661247d7a?q=80&w=626&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            src="https://images.unsplash.com/photo-1640802654463-c183cead5c84?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                             alt="Architecture Detail" 
                             className="object-cover w-full h-full hover:scale-105 transition-transform duration-[2s]"
                         />

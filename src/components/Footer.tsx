@@ -54,8 +54,8 @@ export default function Footer() {
              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-xs text-gray-600 uppercase tracking-widest">
                <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
                <div className="flex gap-6">
-                   <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-                   <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+                   <a href="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</a>
+                   <a href="/mentions-legales#confidentialite" className="hover:text-white transition-colors">Confidentialité</a>
                    <CookieSettingsLink />
                </div>
              </div>
