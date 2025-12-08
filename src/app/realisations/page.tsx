@@ -95,34 +95,23 @@ function RevealOnScroll({
 
 const projects = [
   {
+    title: "Portefeuille de 15 immeubles",
+    amount: "> 500 mios",
+    seller: "Privé",
+    buyer: "Institutionnel",
+    location: "Genève, Suisse",
+    date: "2020",
+    color: "bg-[#021024]",
+    textColor: "text-[#FDFBF7]",
+    borderColor: "border-[#FDFBF7]/10"
+  },
+  {
     title: "Portefeuille de 11 immeubles",
     amount: "> 250 mios",
     seller: "Privé",
     buyer: "Institutionnel",
     location: "Genève, Suisse",
     date: "2022",
-    color: "bg-[#FDFBF7]",
-    textColor: "text-[#021024]",
-    borderColor: "border-[#021024]/10"
-  },
-  {
-    title: "Portefeuille de 15 immeubles",
-    amount: "> 500 mios",
-    seller: "Privé",
-    buyer: "Institutionnel",
-    location: "Genève, Suisse",
-    date: "2021",
-    color: "bg-[#021024]",
-    textColor: "text-[#FDFBF7]",
-    borderColor: "border-[#FDFBF7]/10"
-  },
-  {
-    title: "Immeubles Mixte",
-    amount: "CHF 14 mios",
-    seller: "Privé",
-    buyer: "Institutionnel",
-    location: "Mies, Vaud",
-    date: "2025",
     color: "bg-[#FDFBF7]",
     textColor: "text-[#021024]",
     borderColor: "border-[#021024]/10"
@@ -137,6 +126,17 @@ const projects = [
     color: "bg-[#021024]",
     textColor: "text-[#FDFBF7]",
     borderColor: "border-[#FDFBF7]/10"
+  },
+  {
+    title: "Immeubles Mixte",
+    amount: "CHF 14 mios",
+    seller: "Privé",
+    buyer: "Institutionnel",
+    location: "Mies, Vaud",
+    date: "2025",
+    color: "bg-[#FDFBF7]",
+    textColor: "text-[#021024]",
+    borderColor: "border-[#021024]/10"
   }
 ];
 
@@ -196,18 +196,11 @@ export default function RealisationsPage() {
                         </p>
                     </RevealOnScroll>
 
-                    <div className="grid grid-cols-2 gap-12">
+                    <div>
                         <RevealOnScroll variant="fade" delay={800} triggerOnMount>
                             <div>
-                                <span className="block text-5xl md:text-6xl font-serif text-white mb-2">&gt;750M</span>
-                                <span className="text-xs uppercase tracking-widest text-white/50">Volume Transacté</span>
-                            </div>
-                        </RevealOnScroll>
-                        
-                        <RevealOnScroll variant="fade" delay={1000} triggerOnMount>
-                            <div>
-                                <span className="block text-5xl md:text-6xl font-serif text-white mb-2">100%</span>
-                                <span className="text-xs uppercase tracking-widest text-white/50">Off-Market</span>
+                                <span className="block text-7xl md:text-8xl font-serif text-white mb-4">2 Mrd+</span>
+                                <span className="text-sm md:text-base uppercase tracking-[0.2em] text-white/60">Volume Transacté</span>
                             </div>
                         </RevealOnScroll>
                     </div>

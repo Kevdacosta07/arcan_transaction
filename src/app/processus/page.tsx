@@ -161,6 +161,51 @@ function AccordionItem({ title, children, isOpen, onClick }: { title: string, ch
     );
 }
 
+function MandatAccordionItem({ 
+    id, 
+    title, 
+    letter, 
+    children, 
+    isOpen, 
+    onClick 
+}: { 
+    id: string, 
+    title: string, 
+    letter: string, 
+    children: React.ReactNode, 
+    isOpen: boolean, 
+    onClick: () => void 
+}) {
+    return (
+        <div id={id} className="scroll-mt-32 border-b border-white/10 last:border-0">
+            <button 
+                onClick={onClick}
+                className="w-full py-6 flex items-center justify-between text-left group"
+            >
+                <div className="flex items-center gap-6">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${isOpen ? 'bg-white text-[#021024]' : 'bg-[#5483B3] text-white group-hover:bg-white group-hover:text-[#021024]'}`}>
+                        <span className="font-serif text-lg">{letter}</span>
+                    </div>
+                    <h3 className={`text-2xl font-serif transition-colors duration-300 ${isOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>
+                        {title}
+                    </h3>
+                </div>
+                <div className={`relative w-6 h-6 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>
+                    <span className={`absolute w-full h-[1px] bg-current ${isOpen ? 'bg-[#5483B3]' : 'bg-gray-400'}`}></span>
+                    <span className={`absolute h-full w-[1px] bg-current ${isOpen ? 'bg-[#5483B3]' : 'bg-gray-400'}`}></span>
+                </div>
+            </button>
+            <div 
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[300px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+            >
+                <div className="text-gray-400 font-light leading-relaxed pl-[4.5rem]">
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function ProcessusPage() {
   // Independent state for each section to allow default open on both
   const [venteAccordion, setVenteAccordion] = useState<string | null>("vente-types");
@@ -168,6 +213,27 @@ export default function ProcessusPage() {
 
   const toggleVente = (id: string) => setVenteAccordion(venteAccordion === id ? null : id);
   const toggleAppel = (id: string) => setAppelAccordion(appelAccordion === id ? null : id);
+
+  const [mandatOpen, setMandatOpen] = useState<string | null>("mandat-exclusif");
+  const toggleMandat = (id: string) => setMandatOpen(mandatOpen === id ? null : id);
+
+  useEffect(() => {
+      if (typeof window !== 'undefined') {
+          // Handle hash (direct links)
+          if (window.location.hash) {
+              const hash = window.location.hash.substring(1);
+              if (hash === 'mandat-exclusif' || hash === 'mandat-simple') {
+                  setMandatOpen(hash);
+              }
+          }
+
+          // Handle query params (from navbar)
+          const params = new URLSearchParams(window.location.search);
+          const mandat = params.get('mandat');
+          if (mandat === 'exclusif') setMandatOpen('mandat-exclusif');
+          if (mandat === 'simple') setMandatOpen('mandat-simple');
+      }
+  }, []);
 
   return (
     <main className="bg-white min-h-screen">
@@ -219,6 +285,56 @@ export default function ProcessusPage() {
          </div>
       </section>
 
+
+      {/* Type de Mandat Section */}
+      <section id="type-mandat" className="scroll-mt-32 relative py-24 px-6 bg-[#021024] overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                
+                {/* Left: Header */}
+                <div>
+                    <RevealOnScroll variant="slide">
+                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">Avant-propos</span>
+                        <h2 className="text-5xl md:text-6xl font-serif text-white leading-none mb-8">
+                            Type de <span className="italic text-[#5483B3]">Mandat</span>
+                        </h2>
+                    </RevealOnScroll>
+                    <RevealOnScroll variant="fade" delay={200}>
+                        <p className="text-lg text-gray-300 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6">
+                            Le type de mandat définit le cadre de notre collaboration et les modalités d'intervention pour la vente de votre bien.
+                        </p>
+                    </RevealOnScroll>
+                </div>
+
+                {/* Right: Accordion */}
+                <div className="border-t border-white/10">
+                    <RevealOnScroll variant="fade" delay={300}>
+                        <MandatAccordionItem 
+                            id="mandat-exclusif"
+                            title="Mandat Exclusif" 
+                            letter="E"
+                            isOpen={mandatOpen === "mandat-exclusif"}
+                            onClick={() => toggleMandat("mandat-exclusif")}
+                        >
+                            Arcan Transactions SA est le seul intermédiaire mandaté pour la vente du bien. Cette exclusivité nous permet de déployer l'ensemble de nos ressources et de garantir une approche optimale.
+                        </MandatAccordionItem>
+                    </RevealOnScroll>
+
+                    <RevealOnScroll variant="fade" delay={450}>
+                        <MandatAccordionItem 
+                            id="mandat-simple"
+                            title="Mandat Simple" 
+                            letter="S"
+                            isOpen={mandatOpen === "mandat-simple"}
+                            onClick={() => toggleMandat("mandat-simple")}
+                        >
+                            Le propriétaire peut mandater plusieurs intermédiaires simultanément. Cette formule offre une plus grande flexibilité mais peut limiter l'investissement de chaque mandataire.
+                        </MandatAccordionItem>
+                    </RevealOnScroll>
+                </div>
+            </div>
+        </div>
+      </section>
 
 
       {/* Vente Directe - Corporate Accordion */}
@@ -277,7 +393,7 @@ export default function ProcessusPage() {
                     <RevealOnScroll variant="fade" delay={300}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
-                                title="Types de Mandat" 
+                                title="Forme de la vente" 
                                 isOpen={venteAccordion === "vente-types"} 
                                 onClick={() => toggleVente("vente-types")}
                             >
@@ -308,10 +424,11 @@ export default function ProcessusPage() {
 
                                     <div className="relative space-y-0 z-10">
                                         {[
-                                            "Sélection de deux ou trois investisseurs",
+                                            "Sélection de un ou plusieurs investisseur/s",
                                             "Envoi teaser + NDA",
                                             "Réception NDA signées & ouverture short-dataroom",
                                             "Réception NBO & ouverture full dataroom",
+                                            "Due diligence",
                                             "Réception des BO et acceptation",
                                             "Revue du projet d’acte notarié",
                                             "Signing & closing"
@@ -428,7 +545,7 @@ export default function ProcessusPage() {
                     <RevealOnScroll variant="fade" delay={300}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
-                                title="Types de Mandat" 
+                                title="Forme de la vente" 
                                 isOpen={appelAccordion === "appel-types"} 
                                 onClick={() => toggleAppel("appel-types")}
                             >
@@ -459,13 +576,14 @@ export default function ProcessusPage() {
 
                                     <div className="relative space-y-0 z-10">
                                         {[
-                                            "Sélection d’une vingtaine d’investisseurs",
+                                            "Sélection de multiples investisseurs",
                                             "Envoi teaser + NDA",
-                                            "Réception NDA & envoi Information Memorandum",
-                                            "Réception NBO & sélection short list",
-                                            "Ouverture dataroom complète",
+                                            "Réception NDA & envoi Information Memorandum (plaquette de vente)",
+                                            "Réception NBO, sélection de la short list & ouverture de la dataroom complète",
+                                            "Due diligence",
                                             "Réception BO & adjudication",
-                                            "Revue acte notarié & closing"
+                                            "Revue acte notarié & closing",
+                                            "Signing & closing"
                                         ].map((step, i, arr) => (
                                             <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
                                                 {/* Connecting Line */}
@@ -594,7 +712,7 @@ export default function ProcessusPage() {
                                 <br/><br/>
                                 La vente en société présente des avantages financiers et fiscaux pour le vendeur et l’acquéreur. Toutefois, une due diligence plus approfondie devra intervenir ici car l’acquéreur reprend tous les risques liés à l’historique de la société.
                                 <br/><br/>
-                                Cette forme de vente est donc plus complexe et nécessite une timeline plus longue.
+                                <span className="text-[#5483B3] font-medium">Note :</span> Cette forme de vente est plus complexe et nécessite une timeline plus longue.
                             </p>
                         </div>
                     </div>
@@ -618,11 +736,13 @@ export default function ProcessusPage() {
                         <div className="absolute top-0 right-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">S&L</div>
                         
                         <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Sale & Leaseback</h3>
+                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">
+                                Sale & Leaseback <br/> <span className="text-3xl md:text-5xl">(Cas particulier)</span>
+                            </h3>
                             <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Cession-bail</p>
                             
                             <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
-                                Le sale and leaseback peut prendre la forme soit d’un Asset Deal, soit d’un Share Deal.
+                                Le sale and leaseback peut prendre la forme soit d’un Asset Deal soit d’un Share Deal.
                                 <br/><br/>
                                 Dans ce cadre, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : s’agit-il de maximiser le prix de vente ou, à l’inverse, d’optimiser les conditions de location ?
                             </p>

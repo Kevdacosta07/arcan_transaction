@@ -5,6 +5,7 @@ import ScrollLine from "@/components/ScrollLine";
 import TypologieSection from "@/components/TypologieSection";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TeamMemberCard from "@/components/TeamMemberCard";
 
 export default function Home() {
   return (
@@ -20,14 +21,19 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/30 z-10" />
 
           <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-6">
-            <h1 className="text-4xl md:text-7xl font-sans font-thin text-white mb-8 animate-fade-in-up tracking-[0.2em] uppercase">
-              Arcan Transactions
-            </h1>
+            <div className="flex flex-col items-center w-fit mb-8 animate-fade-in-up">
+                <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-serif font-normal text-white uppercase leading-none tracking-widest">
+                    ARCAN
+                </h1>
+                <span className="text-xl md:text-4xl lg:text-5xl font-serif font-normal text-white uppercase tracking-[0.8em] mr-[-0.8em] leading-none mt-2 md:mt-6 block w-full text-center">
+                    Transactions
+                </span>
+            </div>
             
             <div className="w-16 h-[1px] bg-white/60 mb-8 animate-fade-in-up delay-100"></div>
 
             <p className="text-lg md:text-xl text-white font-light tracking-[0.3em] uppercase animate-fade-in-up delay-200 drop-shadow-md">
-              Transactions Immobilières
+              real estate capital market
             </p>
           </div>
 
@@ -147,29 +153,32 @@ export default function Home() {
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
                        {[
-                         { name: "Aurèle Arthur LAYA", role: "Managing Partner", email: "a.laya@arcan-transactions.ch", phone: "+41 79 206 37 36", img: "/assets/employe/aurele_arthur_laya.webp" },
-                         { name: "Gilles COHEN", role: "Transaction Director", email: "g.cohen@arcan-transactions.ch", phone: "+41 78 670 91 21", img: "/assets/employe/gilles_cohen.webp" },
-                         { name: "Alexandre ARAZI", role: "Managing Partner", email: "a.arazi@arcan-transactions.ch", phone: "+41 79 566 52 04", img: "/assets/employe/alexandre_arazi.webp" }
+                         { 
+                            name: "Aurèle Arthur LAYA", 
+                            role: "Managing Partner", 
+                            description: "Expert en investissement immobilier et structuration de transactions complexes, Aurèle accompagne les investisseurs institutionnels et privés dans leurs stratégies d'acquisition et de cession.", 
+                            linkedin: "https://www.linkedin.com/in/aur%C3%A8le-arthur-laya-9a1a6b1a/" 
+                         },
+                         { 
+                            name: "Alexandre ARAZI", 
+                            role: "Managing Partner", 
+                            description: "Fort d'une solide expérience en finance et immobilier, Alexandre conseille les grands comptes et family offices dans l'optimisation de leurs portefeuilles immobiliers.", 
+                            linkedin: "https://www.linkedin.com/in/alexandre-arazi-0a1a6b1a/" 
+                         },
+                         { 
+                            name: "Gilles COHEN", 
+                            role: "Transaction Director", 
+                            description: "Spécialiste du marché immobilier suisse romand, Gilles dirige les opérations de transaction avec une approche axée sur la création de valeur et la confidentialité.", 
+                            linkedin: "https://www.linkedin.com/in/gilles-cohen-a8b4a21b/" 
+                         }
                        ].map((member, index) => (
                            <FadeIn key={index} delay={index * 150}>
-                               <div className="group cursor-pointer">
-                                   <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-gray-50">
-                                       <Image 
-                                           src={member.img} 
-                                           alt={member.name} 
-                                           fill 
-                                           className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
-                                       />
-                                   </div>
-                                   <div className="flex flex-col">
-                                       <h4 className="text-xl font-serif text-primary mb-1 group-hover:text-secondary transition-colors">{member.name}</h4>
-                                       <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-3">{member.role}</p>
-                                       <div className="space-y-1 text-xs font-light text-gray-500">
-                                           <a href={`mailto:${member.email}`} className="block hover:text-primary transition-colors">{member.email}</a>
-                                           <a href={`tel:${member.phone.replace(/\s/g, '')}`} className="block hover:text-primary transition-colors">{member.phone}</a>
-                                       </div>
-                                   </div>
-                               </div>
+                               <TeamMemberCard 
+                                   name={member.name}
+                                   role={member.role}
+                                   description={member.description}
+                                   linkedin={member.linkedin}
+                               />
                            </FadeIn>
                        ))}
                   </div>
@@ -216,15 +225,14 @@ export default function Home() {
                 <div className="flex w-max animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
                   {/* First Set */}
                   {[
-                    { num: "01", title: "Professionnalisme", desc: "Excellence & rigueur" },
-                    { num: "02", title: "Efficacité", desc: "Résultats rapides" },
-                    { num: "03", title: "Réseau", desc: "Relations clés" },
-                    { num: "04", title: "Confiance", desc: "Partenariat durable" },
-                    { num: "05", title: "Transparence", desc: "Communication claire" },
-                    { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
+                    { title: "Professionnalisme", desc: "Excellence & rigueur" },
+                    { title: "Efficacité", desc: "Résultats rapides" },
+                    { title: "Réseau", desc: "Relations clés" },
+                    { title: "Confiance", desc: "Partenariat durable" },
+                    { title: "Transparence", desc: "Communication claire" },
+                    { title: "Flexibilité", desc: "Solutions sur mesure" }
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-8 md:gap-16 px-8 md:px-16 shrink-0">
-                      <span className="text-6xl md:text-8xl lg:text-9xl font-serif text-white/15">{item.num}</span>
+                    <div key={index} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
                       <div>
                         <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-1">{item.title}</h3>
                         <p className="text-xs md:text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>
@@ -234,15 +242,14 @@ export default function Home() {
                   ))}
                   {/* Duplicate Set for Seamless Loop */}
                   {[
-                    { num: "01", title: "Professionnalisme", desc: "Excellence & rigueur" },
-                    { num: "02", title: "Efficacité", desc: "Résultats rapides" },
-                    { num: "03", title: "Réseau", desc: "Relations clés" },
-                    { num: "04", title: "Confiance", desc: "Partenariat durable" },
-                    { num: "05", title: "Transparence", desc: "Communication claire" },
-                    { num: "06", title: "Flexibilité", desc: "Solutions sur mesure" }
+                    { title: "Professionnalisme", desc: "Excellence & rigueur" },
+                    { title: "Efficacité", desc: "Résultats rapides" },
+                    { title: "Réseau", desc: "Relations clés" },
+                    { title: "Confiance", desc: "Partenariat durable" },
+                    { title: "Transparence", desc: "Communication claire" },
+                    { title: "Flexibilité", desc: "Solutions sur mesure" }
                   ].map((item, index) => (
-                    <div key={`dup-${index}`} className="flex items-center gap-8 md:gap-16 px-8 md:px-16 shrink-0">
-                      <span className="text-6xl md:text-8xl lg:text-9xl font-serif text-white/15">{item.num}</span>
+                    <div key={`dup-${index}`} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
                       <div>
                         <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-1">{item.title}</h3>
                         <p className="text-xs md:text-sm text-accent/70 uppercase tracking-widest">{item.desc}</p>

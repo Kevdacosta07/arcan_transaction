@@ -1,14 +1,61 @@
 "use client";
 
 import FadeIn from "./FadeIn";
+import TypologieItem from "./TypologieItem";
 
 const assets = [
-  { name: "Résidentiel", num: "01" },
-  { name: "Commercial", num: "02" },
-  { name: "Hôtellerie", num: "03" },
-  { name: "Médico-social", num: "04" },
-  { name: "Industriel", num: "05" },
-  { name: "Mixte", num: "06" }
+  { 
+    name: "Résidentiel", 
+    num: "01",
+    items: ["Immeuble de logement ou immeuble mixte (prédominance résidentielle)"]
+  },
+  { 
+    name: "Commercial", 
+    num: "02",
+    items: [
+      "Immeubles de bureau",
+      "Surface retail",
+      "Centres commerciaux",
+      "Immeubles mixtes (prédominance commerciale)"
+    ]
+  },
+  { 
+    name: "Hôtellerie", 
+    num: "03",
+    items: [
+      "Mur et exploitation",
+      "Mur",
+      "Exploitation"
+    ]
+  },
+  { 
+    name: "Médico-social", 
+    num: "04",
+    items: [
+      "EMS / Senior",
+      "Résidences étudiantes",
+      "Hôpitaux",
+      "Cliniques"
+    ]
+  },
+  { 
+    name: "Industriel", 
+    num: "05",
+    items: [
+      "Industriel à proprement parler",
+      "Logistique",
+      "Data center",
+      "Dépôts, parkings…"
+    ]
+  },
+  { 
+    name: "Terrains", 
+    num: "06",
+    items: [
+      "Parcelles avec ou sans permis",
+      "De tout type d'affectation"
+    ]
+  }
 ];
 
 export default function TypologieSection() {
@@ -39,19 +86,11 @@ export default function TypologieSection() {
               <div className="space-y-0 border-t border-gray-100">
                 {assets.map((item, index) => (
                   <FadeIn key={index} delay={index * 100}>
-                    <div className="group flex items-center justify-between py-5 border-b border-gray-100 hover:border-accent transition-colors duration-500 cursor-default">
-                      <div className="flex items-baseline gap-8">
-                        <span className="text-xs font-mono text-gray-300 group-hover:text-accent transition-colors duration-300">
-                            {item.num}
-                        </span>
-                        <h3 className="text-3xl font-serif text-[#021024] group-hover:text-accent group-hover:translate-x-2 transition-all duration-500">
-                            {item.name}
-                        </h3>
-                      </div>
-                      <span className="opacity-0 group-hover:opacity-100 text-accent transform -translate-x-4 group-hover:translate-x-0 transition-all duration-500 text-xl">
-                        →
-                      </span>
-                    </div>
+                    <TypologieItem 
+                      num={item.num}
+                      name={item.name}
+                      items={item.items}
+                    />
                   </FadeIn>
                 ))}
               </div>
@@ -78,7 +117,7 @@ export default function TypologieSection() {
                     {/* Image */}
                     <div className="relative h-full w-full overflow-hidden bg-gray-200 z-10">
                         <img 
-                            src="https://images.unsplash.com/photo-1659184435166-5c98ae74465f?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            src="https://images.unsplash.com/photo-1555439878-0c9661247d7a?q=80&w=626&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                             alt="Architecture Detail" 
                             className="object-cover w-full h-full hover:scale-105 transition-transform duration-[2s]"
                         />

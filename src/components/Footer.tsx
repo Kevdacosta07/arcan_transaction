@@ -35,42 +35,15 @@ export default function Footer() {
               </p>
             </div>
             
-            <div className="grid gap-12">
-              {/* Partner 1 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Gilles COHEN</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Transaction Director</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:g.cohen@arcan-transactions.ch" className="block hover:text-white">g.cohen@arcan-transactions.ch</a>
-                  <a href="tel:+41786709121" className="block hover:text-white">+41 78 670 91 21</a>
-                </div>
-              </div>
-
-              {/* Partner 2 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Aurèle Arthur LAYA</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Managing Partner</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:a.laya@arcan-transactions.ch" className="block hover:text-white">a.laya@arcan-transactions.ch</a>
-                  <a href="tel:+41792063736" className="block hover:text-white">+41 79 206 37 36</a>
-                </div>
-              </div>
-
-              {/* Partner 3 */}
-              <div className="flex items-start justify-between border-b border-white/10 pb-8 group">
-                <div>
-                  <h4 className="text-2xl font-serif group-hover:text-accent transition-colors">Alexandre ARAZI</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Managing Partner</p>
-                </div>
-                <div className="text-right text-sm font-light text-gray-400">
-                  <a href="mailto:a.arazi@arcan-transactions.ch" className="block hover:text-white">a.arazi@arcan-transactions.ch</a>
-                  <a href="tel:+41795665204" className="block hover:text-white">+41 79 566 52 04</a>
-                </div>
-              </div>
+            <div className="flex flex-col justify-center items-start md:items-end gap-8">
+              <a href="mailto:contact@arcan-transactions.ch" className="group">
+                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">contact@arcan-transactions.ch</h4>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1 text-right">Email</p>
+              </a>
+              <a href="tel:+41223463788" className="group text-right">
+                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">022 346 37 88</h4>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Téléphone</p>
+              </a>
             </div>
           </div>
 

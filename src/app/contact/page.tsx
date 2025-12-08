@@ -37,33 +37,27 @@ export default function ContactPage() {
                         ></iframe>
                     </div>
 
-                    {/* Office */}
-                    <div className="mb-12 animate-fade-in-up delay-200">
-                        <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Bureau</h3>
-                        <p className="font-serif text-[#021024] text-sm leading-relaxed">
-                            81 route de Florissant<br/>
-                            1206 Genève
-                        </p>
-                    </div>
-
-                    {/* Partners */}
-                    <div className="grid sm:grid-cols-3 gap-8 animate-fade-in-up delay-300">
+                    {/* Contact Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 animate-fade-in-up delay-200">
+                        {/* Bureau */}
                         <div>
-                            <p className="font-serif text-[#021024] text-sm mb-2">Aurèle Arthur LAYA</p>
-                            <a href="mailto:a.laya@arcan-transactions.ch" className="text-xs text-gray-500 hover:text-[#021024] block mb-1">a.laya@arcan-transactions.ch</a>
-                            <a href="tel:+41792063736" className="text-xs text-gray-500 hover:text-[#021024] block">+41 79 206 37 36</a>
+                            <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Bureau</h3>
+                            <p className="font-serif text-[#021024] text-lg leading-relaxed">
+                                81 route de Florissant<br/>
+                                1206 Genève
+                            </p>
                         </div>
 
+                        {/* Téléphone */}
                         <div>
-                            <p className="font-serif text-[#021024] text-sm mb-2">Alexandre ARAZI</p>
-                            <a href="mailto:a.arazi@arcan-transactions.ch" className="text-xs text-gray-500 hover:text-[#021024] block mb-1">a.arazi@arcan-transactions.ch</a>
-                            <a href="tel:+41795665204" className="text-xs text-gray-500 hover:text-[#021024] block">+41 79 566 52 04</a>
+                            <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Téléphone</h3>
+                            <a href="tel:+41223463788" className="font-serif text-[#021024] text-lg hover:text-gray-600 transition-colors">022 346 37 88</a>
                         </div>
 
-                        <div>
-                            <p className="font-serif text-[#021024] text-sm mb-2">Gilles COHEN</p>
-                            <a href="mailto:g.cohen@arcan-transactions.ch" className="text-xs text-gray-500 hover:text-[#021024] block mb-1">g.cohen@arcan-transactions.ch</a>
-                            <a href="tel:+41786709121" className="text-xs text-gray-500 hover:text-[#021024] block">+41 78 670 91 21</a>
+                        {/* Email */}
+                        <div className="sm:col-span-2">
+                            <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Email</h3>
+                            <a href="mailto:contact@arcan-transactions.ch" className="font-serif text-[#021024] text-lg hover:text-gray-600 transition-colors whitespace-nowrap">contact@arcan-transactions.ch</a>
                         </div>
                     </div>
                 </div>
