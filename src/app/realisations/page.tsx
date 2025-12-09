@@ -160,11 +160,11 @@ export default function RealisationsPage() {
          </div>
 
          {/* Top Label - Absolute Positioned in Section */}
-         <div className="absolute top-12 right-6 md:right-12 z-20 hidden md:block">
+         <div className="absolute top-6 right-6 md:top-12 md:right-12 z-20">
              <RevealOnScroll variant="fade" delay={200} triggerOnMount>
                 <div className="text-right">
-                    <span className="block text-xs uppercase tracking-[0.3em] text-white/60 mb-2">Portfolio</span>
-                    <span className="block text-4xl font-serif text-white">2020 — 2025</span>
+                    <span className="block text-[0.6rem] md:text-xs uppercase tracking-[0.3em] text-white/60 mb-1 md:mb-2">Portfolio</span>
+                    <span className="block text-2xl md:text-4xl font-serif text-white whitespace-nowrap">2020 — 2025</span>
                 </div>
              </RevealOnScroll>
          </div>
@@ -181,7 +181,7 @@ export default function RealisationsPage() {
                             <span className="block text-2xl md:text-3xl font-sans font-light tracking-widest uppercase mb-4 text-[#5483B3]">Nos</span>
                         </RevealOnScroll>
                         <RevealOnScroll variant="mask" delay={400} triggerOnMount>
-                            <span className="block text-[15vw] lg:text-[10rem] tracking-tighter opacity-90">Réalisations</span>
+                            <span className="block text-[11vw] lg:text-[7vw] tracking-tighter opacity-90 whitespace-nowrap">Réalisations</span>
                         </RevealOnScroll>
                     </h1>
                 </div>
@@ -190,16 +190,16 @@ export default function RealisationsPage() {
                 <div className="lg:col-span-5 flex flex-col justify-between h-full">
                     
                     <RevealOnScroll variant="fade" delay={600} triggerOnMount>
-                        <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed mb-12 max-w-md">
+                        <p className="text-[clamp(1rem,2vw,1.5rem)] font-light text-white/80 leading-relaxed mb-12 max-w-md ml-auto text-right whitespace-nowrap">
                             L&apos;art de la transaction immobilière.
                         </p>
                     </RevealOnScroll>
 
                     <div>
                         <RevealOnScroll variant="fade" delay={800} triggerOnMount>
-                            <div>
-                                <span className="block text-7xl md:text-8xl font-serif text-white mb-4">2 Mrd+</span>
-                                <span className="text-sm md:text-base uppercase tracking-[0.2em] text-white/60">Total cumulé des transactions</span>
+                            <div className="text-right">
+                                <span className="block text-[clamp(3.5rem,8vw,6rem)] font-serif text-white mb-4 whitespace-nowrap">2 Mrd+</span>
+                                <span className="block text-[clamp(0.7rem,1.2vw,1rem)] uppercase tracking-[0.2em] text-white/60 whitespace-nowrap">Total cumulé des transactions</span>
                             </div>
                         </RevealOnScroll>
                     </div>
