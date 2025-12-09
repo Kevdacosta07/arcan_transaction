@@ -35,13 +35,13 @@ export default function Footer() {
               </p>
             </div>
             
-            <div className="flex flex-col justify-center items-start md:items-end gap-8">
-              <a href="mailto:contact@arcan-transactions.ch" className="group">
-                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">contact@arcan-transactions.ch</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1 text-right">Email</p>
+            <div className="flex flex-col justify-center items-start md:items-end gap-8 w-full overflow-hidden">
+              <a href="mailto:contact@arcan-transactions.ch" className="group flex flex-col items-start md:items-end max-w-full">
+                  <h4 className="text-[clamp(0.7rem,4.5vw,1.5rem)] sm:text-[clamp(1rem,4vw,2rem)] md:text-[clamp(0.9rem,1.7vw,2rem)] font-serif group-hover:text-accent transition-colors whitespace-nowrap">contact@arcan-transactions.ch</h4>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Email</p>
               </a>
-              <a href="tel:+41223463788" className="group text-right">
-                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">+41 22 346 37 88</h4>
+              <a href="tel:+41223463788" className="group flex flex-col items-start md:items-end max-w-full">
+                  <h4 className="text-[clamp(0.7rem,4.5vw,1.5rem)] sm:text-[clamp(1rem,4vw,2rem)] md:text-[clamp(0.9rem,1.7vw,2rem)] font-serif group-hover:text-accent transition-colors whitespace-nowrap">+41 22 346 37 88</h4>
                   <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Téléphone</p>
               </a>
             </div>
