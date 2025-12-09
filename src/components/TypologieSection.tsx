@@ -7,14 +7,17 @@ const assets = [
   { 
     name: "Résidentiel", 
     num: "01",
-    items: ["Immeuble de logement ou immeuble mixte (prédominance résidentielle)"]
+    items: [
+      "Immeubles de logement",
+      "Immeubles mixtes (prédominance résidentielle)"
+    ]
   },
   { 
     name: "Commercial", 
     num: "02",
     items: [
-      "Immeubles de bureau",
-      "Surface retail",
+      "Immeubles de bureaux",
+      "Surfaces retail",
       "Centres commerciaux",
       "Immeubles mixtes (prédominance commerciale)"
     ]
@@ -44,7 +47,7 @@ const assets = [
     items: [
       "Industriel à proprement parler",
       "Logistique",
-      "Data center",
+      "Data centers",
       "Dépôts, parkings…"
     ]
   },
@@ -78,7 +81,7 @@ export default function TypologieSection() {
                   Typologie <br/> d&apos;actifs
                 </h2>
                 <p className="text-lg text-gray-500 font-light mb-12 max-w-md leading-relaxed">
-                  Arcan Transactions SA est spécialisé dans la transaction d&apos;immeubles de rendement de tous les types d&apos;affectation.
+                  Arcan Transactions SA est spécialisée dans la transaction d&apos;immeubles de rendement, de tous types affectation.
                 </p>
               </FadeIn>
 
@@ -121,14 +124,6 @@ export default function TypologieSection() {
                             alt="Architecture Detail" 
                             className="object-cover w-full h-full hover:scale-105 transition-transform duration-[2s]"
                         />
-                    </div>
-                    
-                    {/* Overlay Quote Box */}
-                    <div className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 bg-[#021024] p-8 md:p-10 max-w-sm shadow-2xl z-20 hidden md:block">
-                        <p className="text-white font-light leading-relaxed text-lg italic">
-                            &ldquo;Avec un track record solide et un réseau étendu, nous sommes votre partenaire stratégique.&rdquo;
-                        </p>
-                        <div className="w-12 h-0.5 bg-accent mt-6"></div>
                     </div>
                 </div>
               </FadeIn>

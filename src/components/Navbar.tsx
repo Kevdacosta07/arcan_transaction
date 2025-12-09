@@ -32,7 +32,7 @@ export default function Navbar() {
 
                 <div className="relative group h-full flex items-center">
                     <a href="/processus" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
-                        Type de vente
+                        Procédure de vente
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
                     
@@ -47,15 +47,15 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Type de Mandat</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/processus?mandat=exclusif#type-mandat" className="group/link flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Exclusif</span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="/processus?mandat=simple#type-mandat" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Simple</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/processus?mandat=exclusif#type-mandat" className="group/link flex items-center gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Exclusif</span>
                                         </a>
                                     </li>
                                 </ul>

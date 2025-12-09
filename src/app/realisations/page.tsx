@@ -95,12 +95,23 @@ function RevealOnScroll({
 
 const projects = [
   {
-    title: "Portefeuille de 15 immeubles",
-    amount: "> 500 mios",
+    title: "Immeubles Mixte",
+    amount: "CHF 14 mios",
     seller: "Privé",
     buyer: "Institutionnel",
-    location: "Genève, Suisse",
-    date: "2020",
+    location: "Mies, Vaud",
+    date: "2025",
+    color: "bg-[#FDFBF7]",
+    textColor: "text-[#021024]",
+    borderColor: "border-[#021024]/10"
+  },
+  {
+    title: "Hotel proche de la gare",
+    amount: "CHF 26 mios",
+    seller: "Privé",
+    buyer: "Fondation",
+    location: "Genève",
+    date: "2022",
     color: "bg-[#021024]",
     textColor: "text-[#FDFBF7]",
     borderColor: "border-[#FDFBF7]/10"
@@ -117,26 +128,15 @@ const projects = [
     borderColor: "border-[#021024]/10"
   },
   {
-    title: "Hotel proche de la gare",
-    amount: "CHF 26 mios",
+    title: "Portefeuille de 15 immeubles",
+    amount: "> 500 mios",
     seller: "Privé",
-    buyer: "Fondation",
-    location: "Genève",
-    date: "2023",
+    buyer: "Institutionnel",
+    location: "Genève, Suisse",
+    date: "2020",
     color: "bg-[#021024]",
     textColor: "text-[#FDFBF7]",
     borderColor: "border-[#FDFBF7]/10"
-  },
-  {
-    title: "Immeubles Mixte",
-    amount: "CHF 14 mios",
-    seller: "Privé",
-    buyer: "Institutionnel",
-    location: "Mies, Vaud",
-    date: "2025",
-    color: "bg-[#FDFBF7]",
-    textColor: "text-[#021024]",
-    borderColor: "border-[#021024]/10"
   }
 ];
 
@@ -191,8 +191,7 @@ export default function RealisationsPage() {
                     
                     <RevealOnScroll variant="fade" delay={600} triggerOnMount>
                         <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed mb-12 max-w-md">
-                            L&apos;art de la transaction immobilière. <br/>
-                            <span className="text-[#5483B3] italic">Discrétion absolue, résultats exceptionnels.</span>
+                            L&apos;art de la transaction immobilière.
                         </p>
                     </RevealOnScroll>
 
@@ -200,7 +199,7 @@ export default function RealisationsPage() {
                         <RevealOnScroll variant="fade" delay={800} triggerOnMount>
                             <div>
                                 <span className="block text-7xl md:text-8xl font-serif text-white mb-4">2 Mrd+</span>
-                                <span className="text-sm md:text-base uppercase tracking-[0.2em] text-white/60">Volume Transacté</span>
+                                <span className="text-sm md:text-base uppercase tracking-[0.2em] text-white/60">Total cumulé des transactions</span>
                             </div>
                         </RevealOnScroll>
                     </div>
@@ -300,9 +299,11 @@ export default function RealisationsPage() {
 
       {/* Final CTA Section */}
       <section className="relative z-10 bg-[#FDFBF7] py-32 flex flex-col items-center justify-center text-center px-6">
-        <h2 className="text-4xl md:text-5xl font-serif text-[#021024] mb-8">Un projet en tête ?</h2>
-        <a href="/contact" className="inline-block border-b border-[#021024] pb-1 text-xl text-[#021024] hover:opacity-50 transition-opacity">
-            Contactez-nous
+        <a href="/contact" className="group relative">
+            <span className="font-serif text-4xl md:text-5xl text-[#021024] italic group-hover:text-[#5483B3] transition-colors duration-300">
+                Contactez-nous
+            </span>
+            <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-[1px] bg-[#021024]/20 group-hover:w-full group-hover:bg-[#5483B3] transition-all duration-500 ease-out"></span>
         </a>
       </section>
 

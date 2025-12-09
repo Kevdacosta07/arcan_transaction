@@ -19,6 +19,7 @@
   
   --font-sans: var(--font-roboto), sans-serif;
   --font-serif: var(--font-libre-baskerville), serif;
+  --font-cormorant: var(--font-cormorant-garamond), serif;
 }
 
 body {

@@ -15,12 +15,9 @@ export default function ContactPage() {
             <div className="max-w-xl mx-auto w-full">
                 {/* Header */}
                 <div className="mb-12 animate-fade-in-up">
-                    <h1 className="text-4xl md:text-5xl font-serif text-[#021024] mb-6">
-                        Contact.
+                    <h1 className="text-4xl md:text-5xl font-serif text-[#021024] mb-12">
+                        Contact
                     </h1>
-                    <p className="text-gray-500 font-light text-lg leading-relaxed mb-12">
-                        Une question, un projet ? Notre équipe est à votre écoute pour vous accompagner dans vos démarches immobilières.
-                    </p>
 
                     {/* Mobile Map */}
                     <div className="w-full h-64 mb-12 lg:hidden rounded-sm overflow-hidden animate-fade-in delay-100">
@@ -51,7 +48,7 @@ export default function ContactPage() {
                         {/* Téléphone */}
                         <div>
                             <h3 className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Téléphone</h3>
-                            <a href="tel:+41223463788" className="font-serif text-[#021024] text-lg hover:text-gray-600 transition-colors">022 346 37 88</a>
+                            <a href="tel:+41223463788" className="font-serif text-[#021024] text-lg hover:text-gray-600 transition-colors">+41 22 346 37 88</a>
                         </div>
 
                         {/* Email */}
@@ -94,8 +91,8 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column: Map - Fixed/Sticky - Desktop Only */}
-        <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-0 lg:h-screen">
-            <div className="relative h-full w-full animate-fade-in delay-200 transition-all duration-700">
+        <div className="hidden lg:flex lg:w-1/2 lg:sticky lg:top-0 lg:h-screen items-center justify-center px-12">
+            <div className="relative h-[600px] w-full animate-fade-in delay-200 transition-all duration-700 shadow-2xl">
                 <iframe 
                     width="100%" 
                     height="100%" 
@@ -105,7 +102,7 @@ export default function ContactPage() {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-full"
+                    className="w-full h-full transition-all duration-700"
                 ></iframe>
             </div>
         </div>

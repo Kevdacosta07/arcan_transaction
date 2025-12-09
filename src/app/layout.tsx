@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Montserrat, Roboto } from "next/font/google";
+import { Libre_Baskerville, Montserrat, Roboto, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
   weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
@@ -34,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${libreBaskerville.variable} ${montserrat.variable} ${roboto.variable} antialiased`}
+        className={`${libreBaskerville.variable} ${montserrat.variable} ${roboto.variable} ${cormorantGaramond.variable} antialiased`}
       >
         {children}
         <CookieBanner />

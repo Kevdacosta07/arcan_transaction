@@ -22,10 +22,10 @@ export default function Home() {
 
           <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-6">
             <div className="flex flex-col items-center w-fit mb-8 animate-fade-in-up">
-                <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-serif font-normal text-white uppercase leading-none tracking-widest pl-[0.1em]">
+                <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-[family-name:var(--font-cormorant-garamond)] font-light text-white uppercase leading-none tracking-widest pl-[0.1em]">
                     ARCAN
                 </h1>
-                <span className="text-xl md:text-4xl lg:text-5xl font-serif font-normal text-white uppercase tracking-[0.8em] pl-[0.8em] leading-none mt-2 md:mt-6 block w-full text-center">
+                <span className="text-xl md:text-4xl lg:text-5xl font-[family-name:var(--font-cormorant-garamond)] font-light text-white uppercase tracking-[0.8em] pl-[0.8em] leading-none mt-1 md:mt-2 block w-full text-center">
                     Transactions
                 </span>
             </div>
@@ -138,52 +138,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Team Section */}
-              <div className="pt-12 lg:pt-0">
-                  <div className="flex justify-between items-end mb-16 border-b border-gray-100 pb-8">
-                      <FadeIn>
-                        <h3 className="text-4xl font-serif text-primary">L&apos;Équipe</h3>
-                      </FadeIn>
-                      <FadeIn delay={200}>
-                        <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
-                            Nos réalisations <span className="text-lg">→</span>
-                        </a>
-                      </FadeIn>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
-                       {[
-                         { 
-                            name: "Aurèle Arthur LAYA", 
-                            role: "Managing Partner", 
-                            description: "Expert en investissement immobilier et structuration de transactions complexes, Aurèle accompagne les investisseurs institutionnels et privés dans leurs stratégies d'acquisition et de cession.", 
-                            linkedin: "https://www.linkedin.com/in/aur%C3%A8le-arthur-laya-495a10206/" 
-                         },
-                         { 
-                            name: "Alexandre ARAZI", 
-                            role: "Managing Partner", 
-                            description: "Fort d'une solide expérience en finance et immobilier, Alexandre conseille les grands comptes et family offices dans l'optimisation de leurs portefeuilles immobiliers.", 
-                            linkedin: "https://www.linkedin.com/in/alexandre-arazi-a92466132/" 
-                         },
-                         { 
-                            name: "Gilles COHEN", 
-                            role: "Transaction Director", 
-                            description: "Spécialiste du marché immobilier suisse romand, Gilles dirige les opérations de transaction avec une approche axée sur la création de valeur et la confidentialité.", 
-                            linkedin: "https://www.linkedin.com/in/gilles-cohen-690b02210/" 
-                         }
-                       ].map((member, index) => (
-                           <FadeIn key={index} delay={index * 150}>
-                               <TeamMemberCard 
-                                   name={member.name}
-                                   role={member.role}
-                                   description={member.description}
-                                   linkedin={member.linkedin}
-                               />
-                           </FadeIn>
-                       ))}
-                  </div>
-              </div>
-
+              {/* Team Section - Removed from here */}
             </div>
           </section>
 
@@ -266,6 +221,54 @@ export default function Home() {
 
           {/* Typologie d'actifs Section */}
           <TypologieSection />
+
+          {/* Team Section - Moved Here */}
+          <section className="py-24 bg-white border-t border-gray-100">
+            <div className="max-w-[1400px] mx-auto px-6">
+                  <div className="flex justify-between items-end mb-16 border-b border-gray-100 pb-8">
+                      <FadeIn>
+                        <h3 className="text-4xl font-serif text-primary">L&apos;Équipe</h3>
+                      </FadeIn>
+                      <FadeIn delay={200}>
+                        <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                            Nos réalisations <span className="text-lg">→</span>
+                        </a>
+                      </FadeIn>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+                       {[
+                         { 
+                            name: "Aurèle Arthur LAYA", 
+                            role: "Managing Partner", 
+                            email: "a.laya@arcan-transactions.ch",
+                            linkedin: "https://www.linkedin.com/in/aur%C3%A8le-arthur-laya-495a10206/" 
+                         },
+                         { 
+                            name: "Alexandre ARAZI", 
+                            role: "Managing Partner", 
+                            email: "a.arazi@arcan-transactions.ch",
+                            linkedin: "https://www.linkedin.com/in/alexandre-arazi-a92466132/" 
+                         },
+                         { 
+                            name: "Gilles COHEN", 
+                            role: "Transaction Director", 
+                            email: "g.cohen@arcan-transactions.ch",
+                            linkedin: "https://www.linkedin.com/in/gilles-cohen-690b02210/" 
+                         }
+                       ].map((member, index) => (
+                           <FadeIn key={index} delay={index * 150}>
+                               <TeamMemberCard 
+                                   name={member.name}
+                                   role={member.role}
+                                   email={member.email}
+                                   linkedin={member.linkedin}
+                               />
+                           </FadeIn>
+                       ))}
+                  </div>
+            </div>
+          </section>
 
         </div>
       </main>

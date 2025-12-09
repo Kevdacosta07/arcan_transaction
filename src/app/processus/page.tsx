@@ -94,46 +94,7 @@ function RevealOnScroll({
     );
 }
 
-function ParallaxCard({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [style, setStyle] = useState({ opacity: 0, transform: "translateY(100px) scale(0.9)" });
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!containerRef.current) return;
-            const rect = containerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Animation starts when element enters viewport
-            // Completes when it's 20% up the screen
-            const start = windowHeight;
-            const end = windowHeight * 0.2;
-            
-            let progress = (start - rect.top) / (start - end);
-            progress = Math.max(0, Math.min(progress, 1));
-            
-            // Easing
-            const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-
-            setStyle({
-                opacity: progress,
-                transform: `translateY(${100 * (1 - ease)}px) scale(${0.9 + (0.1 * ease)})`
-            });
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    return (
-        <div id={id} ref={containerRef} className={className}>
-            <div style={{ ...style, transition: 'transform 0.1s ease-out, opacity 0.1s ease-out' }}>
-                {children}
-            </div>
-        </div>
-    );
-}
 
 function AccordionItem({ title, children, isOpen, onClick }: { title: string, children: React.ReactNode, isOpen: boolean, onClick: () => void }) {
     return (
@@ -196,10 +157,63 @@ function MandatAccordionItem({
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[300px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[1000px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
             >
                 <div className="text-gray-400 font-light leading-relaxed pl-[4.5rem]">
                     {children}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function FormeDeVenteItem({ 
+    id, 
+    title, 
+    subtitle,
+    description,
+    isOpen, 
+    onClick,
+    index
+}: { 
+    id: string, 
+    title: string, 
+    subtitle: string,
+    description: React.ReactNode,
+    isOpen: boolean, 
+    onClick: () => void,
+    index: number
+}) {
+    return (
+        <div className="border-b border-white/10 last:border-0">
+            <button 
+                onClick={onClick}
+                className="w-full py-8 flex items-center justify-between text-left group"
+            >
+                <div className="flex items-center gap-6 md:gap-12">
+                    <span className={`text-sm font-mono transition-colors duration-300 ${isOpen ? 'text-[#5483B3]' : 'text-white/40'}`}>
+                        0{index}
+                    </span>
+                    <div>
+                        <h3 className={`text-3xl md:text-5xl font-serif transition-colors duration-300 ${isOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>
+                            {title}
+                        </h3>
+                        <p className={`text-sm uppercase tracking-widest mt-2 transition-all duration-300 ${isOpen ? 'text-white/60' : 'text-white/30'}`}>
+                            {subtitle}
+                        </p>
+                    </div>
+                </div>
+                <div className={`relative w-8 h-8 flex items-center justify-center transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className={isOpen ? 'text-[#5483B3]' : 'text-white'}>
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+            </button>
+            <div 
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+            >
+                <div className="text-white/70 font-light leading-relaxed text-lg pl-[3.5rem] md:pl-[5rem] border-l border-[#5483B3]/30 ml-2 md:ml-4">
+                    {description}
                 </div>
             </div>
         </div>
@@ -216,6 +230,9 @@ export default function ProcessusPage() {
 
   const [mandatOpen, setMandatOpen] = useState<string | null>("mandat-exclusif");
   const toggleMandat = (id: string) => setMandatOpen(mandatOpen === id ? null : id);
+
+  const [formesAccordion, setFormesAccordion] = useState<string | null>("asset-deal");
+  const toggleFormes = (id: string) => setFormesAccordion(formesAccordion === id ? null : id);
 
   useEffect(() => {
       if (typeof window !== 'undefined') {
@@ -265,10 +282,10 @@ export default function ProcessusPage() {
                     </RevealOnScroll>
                     <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9]">
                         <RevealOnScroll variant="slide" delay={400} triggerOnMount>
-                            <span className="block">Processus</span>
+                            <span className="block">Procédure</span>
                         </RevealOnScroll>
                         <RevealOnScroll variant="slide" delay={600} triggerOnMount>
-                            <span className="block text-white/80 italic font-light">de Vente</span>
+                            <span className="block text-white/80 italic font-light">de vente</span>
                         </RevealOnScroll>
                     </h1>
                 </div>
@@ -277,7 +294,7 @@ export default function ProcessusPage() {
                 <div className="lg:col-span-5 pb-2">
                     <RevealOnScroll variant="fade" delay={800} triggerOnMount>
                         <p className="text-base md:text-lg text-gray-300 font-light leading-relaxed text-justify">
-                            Arcan Transactions SA s’occupe de la gestion complète du processus de vente en vue de maximiser le prix de vente de l’actif que ça soit par le biais d’une vente directe ou d’un appel d’offres, en Asset Deal (vente en nom) ou en Share Deal (vente en société) ou en Sale and lease-back.
+                            Arcan Transactions SA s’occupe de la gestion complète du processus de vente en vue de maximiser le prix de vente de l’actif que se soit par le biais d’une vente directe ou d’un appel d’offres, en Asset Deal (vente en nom), Share Deal (vente en société) ou en Sale and lease-back.
                         </p>
                     </RevealOnScroll>
                 </div>
@@ -310,18 +327,6 @@ export default function ProcessusPage() {
                 <div className="border-t border-white/10">
                     <RevealOnScroll variant="fade" delay={300}>
                         <MandatAccordionItem 
-                            id="mandat-exclusif"
-                            title="Mandat Exclusif" 
-                            letter="E"
-                            isOpen={mandatOpen === "mandat-exclusif"}
-                            onClick={() => toggleMandat("mandat-exclusif")}
-                        >
-                            Arcan Transactions SA est le seul intermédiaire mandaté pour la vente du bien. Cette exclusivité nous permet de déployer l'ensemble de nos ressources et de garantir une approche optimale.
-                        </MandatAccordionItem>
-                    </RevealOnScroll>
-
-                    <RevealOnScroll variant="fade" delay={450}>
-                        <MandatAccordionItem 
                             id="mandat-simple"
                             title="Mandat Simple" 
                             letter="S"
@@ -329,6 +334,18 @@ export default function ProcessusPage() {
                             onClick={() => toggleMandat("mandat-simple")}
                         >
                             Le propriétaire peut mandater plusieurs intermédiaires simultanément. Cette formule offre une plus grande flexibilité mais peut limiter l'investissement de chaque mandataire.
+                        </MandatAccordionItem>
+                    </RevealOnScroll>
+
+                    <RevealOnScroll variant="fade" delay={450}>
+                        <MandatAccordionItem 
+                            id="mandat-exclusif"
+                            title="Mandat Exclusif" 
+                            letter="E"
+                            isOpen={mandatOpen === "mandat-exclusif"}
+                            onClick={() => toggleMandat("mandat-exclusif")}
+                        >
+                            Arcan Transactions SA est le seul intermédiaire mandaté pour la vente du bien. Cette exclusivité nous permet de déployer l’ensemble de nos ressources et de garantir une approche et un contrôle optimal.
                         </MandatAccordionItem>
                     </RevealOnScroll>
                 </div>
@@ -372,14 +389,14 @@ export default function ProcessusPage() {
                         
                         <RevealOnScroll variant="fade" delay={200}>
                             <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
-                                Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et efficacité.
+                                Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et rapidité.
                             </p>
                         </RevealOnScroll>
 
                         <RevealOnScroll variant="zoom" delay={400}>
                             <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop" 
+                                    src="https://images.unsplash.com/photo-1620223715854-f3c2b1157fec?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                                     alt="Meeting" 
                                     className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
                                 />
@@ -455,27 +472,17 @@ export default function ProcessusPage() {
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Avantages & Inconvénients" 
+                                title="Avantages" 
                                 isOpen={venteAccordion === "vente-proscons"} 
                                 onClick={() => toggleVente("vente-proscons")}
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-4">
+                                <div className="pb-4">
                                     <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-[#5483B3] mb-4">Avantages</h4>
+                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Avantages</h4>
                                         <ul className="space-y-2">
                                             {["Prix de vente fixé à l’avance", "Approche ciblée", "Souplesse de négociation", "Rapidité de la procédure", "Procédure d’attribution de gré à gré"].map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">
-                                                    <span className="text-[#5483B3]">+</span> {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Inconvénients</h4>
-                                        <ul className="space-y-2">
-                                            {["Transaction moins structurée", "Délais non-impératifs", "Moins de concurrence", "Moins de surenchère"].map((item, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
-                                                    <span className="text-gray-400">-</span> {item}
+                                                    <span className="text-gray-400">+</span> {item}
                                                 </li>
                                             ))}
                                         </ul>
@@ -552,11 +559,11 @@ export default function ProcessusPage() {
                                 <div className="space-y-8 pb-4">
                                     <div>
                                         <h4 className="text-xl font-serif text-[#021024] mb-2">Sélective</h4>
-                                        <p>Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs à 5 ou 10 prospects triés sur le volet.</p>
+                                        <p>Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs potentiels à quelques prospects triés sur le volet.</p>
                                     </div>
                                     <div>
                                         <h4 className="text-xl font-serif text-[#021024] mb-2">Ouverte</h4>
-                                        <p>Pour des objets très recherchés par le marché, il convient d’ouvrir au maximum au cercle des investisseurs pour créer une émulation.</p>
+                                        <p>Pour des objets très recherchés par le marché, il convient d’ouvrir le cercle des investisseurs au maximum en vue de créer de la concurrence pour optimiser le prix de vente.</p>
                                     </div>
                                 </div>
                             </AccordionItem>
@@ -570,7 +577,7 @@ export default function ProcessusPage() {
                                     <div className="flex items-center justify-between mb-10 relative z-10">
                                         <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Processus & Timing</span>
                                         <div className="px-4 py-1.5 bg-white border border-gray-200 text-[#5483B3] text-sm font-serif rounded-full shadow-sm">
-                                            3 à 4 mois
+                                            2 à 3 mois
                                         </div>
                                     </div>
 
@@ -578,11 +585,11 @@ export default function ProcessusPage() {
                                         {[
                                             "Sélection de multiples investisseurs",
                                             "Envoi teaser + NDA",
-                                            "Réception NDA & envoi Information Memorandum (plaquette de vente)",
+                                            "Réception NDA signées & envoi Information Memorandum",
                                             "Réception NBO, sélection de la short list & ouverture de la dataroom complète",
                                             "Due diligence",
                                             "Réception BO & adjudication",
-                                            "Revue acte notarié & closing",
+                                            "Revue du projet d’acte notarié",
                                             "Signing & closing"
                                         ].map((step, i, arr) => (
                                             <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
@@ -607,27 +614,17 @@ export default function ProcessusPage() {
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Avantages & Inconvénients" 
+                                title="Avantages" 
                                 isOpen={appelAccordion === "appel-proscons"} 
                                 onClick={() => toggleAppel("appel-proscons")}
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-4">
+                                <div className="pb-4">
                                     <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-[#5483B3] mb-4">Avantages</h4>
+                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Avantages</h4>
                                         <ul className="space-y-2">
                                             {["Prix de vente « plancher »", "Processus structuré et contrôlé", "Délais fixés impératifs", "Concurrence & Surenchère", "Adapté aux institutionnels"].map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">
-                                                    <span className="text-[#5483B3]">+</span> {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Inconvénients</h4>
-                                        <ul className="space-y-2">
-                                            {["Risque sans offre au prix", "Lenteur de la procédure", "Objet diffusé si échec", "Moins adapté aux privés"].map((item, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
-                                                    <span className="text-gray-400">-</span> {item}
+                                                    <span className="text-gray-400">+</span> {item}
                                                 </li>
                                             ))}
                                         </ul>
@@ -641,114 +638,126 @@ export default function ProcessusPage() {
         </div>
       </section>
 
-      {/* Formes de Vente - Vertical Parallax */}
-      <section id="formes-de-vente" className="relative z-10 bg-[#021024] text-[#FDFBF7] py-40 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-            <RevealOnScroll variant="fade">
-                <div className="text-center mb-40">
+      {/* Formes de Vente - Split Layout with Image */}
+      <section id="formes-de-vente" className="relative z-10 bg-[#021024] text-[#FDFBF7] py-24 md:py-32 px-6 overflow-hidden">
+        
+        {/* Background - Minimalist & Elegant */}
+        <div className="absolute inset-0 pointer-events-none">
+            {/* Soft Ambient Light */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#5483B3]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#5483B3]/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+            
+            {/* Single Elegant Line */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                <path 
+                    d="M-100 900 C 400 900, 600 400, 1540 300" 
+                    stroke="url(#curveGradient)" 
+                    strokeWidth="1.5" 
+                    fill="none" 
+                />
+                <defs>
+                    <linearGradient id="curveGradient" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#5483B3" stopOpacity="0" />
+                        <stop offset="40%" stopColor="#5483B3" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#5483B3" stopOpacity="0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+            
+            {/* Centered Title */}
+            <div className="text-center mb-16 lg:mb-24">
+                <RevealOnScroll variant="fade">
                     <span className="text-xs uppercase tracking-[0.3em] text-[#5483B3] mb-4 block">
                         Structuration
                     </span>
-                    <h2 className="text-6xl md:text-8xl font-serif">Formes de Vente</h2>
+                    <h2 className="text-5xl md:text-7xl font-serif leading-none">
+                        Formes de Vente
+                    </h2>
+                </RevealOnScroll>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+                
+                {/* Left Column: Image */}
+                <div className="lg:col-span-5 sticky top-32">
+                    <RevealOnScroll variant="zoom" delay={200}>
+                        <div className="relative h-[500px] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#021024]/50">
+                            <img 
+                                src="https://images.unsplash.com/photo-1531062655013-ebcacdf1c350?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                alt="Modern Architecture" 
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                            />
+                        </div>
+                    </RevealOnScroll>
                 </div>
-            </RevealOnScroll>
 
-            <div className="space-y-40">
-                {/* Asset Deal */}
-                <ParallaxCard id="asset-deal" className="group scroll-mt-48">
-                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
-                        
-                        {/* Background Image with Overlay */}
-                        <div className="absolute inset-0 z-0">
-                            <img 
-                                src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=2070&auto=format&fit=crop" 
-                                alt="Asset Deal Building" 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-[#021024]/80 mix-blend-multiply"></div>
-                            <div className="absolute inset-0 bg-black/40"></div>
-                        </div>
+                {/* Right Column: Accordion List */}
+                <div className="lg:col-span-7">
+                    <div className="space-y-0">
+                        <FormeDeVenteItem 
+                            id="asset-deal"
+                            title="Asset Deal"
+                            subtitle="Vente en nom"
+                            index={1}
+                            isOpen={formesAccordion === "asset-deal"}
+                            onClick={() => toggleFormes("asset-deal")}
+                            description={
+                                <>
+                                    <p className="mb-4">
+                                        Dans le cadre d’un Asset Deal, c’est l’immeuble lui-même qui est vendu.
+                                    </p>
+                                    <p className="mb-4">
+                                        La vente en nom présente moins de risques pour l’investisseur, car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.
+                                    </p>
+                                    <p>
+                                        Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l’acheteur, conformément à l’usage.
+                                    </p>
+                                </>
+                            }
+                        />
 
-                        <div className="absolute top-0 right-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">AD</div>
-                        
-                        <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Asset Deal</h3>
-                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Vente en nom</p>
-                            
-                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
-                                Dans le cadre d’un Asset Deal c’est l’immeuble lui-même qui est vendu.
-                                <br/><br/>
-                                La vente en nom présente moins de risque pour l’investisseur car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.
-                                <br/><br/>
-                                <span className="text-[#5483B3] font-medium">Note :</span> In casu, des frais de vente incombe à l’acquéreur et les conséquences fiscales sont, pour le vendeur, moins avantageuse que dans un Share Deal.
-                            </p>
-                        </div>
+                        <FormeDeVenteItem 
+                            id="share-deal"
+                            title="Share Deal"
+                            subtitle="Vente en société"
+                            index={2}
+                            isOpen={formesAccordion === "share-deal"}
+                            onClick={() => toggleFormes("share-deal")}
+                            description={
+                                <>
+                                    <p className="mb-4">
+                                        Dans le cadre d’un Share Deal, ce sont les actions de la société propriétaire de l’immeuble qui sont vendues.
+                                    </p>
+                                    <p className="mb-4">
+                                        La vente en société présente des avantages financiers et fiscaux pour le vendeur comme pour l’acquéreur. Ici, une due diligence plus approfondie est toutefois nécessaire, car l’acquéreur reprend l’ensemble des risques liés à l’historique de la société.
+                                    </p>
+                                </>
+                            }
+                        />
+
+                        <FormeDeVenteItem 
+                            id="sale-leaseback"
+                            title="Sale & Leaseback"
+                            subtitle="Cession-bail"
+                            index={3}
+                            isOpen={formesAccordion === "sale-leaseback"}
+                            onClick={() => toggleFormes("sale-leaseback")}
+                            description={
+                                <>
+                                    <p className="mb-4">
+                                        Le sale and leaseback peut prendre la forme soit d’un Asset Deal soit d’un Share Deal.
+                                    </p>
+                                    <p className="mb-4">
+                                        Dans ce cas particulier, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : maximiser le prix de vente ou, à l’inverse, d’optimiser les conditions de location.
+                                    </p>
+                                </>
+                            }
+                        />
                     </div>
-                </ParallaxCard>
-
-                {/* Share Deal */}
-                <ParallaxCard id="share-deal" className="group scroll-mt-48">
-                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
-                        
-                        {/* Background Image with Overlay */}
-                        <div className="absolute inset-0 z-0">
-                            <img 
-                                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" 
-                                alt="Share Deal Business" 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-[#021024]/80 mix-blend-multiply"></div>
-                            <div className="absolute inset-0 bg-black/40"></div>
-                        </div>
-
-                        <div className="absolute top-0 left-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">SD</div>
-                        
-                        <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">Share Deal</h3>
-                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Vente en société</p>
-                            
-                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
-                                Dans le cadre d’un Share Deal, ce sont les actions de la société propriétaire de l’immeuble qui sont vendues.
-                                <br/><br/>
-                                La vente en société présente des avantages financiers et fiscaux pour le vendeur et l’acquéreur. Toutefois, une due diligence plus approfondie devra intervenir ici car l’acquéreur reprend tous les risques liés à l’historique de la société.
-                                <br/><br/>
-                                <span className="text-[#5483B3] font-medium">Note :</span> Cette forme de vente est plus complexe et nécessite une timeline plus longue.
-                            </p>
-                        </div>
-                    </div>
-                </ParallaxCard>
-
-                {/* Sale & Leaseback */}
-                <ParallaxCard id="sale-leaseback" className="group scroll-mt-48">
-                    <div className="relative p-6 md:p-24 rounded-sm overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center justify-center">
-                        
-                        {/* Background Image with Overlay */}
-                        <div className="absolute inset-0 z-0">
-                            <img 
-                                src="https://images.unsplash.com/photo-1501864626935-8f8452e07087?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                                alt="Sale and Leaseback Architecture" 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-[#021024]/80 mix-blend-multiply"></div>
-                            <div className="absolute inset-0 bg-black/40"></div>
-                        </div>
-
-                        <div className="absolute top-0 right-0 p-6 md:p-12 opacity-10 text-[8rem] md:text-[15rem] font-serif leading-none select-none text-white z-0">S&L</div>
-                        
-                        <div className="relative z-10 max-w-4xl mx-auto text-center">
-                            <h3 className="text-4xl md:text-7xl font-serif mb-4 md:mb-6 text-white">
-                                Sale & Leaseback <br/> <span className="text-3xl md:text-5xl">(Cas particulier)</span>
-                            </h3>
-                            <p className="text-white/80 italic text-lg md:text-xl mb-8 md:mb-12">Cession-bail</p>
-                            
-                            <p className="text-base md:text-2xl text-white font-light leading-relaxed drop-shadow-sm">
-                                Le sale and leaseback peut prendre la forme soit d’un Asset Deal soit d’un Share Deal.
-                                <br/><br/>
-                                Dans ce cadre, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : s’agit-il de maximiser le prix de vente ou, à l’inverse, d’optimiser les conditions de location ?
-                            </p>
-                        </div>
-                    </div>
-                </ParallaxCard>
+                </div>
             </div>
         </div>
       </section>

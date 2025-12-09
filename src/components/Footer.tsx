@@ -11,7 +11,7 @@ export default function Footer() {
                 alt="Footer Background" 
                 fill 
                 className="object-cover"
-                quality={90}
+                quality={75}
             />
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#021024]/85 mix-blend-multiply"></div>
@@ -31,7 +31,7 @@ export default function Footer() {
                 />
               </div>
               <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">
-                Contactez-nous pour toute demande d&apos;information ou pour convenir un entretien confidentiel.
+                Contactez-nous pour toute demande d&apos;information ou pour convenir d&apos;un rendez-vous.
               </p>
             </div>
             
@@ -41,16 +41,13 @@ export default function Footer() {
                   <p className="text-xs uppercase tracking-widest text-gray-500 mt-1 text-right">Email</p>
               </a>
               <a href="tel:+41223463788" className="group text-right">
-                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">022 346 37 88</h4>
+                  <h4 className="text-2xl md:text-3xl font-serif group-hover:text-accent transition-colors">+41 22 346 37 88</h4>
                   <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Téléphone</p>
               </a>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end pt-10 border-t border-white/10">
-             <div className="relative w-48 h-12 mb-6 md:mb-0 opacity-80">
-                <Image src="/assets/logo/Arcan_Logo_Blanc.webp" alt="Logo" fill className="object-contain object-center md:object-left" quality={100} />
-             </div>
+          <div className="flex justify-center pt-10 border-t border-white/10">
              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-xs text-gray-600 uppercase tracking-widest">
                <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
                <div className="flex gap-6">
