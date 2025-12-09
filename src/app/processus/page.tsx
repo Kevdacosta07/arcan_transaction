@@ -185,7 +185,7 @@ function FormeDeVenteItem({
     index: number
 }) {
     return (
-        <div className="border-b border-white/10 last:border-0">
+        <div id={id} className="border-b border-white/10 last:border-0 scroll-mt-32">
             <button 
                 onClick={onClick}
                 className="w-full py-8 flex items-center justify-between text-left group"
@@ -235,20 +235,39 @@ export default function ProcessusPage() {
   const toggleFormes = (id: string) => setFormesAccordion(formesAccordion === id ? null : id);
 
   useEffect(() => {
-      if (typeof window !== 'undefined') {
-          // Handle hash (direct links)
+      const handleHashChange = () => {
           if (window.location.hash) {
               const hash = window.location.hash.substring(1);
               if (hash === 'mandat-exclusif' || hash === 'mandat-simple') {
                   setMandatOpen(hash);
               }
+              if (hash === 'asset-deal' || hash === 'share-deal' || hash === 'sale-leaseback') {
+                  setFormesAccordion(hash);
+                  setTimeout(() => {
+                      const element = document.getElementById('formes-de-vente');
+                      if (element) {
+                          const yOffset = -50; // Adjust this value to control scroll position
+                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                          window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                  }, 300);
+              }
           }
+      };
+
+      if (typeof window !== 'undefined') {
+          // Handle initial load
+          handleHashChange();
 
           // Handle query params (from navbar)
           const params = new URLSearchParams(window.location.search);
           const mandat = params.get('mandat');
           if (mandat === 'exclusif') setMandatOpen('mandat-exclusif');
           if (mandat === 'simple') setMandatOpen('mandat-simple');
+
+          // Listen for hash changes
+          window.addEventListener('hashchange', handleHashChange);
+          return () => window.removeEventListener('hashchange', handleHashChange);
       }
   }, []);
 
@@ -639,7 +658,7 @@ export default function ProcessusPage() {
       </section>
 
       {/* Formes de Vente - Split Layout with Image */}
-      <section id="formes-de-vente" className="relative z-10 bg-[#021024] text-[#FDFBF7] py-24 md:py-32 px-6 overflow-hidden">
+      <section id="formes-de-vente" className="relative z-10 bg-[#021024] text-[#FDFBF7] py-24 md:py-32 px-6 overflow-hidden scroll-mt-24">
         
         {/* Background - Minimalist & Elegant */}
         <div className="absolute inset-0 pointer-events-none">
@@ -682,7 +701,7 @@ export default function ProcessusPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
                 
                 {/* Left Column: Image */}
-                <div className="lg:col-span-5 sticky top-32">
+                <div className="lg:col-span-5 sticky top-32 z-20">
                     <RevealOnScroll variant="zoom" delay={200}>
                         <div className="relative h-[500px] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#021024]/50">
                             <img 
@@ -698,7 +717,7 @@ export default function ProcessusPage() {
                 <div className="lg:col-span-7">
                     <div className="space-y-0">
                         <FormeDeVenteItem 
-                            id="asset-deal"
+                            id="item-asset-deal"
                             title="Asset Deal"
                             subtitle="Vente en nom"
                             index={1}
@@ -720,7 +739,7 @@ export default function ProcessusPage() {
                         />
 
                         <FormeDeVenteItem 
-                            id="share-deal"
+                            id="item-share-deal"
                             title="Share Deal"
                             subtitle="Vente en société"
                             index={2}
@@ -739,7 +758,7 @@ export default function ProcessusPage() {
                         />
 
                         <FormeDeVenteItem 
-                            id="sale-leaseback"
+                            id="item-sale-leaseback"
                             title="Sale & Leaseback"
                             subtitle="Cession-bail"
                             index={3}
