@@ -237,10 +237,17 @@ function FormeDeVenteItem({
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[500px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className="grid transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    opacity: isOpen ? 1 : 0,
+                    marginBottom: isOpen ? '2rem' : '0'
+                }}
             >
-                <div className="text-white/70 font-light leading-relaxed text-lg pl-[3.5rem] md:pl-[5rem] border-l border-[#5483B3]/30 ml-2 md:ml-4">
-                    {description}
+                <div className="overflow-hidden">
+                    <div className="text-white/70 font-light leading-relaxed text-lg pl-[3.5rem] md:pl-[5rem] border-l border-[#5483B3]/30 ml-2 md:ml-4 pb-2">
+                        {description}
+                    </div>
                 </div>
             </div>
         </div>
