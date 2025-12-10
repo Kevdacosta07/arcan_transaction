@@ -164,7 +164,7 @@ export default function Home() {
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.15] mb-8 max-w-4xl">
                     Une maîtrise rigoureuse des processus de vente pour <span className="text-accent">sécuriser</span> et <span className="text-accent">optimiser</span> vos transactions.
                   </h2>
-                  <a href="/processus" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
+                  <a href="/procedure-de-vente" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
                     <span>Découvrez nos processus de vente</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

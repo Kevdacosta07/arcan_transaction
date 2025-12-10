@@ -62,7 +62,7 @@ export default function ExpertiseSection() {
                                 src={service.image} 
                                 alt={service.title} 
                                 fill 
-                                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                className="object-cover grayscale hover:grayscale-0 transition-[filter] duration-500"
                             />
                         </div>
 

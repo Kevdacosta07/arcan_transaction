@@ -8,13 +8,13 @@ function RevealOnScroll({
     children, 
     className = "", 
     delay = 0,
-    variant = "blur",
+    variant = "fade",
     triggerOnMount = false
 }: { 
     children: React.ReactNode, 
     className?: string, 
     delay?: number,
-    variant?: "blur" | "fade" | "slide" | "zoom" | "mask"
+    variant?: "fade" | "slide" | "zoom" | "mask"
     triggerOnMount?: boolean
 }) {
     const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ function RevealOnScroll({
                     observer.disconnect();
                 }
             },
-            { threshold: 0.15 }
+            { threshold: 0.1 }
         );
 
         if (ref.current) {
@@ -48,24 +48,20 @@ function RevealOnScroll({
             case "mask":
                 return isVisible
                     ? "translate-y-0 opacity-100"
-                    : "translate-y-[110%] opacity-0";
-            case "blur": // Cinematic Blur Reveal
-                return isVisible 
-                    ? "opacity-100 blur-0 translate-y-0 scale-100" 
-                    : "opacity-0 blur-xl translate-y-12 scale-90";
-            case "slide": // Lateral Slide
+                    : "translate-y-8 opacity-0";
+            case "slide":
                 return isVisible
                     ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-12";
-            case "zoom": // Subtle Zoom Out
+                    : "opacity-0 -translate-x-8";
+            case "zoom":
                 return isVisible
                     ? "opacity-100 scale-100"
-                    : "opacity-0 scale-110";
-            case "fade": // Classic Fade Up
+                    : "opacity-0 scale-95";
+            case "fade":
             default:
                 return isVisible 
                     ? "opacity-100 translate-y-0" 
-                    : "opacity-0 translate-y-10";
+                    : "opacity-0 translate-y-6";
         }
     };
 
@@ -73,7 +69,7 @@ function RevealOnScroll({
         return (
             <div ref={ref} className={`overflow-hidden ${className}`}>
                 <div 
-                    className={`transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`}
+                    className={`will-change-[opacity,transform] transition-[opacity,transform] duration-700 ease-out ${getVariantClasses()}`}
                     style={{ transitionDelay: `${delay}ms` }}
                 >
                     {children}
@@ -85,7 +81,7 @@ function RevealOnScroll({
     return (
         <div 
             ref={ref} 
-            className={`${className} transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`} 
+            className={`${className} will-change-[opacity,transform] transition-[opacity,transform] duration-700 ease-out ${getVariantClasses()}`} 
             style={{ transitionDelay: `${delay}ms` }}
         >
             {children}
@@ -172,7 +168,7 @@ export default function RealisationsPage() {
          {/* Content */}
          <div className="relative z-10 w-full max-w-[1800px] mx-auto">
             
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end border-t border-white/10 pt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end border-t border-white/10 pt-8 lg:pt-12">
                 
                 {/* Main Title */}
                 <div className="lg:col-span-7">
@@ -187,18 +183,18 @@ export default function RealisationsPage() {
                 </div>
 
                 {/* Stats & Description */}
-                <div className="lg:col-span-5 flex flex-col justify-between h-full">
+                <div className="lg:col-span-5 flex flex-col justify-end mt-4 lg:mt-0">
                     
                     <RevealOnScroll variant="fade" delay={600} triggerOnMount>
-                        <p className="text-[clamp(1rem,2vw,1.5rem)] font-light text-white/80 leading-relaxed mb-12 max-w-md ml-auto text-right whitespace-nowrap">
+                        <p className="text-[clamp(1rem,2vw,1.5rem)] font-light text-white/80 leading-relaxed mb-6 lg:mb-8 max-w-md lg:ml-auto text-left lg:text-right whitespace-nowrap">
                             L&apos;art de la transaction immobilière.
                         </p>
                     </RevealOnScroll>
 
                     <div>
                         <RevealOnScroll variant="fade" delay={800} triggerOnMount>
-                            <div className="text-right">
-                                <span className="block text-[clamp(3.5rem,8vw,6rem)] font-serif text-white mb-4 whitespace-nowrap">2 Mrd+</span>
+                            <div className="text-left lg:text-right">
+                                <span className="block text-[clamp(3.5rem,8vw,6rem)] font-serif text-white mb-2 lg:mb-4 whitespace-nowrap">2 Mrd+</span>
                                 <span className="block text-[clamp(0.7rem,1.2vw,1rem)] uppercase tracking-[0.2em] text-white/60 whitespace-nowrap">Total cumulé des transactions</span>
                             </div>
                         </RevealOnScroll>

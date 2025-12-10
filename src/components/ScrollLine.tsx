@@ -38,7 +38,7 @@ export default function ScrollLine({
     return () => observer.disconnect();
   }, [delay]);
 
-  const baseClasses = `absolute transition-all duration-[1.5s] ease-out ${color} ${className}`;
+  const baseClasses = `absolute transition-transform duration-1000 ease-out ${color} ${className}`;
   
   // Horizontal: grows from left to right (width 0 -> 100%)
   // Vertical: grows from top to bottom (height 0 -> 100%)

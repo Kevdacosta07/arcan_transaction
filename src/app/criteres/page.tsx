@@ -575,19 +575,19 @@ export default function CriteresPage() {
                                 <div className="space-y-4">
                                     <Checkbox 
                                         label="Asset Deal" 
-                                        infoLink="/processus#asset-deal" 
+                                        infoLink="/procedure-de-vente#asset-deal" 
                                         checked={formData.transactionNature.includes("Asset Deal")}
                                         onChange={() => handleCheckboxChange("transactionNature", "Asset Deal")}
                                     />
                                     <Checkbox 
                                         label="Share Deal" 
-                                        infoLink="/processus#share-deal" 
+                                        infoLink="/procedure-de-vente#share-deal" 
                                         checked={formData.transactionNature.includes("Share Deal")}
                                         onChange={() => handleCheckboxChange("transactionNature", "Share Deal")}
                                     />
                                     <Checkbox 
                                         label="Sale and lease back" 
-                                        infoLink="/processus#sale-leaseback" 
+                                        infoLink="/procedure-de-vente#sale-leaseback" 
                                         checked={formData.transactionNature.includes("Sale and lease back")}
                                         onChange={() => handleCheckboxChange("transactionNature", "Sale and lease back")}
                                     />

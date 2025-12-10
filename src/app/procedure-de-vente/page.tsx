@@ -2,20 +2,20 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
-// --- Shared Animation Component ---
+// --- Elegant Animation Component ---
 function RevealOnScroll({ 
     children, 
     className = "", 
     delay = 0,
-    variant = "blur",
+    variant = "up",
     triggerOnMount = false
 }: { 
     children: React.ReactNode, 
     className?: string, 
     delay?: number,
-    variant?: "blur" | "fade" | "slide" | "zoom" | "mask"
+    variant?: "up" | "left" | "right" | "scale" | "mask" | "fade"
     triggerOnMount?: boolean
 }) {
     const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +23,7 @@ function RevealOnScroll({
 
     useEffect(() => {
         if (triggerOnMount) {
-            const timer = setTimeout(() => setIsVisible(true), 100);
+            const timer = setTimeout(() => setIsVisible(true), 50 + delay);
             return () => clearTimeout(timer);
         }
 
@@ -34,7 +34,7 @@ function RevealOnScroll({
                     observer.disconnect();
                 }
             },
-            { threshold: 0.15 }
+            { threshold: 0.1, rootMargin: '50px' }
         );
 
         if (ref.current) {
@@ -42,54 +42,81 @@ function RevealOnScroll({
         }
 
         return () => observer.disconnect();
-    }, [triggerOnMount]);
+    }, [triggerOnMount, delay]);
 
-    const getVariantClasses = () => {
+    const getAnimationClass = useCallback(() => {
+        if (!isVisible) return 'opacity-0';
+        
         switch (variant) {
+            case "up":
+                return "animate-reveal-up";
+            case "left":
+                return "animate-reveal-left";
+            case "right":
+                return "animate-reveal-right";
+            case "scale":
+                return "animate-reveal-scale";
             case "mask":
-                return isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-[110%] opacity-0";
-            case "blur": 
-                return isVisible 
-                    ? "opacity-100 blur-0 translate-y-0 scale-100" 
-                    : "opacity-0 blur-xl translate-y-12 scale-90";
-            case "slide": 
-                return isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-12";
-            case "zoom": 
-                return isVisible
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-110";
-            case "fade": 
+                return "animate-mask-reveal";
+            case "fade":
             default:
-                return isVisible 
-                    ? "opacity-100 translate-y-0" 
-                    : "opacity-0 translate-y-10";
+                return "animate-fade-in";
         }
-    };
-
-    if (variant === "mask") {
-        return (
-            <div ref={ref} className={`overflow-hidden ${className}`}>
-                <div 
-                    className={`transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`}
-                    style={{ transitionDelay: `${delay}ms` }}
-                >
-                    {children}
-                </div>
-            </div>
-        );
-    }
+    }, [isVisible, variant]);
 
     return (
         <div 
             ref={ref} 
-            className={`${className} transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${getVariantClasses()}`} 
-            style={{ transitionDelay: `${delay}ms` }}
+            className={`${className} ${getAnimationClass()}`}
+            style={{ animationDelay: isVisible ? `${delay}ms` : '0ms' }}
         >
             {children}
+        </div>
+    );
+}
+
+// Stagger animation for lists
+function StaggerContainer({ 
+    children, 
+    className = "",
+    staggerDelay = 100
+}: { 
+    children: React.ReactNode[], 
+    className?: string,
+    staggerDelay?: number
+}) {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div ref={ref} className={className}>
+            {children.map((child, index) => (
+                <div 
+                    key={index}
+                    className={isVisible ? 'animate-reveal-up' : 'opacity-0'}
+                    style={{ animationDelay: `${index * staggerDelay}ms` }}
+                >
+                    {child}
+                </div>
+            ))}
         </div>
     );
 }
@@ -112,7 +139,7 @@ function AccordionItem({ title, children, isOpen, onClick }: { title: string, ch
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[800px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
             >
                 <div className="text-gray-600 font-light leading-relaxed text-base md:text-lg pt-2">
                     {children}
@@ -157,7 +184,7 @@ function MandatAccordionItem({
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[1000px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[1000px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
             >
                 <div className="text-gray-400 font-light leading-relaxed pl-[4.5rem]">
                     {children}
@@ -203,14 +230,14 @@ function FormeDeVenteItem({
                         </p>
                     </div>
                 </div>
-                <div className={`relative w-8 h-8 flex items-center justify-center transition-transform duration-500 ${isOpen ? 'rotate-180' : ''}`}>
+                <div className={`relative w-8 h-8 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className={isOpen ? 'text-[#5483B3]' : 'text-white'}>
                         <path d="M6 9l6 6 6-6" />
                     </svg>
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[500px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
             >
                 <div className="text-white/70 font-light leading-relaxed text-lg pl-[3.5rem] md:pl-[5rem] border-l border-[#5483B3]/30 ml-2 md:ml-4">
                     {description}
@@ -296,14 +323,14 @@ export default function ProcessusPage() {
                 
                 {/* Title Area */}
                 <div className="lg:col-span-7">
-                    <RevealOnScroll variant="fade" delay={200} triggerOnMount>
+                    <RevealOnScroll variant="up" delay={100} triggerOnMount>
                         <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">Méthodologie</span>
                     </RevealOnScroll>
                     <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9]">
-                        <RevealOnScroll variant="slide" delay={400} triggerOnMount>
+                        <RevealOnScroll variant="left" delay={200} triggerOnMount>
                             <span className="block">Procédure</span>
                         </RevealOnScroll>
-                        <RevealOnScroll variant="slide" delay={600} triggerOnMount>
+                        <RevealOnScroll variant="left" delay={350} triggerOnMount>
                             <span className="block text-white/80 italic font-light">de vente</span>
                         </RevealOnScroll>
                     </h1>
@@ -311,7 +338,7 @@ export default function ProcessusPage() {
 
                 {/* Description Area - Restored Full Content */}
                 <div className="lg:col-span-5 pb-2">
-                    <RevealOnScroll variant="fade" delay={800} triggerOnMount>
+                    <RevealOnScroll variant="up" delay={500} triggerOnMount>
                         <p className="text-base md:text-lg text-gray-300 font-light leading-relaxed text-justify">
                             Arcan Transactions SA s’occupe de la gestion complète du processus de vente en vue de maximiser le prix de vente de l’actif que se soit par le biais d’une vente directe ou d’un appel d’offres, en Asset Deal (vente en nom), Share Deal (vente en société) ou en Sale and lease-back.
                         </p>
@@ -329,13 +356,13 @@ export default function ProcessusPage() {
                 
                 {/* Left: Header */}
                 <div>
-                    <RevealOnScroll variant="slide">
+                    <RevealOnScroll variant="left">
                         <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">Avant-propos</span>
                         <h2 className="text-5xl md:text-6xl font-serif text-white leading-none mb-8">
                             Type de <span className="italic text-[#5483B3]">Mandat</span>
                         </h2>
                     </RevealOnScroll>
-                    <RevealOnScroll variant="fade" delay={200}>
+                    <RevealOnScroll variant="up" delay={150}>
                         <p className="text-lg text-gray-300 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6">
                             Le type de mandat définit le cadre de notre collaboration et les modalités d'intervention pour la vente de votre bien.
                         </p>
@@ -344,7 +371,7 @@ export default function ProcessusPage() {
 
                 {/* Right: Accordion */}
                 <div className="border-t border-white/10">
-                    <RevealOnScroll variant="fade" delay={300}>
+                    <RevealOnScroll variant="up" delay={200}>
                         <MandatAccordionItem 
                             id="mandat-simple"
                             title="Mandat Simple" 
@@ -356,7 +383,7 @@ export default function ProcessusPage() {
                         </MandatAccordionItem>
                     </RevealOnScroll>
 
-                    <RevealOnScroll variant="fade" delay={450}>
+                    <RevealOnScroll variant="up" delay={300}>
                         <MandatAccordionItem 
                             id="mandat-exclusif"
                             title="Mandat Exclusif" 
@@ -399,20 +426,20 @@ export default function ProcessusPage() {
                 {/* Header (Left) */}
                 <div className="lg:col-span-5">
                     <div className="sticky top-32">
-                        <RevealOnScroll variant="slide">
+                        <RevealOnScroll variant="left">
                             <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">01. Méthodologie</span>
                             <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
                                 Vente<br/><span className="italic text-[#5483B3]">Directe</span>
                             </h2>
                         </RevealOnScroll>
                         
-                        <RevealOnScroll variant="fade" delay={200}>
+                        <RevealOnScroll variant="up" delay={150}>
                             <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
                                 Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et rapidité.
                             </p>
                         </RevealOnScroll>
 
-                        <RevealOnScroll variant="zoom" delay={400}>
+                        <RevealOnScroll variant="scale" delay={300}>
                             <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
                                 <img 
                                     src="https://images.unsplash.com/photo-1620223715854-f3c2b1157fec?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
@@ -426,7 +453,7 @@ export default function ProcessusPage() {
 
                 {/* Accordions (Right) */}
                 <div className="lg:col-span-7">
-                    <RevealOnScroll variant="fade" delay={300}>
+                    <RevealOnScroll variant="up" delay={200}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
                                 title="Forme de la vente" 
@@ -541,20 +568,20 @@ export default function ProcessusPage() {
                 {/* Header (Left) */}
                 <div className="lg:col-span-5 lg:order-2">
                     <div className="sticky top-32">
-                        <RevealOnScroll variant="slide">
+                        <RevealOnScroll variant="right">
                             <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">02. Méthodologie</span>
                             <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
                                 Appel<br/><span className="italic text-[#5483B3]">d'Offres</span>
                             </h2>
                         </RevealOnScroll>
                         
-                        <RevealOnScroll variant="fade" delay={200}>
+                        <RevealOnScroll variant="up" delay={150}>
                             <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
                                 Un processus structuré pour maximiser la valeur par la concurrence. Recommandé pour les actifs à fort potentiel de marché.
                             </p>
                         </RevealOnScroll>
 
-                        <RevealOnScroll variant="zoom" delay={400}>
+                        <RevealOnScroll variant="scale" delay={300}>
                             <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
                                 <img 
                                     src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1470&auto=format&fit=crop" 
@@ -568,7 +595,7 @@ export default function ProcessusPage() {
 
                 {/* Accordions (Right) */}
                 <div className="lg:col-span-7 lg:order-1">
-                    <RevealOnScroll variant="fade" delay={300}>
+                    <RevealOnScroll variant="up" delay={200}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
                                 title="Forme de la vente" 
@@ -660,35 +687,39 @@ export default function ProcessusPage() {
       {/* Formes de Vente - Split Layout with Image */}
       <section id="formes-de-vente" className="relative z-10 bg-[#021024] text-[#FDFBF7] py-24 md:py-32 px-6 overflow-hidden scroll-mt-24">
         
-        {/* Background - Minimalist & Elegant */}
+        {/* Background - Optimized with CSS gradients instead of blur */}
         <div className="absolute inset-0 pointer-events-none">
-            {/* Soft Ambient Light */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#5483B3]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#5483B3]/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+            {/* Optimized radial gradients - GPU accelerated, no blur computation */}
+            <div 
+                className="absolute top-0 right-0 w-[600px] h-[600px] -translate-y-1/3 translate-x-1/4"
+                style={{ 
+                    background: 'radial-gradient(circle, rgba(84,131,179,0.08) 0%, transparent 70%)',
+                    willChange: 'transform'
+                }}
+            />
+            <div 
+                className="absolute bottom-0 left-0 w-[500px] h-[500px] translate-y-1/4 -translate-x-1/4"
+                style={{ 
+                    background: 'radial-gradient(circle, rgba(84,131,179,0.05) 0%, transparent 70%)',
+                    willChange: 'transform'
+                }}
+            />
             
-            {/* Single Elegant Line */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 900" preserveAspectRatio="none">
-                <path 
-                    d="M-100 900 C 400 900, 600 400, 1540 300" 
-                    stroke="url(#curveGradient)" 
-                    strokeWidth="1.5" 
-                    fill="none" 
-                />
-                <defs>
-                    <linearGradient id="curveGradient" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0%" stopColor="#5483B3" stopOpacity="0" />
-                        <stop offset="40%" stopColor="#5483B3" stopOpacity="0.3" />
-                        <stop offset="100%" stopColor="#5483B3" stopOpacity="0" />
-                    </linearGradient>
-                </defs>
-            </svg>
+            {/* Single Elegant Line - Simplified */}
+            <div 
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(135deg, transparent 0%, transparent 40%, rgba(84,131,179,0.15) 50%, transparent 60%, transparent 100%)',
+                    opacity: 0.5
+                }}
+            />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
             
             {/* Centered Title */}
             <div className="text-center mb-16 lg:mb-24">
-                <RevealOnScroll variant="fade">
+                <RevealOnScroll variant="up">
                     <span className="text-xs uppercase tracking-[0.3em] text-[#5483B3] mb-4 block">
                         Structuration
                     </span>
@@ -702,12 +733,12 @@ export default function ProcessusPage() {
                 
                 {/* Left Column: Image */}
                 <div className="lg:col-span-5 sticky top-32 z-20">
-                    <RevealOnScroll variant="zoom" delay={200}>
+                    <RevealOnScroll variant="scale" delay={150}>
                         <div className="relative h-[500px] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#021024]/50">
                             <img 
                                 src="https://images.unsplash.com/photo-1531062655013-ebcacdf1c350?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                                 alt="Modern Architecture" 
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                             />
                         </div>
                     </RevealOnScroll>
@@ -716,6 +747,7 @@ export default function ProcessusPage() {
                 {/* Right Column: Accordion List */}
                 <div className="lg:col-span-7">
                     <div className="space-y-0">
+                        <RevealOnScroll variant="up" delay={100}>
                         <FormeDeVenteItem 
                             id="item-asset-deal"
                             title="Asset Deal"
@@ -726,18 +758,20 @@ export default function ProcessusPage() {
                             description={
                                 <>
                                     <p className="mb-4">
-                                        Dans le cadre d’un Asset Deal, c’est l’immeuble lui-même qui est vendu.
+                                        Dans le cadre d&apos;un Asset Deal, c&apos;est l&apos;immeuble lui-même qui est vendu.
                                     </p>
                                     <p className="mb-4">
                                         La vente en nom présente moins de risques pour l’investisseur, car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.
                                     </p>
                                     <p>
-                                        Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l’acheteur, conformément à l’usage.
+                                        Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l&apos;acheteur, conformément à l&apos;usage.
                                     </p>
                                 </>
                             }
                         />
+                        </RevealOnScroll>
 
+                        <RevealOnScroll variant="up" delay={250}>
                         <FormeDeVenteItem 
                             id="item-share-deal"
                             title="Share Deal"
@@ -756,8 +790,10 @@ export default function ProcessusPage() {
                                 </>
                             }
                         />
+                        </RevealOnScroll>
 
-                        <FormeDeVenteItem 
+                        <RevealOnScroll variant="up" delay={400}>
+                        <FormeDeVenteItem
                             id="item-sale-leaseback"
                             title="Sale & Leaseback"
                             subtitle="Cession-bail"
@@ -767,14 +803,15 @@ export default function ProcessusPage() {
                             description={
                                 <>
                                     <p className="mb-4">
-                                        Le sale and leaseback peut prendre la forme soit d’un Asset Deal soit d’un Share Deal.
+                                        Le sale and leaseback peut prendre la forme soit d'un Asset Deal soit d'un Share Deal.
                                     </p>
                                     <p className="mb-4">
-                                        Dans ce cas particulier, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : maximiser le prix de vente ou, à l’inverse, d’optimiser les conditions de location.
+                                        Dans ce cas particulier, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : maximiser le prix de vente ou, à l'inverse, d'optimiser les conditions de location.
                                     </p>
                                 </>
                             }
                         />
+                        </RevealOnScroll>
                     </div>
                 </div>
             </div>

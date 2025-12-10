@@ -46,17 +46,21 @@ export default function HeroSlider() {
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-all duration-[3000ms] ease-in-out ${
-            index === currentIndex ? "opacity-100 scale-105" : "opacity-0 scale-100"
+          className={`absolute inset-0 will-change-[opacity,transform] transition-opacity duration-1000 ease-in-out ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
+          style={{
+            transform: index === currentIndex ? 'scale(1.05)' : 'scale(1)',
+            transition: 'opacity 1000ms ease-in-out, transform 6000ms ease-out'
+          }}
         >
           <Image
             src={image.src}
             alt={image.alt}
             fill
             className={`object-cover ${image.position || "object-center"}`}
-            priority
-            quality={100}
+            priority={index === 0}
+            quality={85}
             sizes="100vw"
           />
         </div>

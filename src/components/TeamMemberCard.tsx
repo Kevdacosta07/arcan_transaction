@@ -25,12 +25,12 @@ export default function TeamMemberCard({ name, role, email, linkedin }: TeamMemb
                 </svg>
             </div>
         </div>
-        <div className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="pb-4 flex flex-col gap-3 pt-2">
                  {/* Email */}
                  <a 
                     href={`mailto:${email}`} 
-                    className={`flex items-center gap-3 text-gray-600 hover:text-[#0077b5] transition-all duration-500 delay-100 hover:delay-0 ease-out group/item ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+                    className={`flex items-center gap-3 text-gray-600 hover:text-[#0077b5] transition-colors duration-200 group/item ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
                  >
                     <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover/item:bg-[#0077b5]/10 transition-colors duration-300 ease-out">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>

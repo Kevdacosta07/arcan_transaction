@@ -57,7 +57,7 @@ export default function FadeIn({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out ${className} ${
+      className={`will-change-[opacity,transform] transition-[opacity,transform] duration-700 ease-out ${className} ${
         isVisible 
           ? "opacity-100 translate-y-0 translate-x-0" 
           : `opacity-0 ${getDirectionClass()}`

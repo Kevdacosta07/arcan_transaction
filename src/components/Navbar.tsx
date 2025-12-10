@@ -31,7 +31,7 @@ export default function Navbar() {
                 </a>
 
                 <div className="relative group h-full flex items-center">
-                    <a href="/processus" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
+                    <a href="/procedure-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
                         Procédure de vente
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
@@ -47,13 +47,13 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Type de Mandat</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/processus?mandat=simple#type-mandat" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente?mandat=simple#type-mandat" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Simple</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/processus?mandat=exclusif#type-mandat" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente?mandat=exclusif#type-mandat" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Exclusif</span>
                                         </a>
@@ -66,13 +66,13 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Processus de Vente</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/processus#vente-directe" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente#vente-directe" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Vente Directe</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/processus#appel-d-offres" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente#appel-d-offres" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Appel d'Offres</span>
                                         </a>
@@ -85,19 +85,19 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Formes de Vente</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/processus#asset-deal" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente#asset-deal" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Asset Deal</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/processus#share-deal" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente#share-deal" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Share Deal</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/processus#sale-leaseback" className="group/link flex items-center gap-2">
+                                        <a href="/procedure-de-vente#sale-leaseback" className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Sale & Leaseback</span>
                                         </a>
@@ -130,31 +130,33 @@ export default function Navbar() {
             className="lg:hidden z-[60] relative w-12 h-12 flex flex-col justify-center items-end gap-1.5 group"
             onClick={() => setIsOpen(!isOpen)}
         >
-            <span className={`h-[2px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'w-6 rotate-45 translate-y-2 bg-white' : 'w-8 bg-[#021024]'}`}></span>
-            <span className={`h-[2px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'w-0 opacity-0' : 'w-6 bg-[#021024] group-hover:w-8'}`}></span>
-            <span className={`h-[2px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'w-6 -rotate-45 -translate-y-2 bg-white' : 'w-4 bg-[#021024] group-hover:w-8'}`}></span>
+            <span className={`h-[2px] transition-transform duration-300 ease-out ${isOpen ? 'w-6 rotate-45 translate-y-2 bg-white' : 'w-8 bg-[#021024]'}`}></span>
+            <span className={`h-[2px] transition-all duration-200 ease-out ${isOpen ? 'w-0 opacity-0' : 'w-6 bg-[#021024] group-hover:w-8'}`}></span>
+            <span className={`h-[2px] transition-transform duration-300 ease-out ${isOpen ? 'w-6 -rotate-45 -translate-y-2 bg-white' : 'w-4 bg-[#021024] group-hover:w-8'}`}></span>
         </button>
 
-        {/* Mobile Menu Overlay - Portfolio Style */}
+        {/* Mobile Menu Overlay - Optimized for Performance */}
         <div 
-            className="fixed inset-0 z-50 bg-[#021024] transition-all duration-1000 ease-[cubic-bezier(0.86,0,0.07,1)] lg:hidden"
-            style={{ 
-                clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)',
-                WebkitClipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)'
-            }}
+            className={`fixed inset-0 z-50 bg-[#021024] lg:hidden transition-transform duration-500 ease-out will-change-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
-            {/* Abstract Background Shapes */}
-            <div className={`absolute top-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-white/5 rounded-full blur-3xl pointer-events-none transition-transform duration-1000 ${isOpen ? 'translate-x-0 translate-y-0' : 'translate-x-1/2 -translate-y-1/2'}`}></div>
-            <div className={`absolute bottom-[20%] left-[-20%] w-[80vw] h-[80vw] bg-[#5483B3]/10 rounded-full blur-3xl pointer-events-none transition-transform duration-1000 delay-100 ${isOpen ? 'translate-x-0 translate-y-0' : '-translate-x-1/2 translate-y-1/2'}`}></div>
+            {/* Background decorations - GPU optimized with no blur */}
+            <div 
+                className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}
+            />
+            <div 
+                className="absolute bottom-[20%] left-[-20%] w-[60vw] h-[60vw] rounded-full pointer-events-none"
+                style={{ background: 'radial-gradient(circle, rgba(84,131,179,0.08) 0%, transparent 70%)' }}
+            />
 
             <div className="flex flex-col h-full relative z-10">
                 {/* Scrollable Menu Area */}
                 <div className="flex-1 overflow-y-auto px-6 pt-24 pb-6 scrollbar-hide">
                     <div className="flex flex-col gap-6">
-                        <h4 className={`text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1 transition-all duration-700 delay-100 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>Navigation</h4>
+                        <h4 className={`text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>Navigation</h4>
                         
                         {/* 01. Accueil */}
-                        <div className={`group transition-all duration-700 delay-100 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className={`group transition-all duration-300 delay-75 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">01</span>
                             <a 
                                 href="/" 
@@ -166,35 +168,40 @@ export default function Navbar() {
                         </div>
 
                         {/* 02. Processus */}
-                        <div className={`group transition-all duration-700 delay-150 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className={`group transition-all duration-300 delay-100 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">02</span>
                             <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsProcessusOpen(!isProcessusOpen)}>
-                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Type de vente</span>
+                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Procédure de vente</span>
                                 <div className={`w-6 h-6 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 ${isProcessusOpen ? 'bg-[#5483B3] border-[#5483B3] rotate-180' : 'group-hover:border-[#5483B3]'}`}>
                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>
                             </div>
                             
                             {/* Dropdown */}
-                            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isProcessusOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+                            <div className={`overflow-hidden transition-all duration-300 ease-out ${isProcessusOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                                 <div className="pl-4 border-l border-white/10 space-y-3">
                                     <div className="space-y-2">
-                                        <a href="/processus" className="text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors block" onClick={() => setIsOpen(false)}>Type de Vente</a>
-                                        <a href="/processus#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Vente Directe</a>
-                                        <a href="/processus#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Appel d&apos;Offres</a>
+                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Type de Mandat</h4>
+                                        <a href="/procedure-de-vente?mandat=simple#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Mandat Simple</a>
+                                        <a href="/procedure-de-vente?mandat=exclusif#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Mandat Exclusif</a>
+                                    </div>
+                                    <div className="space-y-2 pt-2">
+                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Processus de Vente</h4>
+                                        <a href="/procedure-de-vente#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Vente Directe</a>
+                                        <a href="/procedure-de-vente#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Appel d&apos;Offres</a>
                                     </div>
                                     <div className="space-y-2 pt-2">
                                         <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Formes de Vente</h4>
-                                        <a href="/processus#asset-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Asset Deal</a>
-                                        <a href="/processus#share-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Share Deal</a>
-                                        <a href="/processus#sale-leaseback" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Sale & Leaseback</a>
+                                        <a href="/procedure-de-vente#asset-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Asset Deal</a>
+                                        <a href="/procedure-de-vente#share-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Share Deal</a>
+                                        <a href="/procedure-de-vente#sale-leaseback" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Sale & Leaseback</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* 03. Critères */}
-                        <div className={`group transition-all duration-700 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className={`group transition-all duration-300 delay-150 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">03</span>
                             <a 
                                 href="/criteres" 
@@ -206,7 +213,7 @@ export default function Navbar() {
                         </div>
 
                         {/* 04. Réalisations */}
-                        <div className={`group transition-all duration-700 delay-250 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className={`group transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">04</span>
                             <a 
                                 href="/realisations" 
@@ -220,7 +227,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Bottom White Panel - Contact */}
-                <div className={`bg-white p-6 rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] transform transition-all duration-700 delay-500 ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+                <div className={`bg-white p-6 rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] transition-transform duration-300 delay-250 will-change-transform ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                     <div className="flex flex-col gap-3">
                         <div className="flex justify-between items-end">
                             <p className="text-[#021024] font-serif italic text-lg">Un projet ?</p>

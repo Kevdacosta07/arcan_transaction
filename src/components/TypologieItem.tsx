@@ -21,7 +21,7 @@ export default function TypologieItem({ num, name, items }: TypologieItemProps) 
           <span className={`text-xs font-mono transition-colors duration-300 ${isOpen ? 'text-[#021024]' : 'text-gray-300 group-hover:text-[#021024]'}`}>
               {num}
           </span>
-          <h3 className={`text-3xl font-serif transition-all duration-500 ${isOpen ? 'text-[#021024] translate-x-2' : 'text-[#021024] group-hover:translate-x-2'}`}>
+          <h3 className={`text-3xl font-serif transition-transform duration-300 ${isOpen ? 'text-[#021024] translate-x-2' : 'text-[#021024] group-hover:translate-x-2'}`}>
               {name}
           </h3>
         </div>

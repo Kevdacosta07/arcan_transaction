@@ -32,7 +32,7 @@ export default function AnalysisAccordion({ advantages, disadvantages }: Analysi
           </span>
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
             openSection === "advantages" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
@@ -64,7 +64,7 @@ export default function AnalysisAccordion({ advantages, disadvantages }: Analysi
           </span>
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
             openSection === "disadvantages" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
