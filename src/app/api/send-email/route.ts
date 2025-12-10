@@ -24,8 +24,8 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: '"Arcan Transactions" <contact@helveit.ch>',
-      to: "kevin.mntrc@gmail.com",
-      subject: "Nouveau dossier Critères d'investissement",
+      to: "contact@arcan-transactions.ch",
+      subject: "Nouveau dossier - Critères d'investissement",
       text: "Veuillez trouver ci-joint le dossier généré depuis le formulaire de critères d'investissement.",
       attachments: [
         {
