@@ -317,9 +317,14 @@ export default function CriteresPage() {
                     router.push('/');
                 }, 3000);
             } else {
-                const errorData = await response.json();
                 setIsSubmitting(false);
-                alert(`Dossier téléchargé, mais erreur lors de l'envoi par email: ${errorData.error || 'Erreur inconnue'}`);
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const errorData = await response.json();
+                    alert(`Erreur email: ${errorData.error || 'Erreur inconnue'}`);
+                } else {
+                    alert(`Erreur serveur (${response.status}): L'API send-email n'est pas accessible.`);
+                }
             }
           } catch (error: unknown) {
             const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
