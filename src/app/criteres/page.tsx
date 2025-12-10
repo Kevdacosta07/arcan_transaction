@@ -124,7 +124,7 @@ export default function CriteresPage() {
 
   const generatePDF = (): Promise<Blob> => {
     return new Promise((resolve, reject) => {
-    const doc = new jsPDF();
+    const doc = new jsPDF({ compress: true });
     const pageWidth = doc.internal.pageSize.getWidth();
     
     // Load Logo - use absolute URL for production
@@ -302,6 +302,8 @@ export default function CriteresPage() {
           setIsSubmitting(true);
           try {
             const pdfBlob = await generatePDF();
+            console.log(`PDF Size: ${(pdfBlob.size / 1024 / 1024).toFixed(2)} MB`);
+            
             const formDataToSend = new FormData();
             formDataToSend.append('file', pdfBlob, 'arcan_criteres_investissement.pdf');
 
