@@ -231,7 +231,7 @@ export default function CriteresPage() {
 
         // Row 1: Volume & Localisation
         const volItems = ["< CHF 5 millions", "Entre CHF 5 et CHF 10 millions", "Entre CHF 10 et CHF 25 millions", "Entre CHF 25 et CHF 50 millions", "Entre CHF 50 et CHF 100 millions", "> CHF 100 millions"];
-        const locItems = ["Genève", "Lausanne", "Canton de Vaud", "Canton de Fribourg", "Canton de Neuchâtel", "Canton du Valais", "Suisse Alémanique", "Partout en Suisse", "France"];
+        const locItems = ["Genève", "Lausanne", "Canton de Vaud", "Canton de Fribourg", "Canton de Neuchâtel", "Canton du Valais", "Suisse Alémanique", "Partout en Suisse"];
         
         const yVol = drawCheckboxGroup("Volume d'investissement :", volItems, formData.investmentVolume, leftMargin, y);
         const yLoc = drawCheckboxGroup("Localisation des objets :", locItems, formData.location, rightColX, y);
