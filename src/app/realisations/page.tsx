@@ -236,13 +236,13 @@ export default function RealisationsPage() {
                             </div>
                         </RevealOnScroll>
                         
-                        <RevealOnScroll delay={200} variant="blur">
+                        <RevealOnScroll delay={200} variant="fade">
                             <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight">
                                 {project.title}
                             </h2>
                         </RevealOnScroll>
                         
-                        <RevealOnScroll delay={400} variant="blur">
+                        <RevealOnScroll delay={400} variant="fade">
                             <div className="inline-block border-b border-current pb-2">
                                 <span className="text-3xl md:text-4xl font-light">{project.amount}</span>
                             </div>
