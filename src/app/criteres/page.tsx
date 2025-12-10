@@ -127,12 +127,19 @@ export default function CriteresPage() {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     
-    // Load Logo
-    const logoUrl = "/assets/logo/Arcan_Logo_Bleu.png";
+    // Load Logo - use absolute URL for production
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+    const logoUrl = `${baseUrl}/assets/logo/Arcan_Logo_Bleu.png`;
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.src = logoUrl;
     
+    img.onerror = () => {
+        reject(new Error(`Impossible de charger le logo: ${logoUrl}`));
+    };
+    
     img.onload = () => {
+        try {
         // Header
         // Logo centered
         doc.addImage(img, "PNG", pageWidth / 2 - 30, 10, 60, 18); 
@@ -283,12 +290,9 @@ export default function CriteresPage() {
         doc.text("Arcan Transactions SA – Route de Florissant 81, 1206 Genève – Phone +41 22 346 37 88", pageWidth / 2, footerY, { align: "center" });
 
         resolve(doc.output('blob'));
-    };
-    
-    // Fallback if image fails to load (e.g. in some environments)
-    img.onerror = (err) => {
-        alert("Erreur lors du chargement du logo pour le PDF.");
-        reject(err);
+        } catch (err) {
+            reject(err);
+        }
     };
     });
   };
@@ -317,10 +321,11 @@ export default function CriteresPage() {
                 setIsSubmitting(false);
                 alert(`Dossier téléchargé, mais erreur lors de l'envoi par email: ${errorData.error || 'Erreur inconnue'}`);
             }
-          } catch (error) {
-            console.error(error);
+          } catch (error: unknown) {
+            const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+            console.error('PDF/Email error:', error);
             setIsSubmitting(false);
-            alert("Erreur lors de la génération du PDF.");
+            alert(`Erreur: ${errorMessage}`);
           }
       }
   };
