@@ -313,8 +313,9 @@ export default function CriteresPage() {
                     router.push('/');
                 }, 3000);
             } else {
+                const errorData = await response.json();
                 setIsSubmitting(false);
-                alert("Dossier téléchargé, mais erreur lors de l'envoi par email.");
+                alert(`Dossier téléchargé, mais erreur lors de l'envoi par email: ${errorData.error || 'Erreur inconnue'}`);
             }
           } catch (error) {
             console.error(error);

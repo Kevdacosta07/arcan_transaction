@@ -10,12 +10,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No file received." }, { status: 400 });
     }
 
+    // Check if SMTP_PASSWORD is set
+    if (!process.env.SMTP_PASSWORD) {
+      console.error('SMTP_PASSWORD is not set');
+      return NextResponse.json({ error: "SMTP configuration missing" }, { status: 500 });
+    }
+
     const buffer = Buffer.from(await file.arrayBuffer());
 
     const transporter = nodemailer.createTransport({
       host: "mail.helveit.ch",
       port: 465,
-      secure: true, // true for 465, false for other ports
+      secure: true,
       auth: {
         user: "contact@helveit.ch",
         pass: process.env.SMTP_PASSWORD,
@@ -38,8 +44,9 @@ export async function POST(request: Request) {
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ message: "Email sent successfully" }, { status: 200 });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return NextResponse.json({ error: "Error sending email" }, { status: 500 });
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error sending email:', errorMessage);
+    return NextResponse.json({ error: `Email error: ${errorMessage}` }, { status: 500 });
   }
 }
