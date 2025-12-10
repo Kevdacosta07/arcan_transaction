@@ -139,10 +139,17 @@ function AccordionItem({ title, children, isOpen, onClick }: { title: string, ch
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[800px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className="grid transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    opacity: isOpen ? 1 : 0,
+                    marginBottom: isOpen ? '2rem' : '0'
+                }}
             >
-                <div className="text-gray-600 font-light leading-relaxed text-base md:text-lg pt-2">
-                    {children}
+                <div className="overflow-hidden">
+                    <div className="text-gray-600 font-light leading-relaxed text-base md:text-lg pt-2 pb-2">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
@@ -184,10 +191,17 @@ function MandatAccordionItem({
                 </div>
             </button>
             <div 
-                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${isOpen ? 'max-h-[1000px] opacity-100 mb-8' : 'max-h-0 opacity-0'}`}
+                className="grid transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                style={{
+                    gridTemplateRows: isOpen ? '1fr' : '0fr',
+                    opacity: isOpen ? 1 : 0,
+                    marginBottom: isOpen ? '2rem' : '0'
+                }}
             >
-                <div className="text-gray-400 font-light leading-relaxed pl-[4.5rem]">
-                    {children}
+                <div className="overflow-hidden">
+                    <div className="text-gray-400 font-light leading-relaxed pl-[4.5rem] pb-2">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
