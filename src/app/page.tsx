@@ -86,7 +86,34 @@ export default function Home() {
                                 Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l&apos;acquisition et dans la structuration de transactions immobilières.
                             </p>
 
-                            <div className="pt-4">
+                            <div className="w-full h-[0.5px] relative overflow-hidden my-8">
+                                <div className="absolute top-0 left-0 h-full w-full bg-secondary animate-draw-line"></div>
+                            </div>
+
+                            <ul className="mt-8 space-y-3 text-base text-gray-500 font-light">
+                                <li className="flex items-start gap-3">
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
+                                    <span>La gestion complète du processus de vente et accompagnement du mandant</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
+                                    <span>La préparation de l’ensemble des documents de transaction</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
+                                    <span>Due Diligence dans le cadre de mandats buy side</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
+                                    <span>L’évaluation des actifs et les études de mise aux normes énergétiques</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
+                                    <span>Un service de Capital Advisory et de recherche de financement</span>
+                                </li>
+                            </ul>
+
+                            <div className="pt-2">
                                 <a href="#realisations" className="inline-block px-8 py-3 bg-[#03081f] text-white text-base font-medium hover:bg-[#5483B3] transition-colors duration-300">
                                     Consulter nos réalisations
                                 </a>

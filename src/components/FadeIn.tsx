@@ -13,7 +13,7 @@ export default function FadeIn({
   children, 
   className = "", 
   delay = 0,
-  direction = "up" 
+  direction = "up"
 }: FadeInProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -29,7 +29,7 @@ export default function FadeIn({
       {
         root: null,
         rootMargin: "0px",
-        threshold: 0.1,
+        threshold: 0.15,
       }
     );
 
@@ -44,25 +44,27 @@ export default function FadeIn({
     };
   }, []);
 
-  const getDirectionClass = () => {
+  const getInitialTransform = () => {
     switch (direction) {
-      case "up": return "translate-y-8";
-      case "down": return "-translate-y-8";
-      case "left": return "translate-x-8";
-      case "right": return "-translate-x-8";
-      default: return "";
+      case "up": return "translateY(30px)";
+      case "down": return "translateY(-30px)";
+      case "left": return "translateX(30px)";
+      case "right": return "translateX(-30px)";
+      default: return "translateY(0)";
     }
   };
 
   return (
     <div
       ref={ref}
-      className={`will-change-[opacity,transform] transition-[opacity,transform] duration-700 ease-out ${className} ${
-        isVisible 
-          ? "opacity-100 translate-y-0 translate-x-0" 
-          : `opacity-0 ${getDirectionClass()}`
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0) translateX(0)" : getInitialTransform(),
+        transition: `opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
+        transitionDelay: `${delay}ms`,
+        willChange: "opacity, transform"
+      }}
     >
       {children}
     </div>
