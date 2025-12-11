@@ -32,7 +32,7 @@ export default function Navbar() {
 
                 <div className="relative group h-full flex items-center">
                     <a href="/procedure-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
-                        Procédure de vente
+                        Procédures de vente
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
                     
@@ -171,7 +171,7 @@ export default function Navbar() {
                         <div className={`group transition-all duration-300 delay-100 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">02</span>
                             <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsProcessusOpen(!isProcessusOpen)}>
-                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Procédure de vente</span>
+                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Procédures de vente</span>
                                 <div className={`w-6 h-6 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 ${isProcessusOpen ? 'bg-[#5483B3] border-[#5483B3] rotate-180' : 'group-hover:border-[#5483B3]'}`}>
                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 </div>

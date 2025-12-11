@@ -81,7 +81,7 @@ export default function TypologieSection() {
                   Typologie <br/> d&apos;actifs
                 </h2>
                 <p className="text-lg text-gray-500 font-light mb-12 max-w-md leading-relaxed">
-                  Arcan Transactions SA est spécialisée dans la transaction d&apos;immeubles de rendement, de tous types affectation.
+                  Arcan Transactions SA est spécialisée dans la transaction d&apos;immeubles, de tous types d&apos;affectations.
                 </p>
               </FadeIn>
 

@@ -349,7 +349,7 @@ export default function ProcessusPage() {
                     </RevealOnScroll>
                     <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9]">
                         <RevealOnScroll variant="left" delay={200} triggerOnMount>
-                            <span className="block">Procédure</span>
+                            <span className="block">Procédures</span>
                         </RevealOnScroll>
                         <RevealOnScroll variant="left" delay={350} triggerOnMount>
                             <span className="block text-white/80 italic font-light">de vente</span>
@@ -545,7 +545,6 @@ export default function ProcessusPage() {
                             >
                                 <div className="pb-4">
                                     <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Avantages</h4>
                                         <ul className="space-y-2">
                                             {["Prix de vente fixé à l’avance", "Approche ciblée", "Souplesse de négociation", "Rapidité de la procédure", "Procédure d’attribution de gré à gré"].map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">
@@ -687,7 +686,6 @@ export default function ProcessusPage() {
                             >
                                 <div className="pb-4">
                                     <div>
-                                        <h4 className="text-xs uppercase tracking-widest text-gray-400 mb-4">Avantages</h4>
                                         <ul className="space-y-2">
                                             {["Prix de vente « plancher »", "Processus structuré et contrôlé", "Délais fixés impératifs", "Concurrence & Surenchère", "Adapté aux institutionnels"].map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">

@@ -25,7 +25,7 @@ export default function Home() {
                 <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-[family-name:var(--font-cormorant-garamond)] font-light text-white uppercase leading-none tracking-widest pl-[0.1em]">
                     ARCAN
                 </h1>
-                <span className="text-xl md:text-4xl lg:text-5xl font-[family-name:var(--font-cormorant-garamond)] font-light text-white uppercase tracking-[0.8em] pl-[0.8em] leading-none mt-1 md:mt-2 block w-full text-center">
+                <span className="text-xl md:text-4xl lg:text-5xl font-[family-name:var(--font-cormorant-garamond)] font-light text-white uppercase tracking-[0.75em] pl-[0.4em] leading-none mt-1 md:mt-2 block w-full text-center">
                     Transactions
                 </span>
             </div>
@@ -227,7 +227,7 @@ export default function Home() {
             <div className="max-w-[1400px] mx-auto px-6">
                   <div className="flex justify-between items-end mb-16 border-b border-gray-100 pb-8">
                       <FadeIn>
-                        <h3 className="text-4xl font-serif text-primary">L&apos;Équipe</h3>
+                        <h3 className="text-4xl font-serif text-primary">L&apos;équipe</h3>
                       </FadeIn>
                       <FadeIn delay={200}>
                         <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">

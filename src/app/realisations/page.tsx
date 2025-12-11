@@ -91,7 +91,7 @@ function RevealOnScroll({
 
 const projects = [
   {
-    title: "Immeubles Mixte",
+    title: "Immeuble Mixte",
     amount: "CHF 14 mios",
     seller: "Privé",
     buyer: "Institutionnel",
@@ -102,7 +102,7 @@ const projects = [
     borderColor: "border-[#021024]/10"
   },
   {
-    title: "Hotel proche de la gare",
+    title: "Hôtel proche de la gare",
     amount: "CHF 26 mios",
     seller: "Privé",
     buyer: "Fondation",

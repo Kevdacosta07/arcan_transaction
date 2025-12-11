@@ -25,7 +25,7 @@ export default function TypologieItem({ num, name, items }: TypologieItemProps) 
               {name}
           </h3>
         </div>
-        <div className={`transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+        <div className={`transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-40 group-hover:opacity-100'}`}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-[#021024]">
             <line x1="5" y1="12" x2="19" y2="12" />
             <line x1="12" y1="5" x2="12" y2="19" className={`transition-transform duration-300 origin-center ${isOpen ? 'scale-y-0' : 'scale-y-100'}`} />
