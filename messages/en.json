@@ -4,6 +4,7 @@
     "description": "Investment property transactions in Switzerland - Institutional and professional segment"
   },
   "nav": {
+    "language": "Language",
     "home": "Home",
     "salesProcedures": "Sales Procedures",
     "realisations": "Achievements",

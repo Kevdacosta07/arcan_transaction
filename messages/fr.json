@@ -4,6 +4,7 @@
     "description": "Transactions d'immeubles de rendement en Suisse - Segment institutionnel et professionnel"
   },
   "nav": {
+    "language": "Langue",
     "home": "Accueil",
     "salesProcedures": "Procédures de vente",
     "realisations": "Réalisations",

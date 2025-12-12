@@ -1,10 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link, useRouter, usePathname } from '@/i18n/navigation';
+import { type Locale } from '@/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
+
+function MobileLanguageButton({ code, label }: { code: Locale; label: string }) {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const isActive = locale === code;
+
+  const handleClick = () => {
+    if (code === locale) return;
+    startTransition(() => {
+      router.replace(pathname, { locale: code });
+    });
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      disabled={isPending}
+      className={`flex-1 py-3 text-sm font-medium uppercase tracking-wider rounded-lg transition-all ${
+        isActive 
+          ? 'bg-[#5483B3] text-white' 
+          : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+      } ${isPending ? 'opacity-50 cursor-wait' : ''}`}
+    >
+      {label}
+    </button>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -314,6 +344,15 @@ export default function Navbar() {
                             >
                                 Réalisations
                             </Link>
+                        </div>
+
+                        {/* Language Switcher - Mobile */}
+                        <div className={`pt-6 border-t border-white/10 transition-all duration-300 delay-250 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-4">{t('language') || 'Langue'}</h4>
+                            <div className="flex gap-3">
+                                <MobileLanguageButton code="fr" label="Français" />
+                                <MobileLanguageButton code="en" label="English" />
+                            </div>
                         </div>
                     </div>
                 </div>
