@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import HeroSlider from "@/components/HeroSlider";
 import FadeIn from "@/components/FadeIn";
@@ -6,8 +8,11 @@ import TypologieSection from "@/components/TypologieSection";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TeamMemberCard from "@/components/TeamMemberCard";
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+  const t = useTranslations();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -33,7 +38,7 @@ export default function Home() {
             <div className="w-16 h-[1px] bg-white/60 mb-8 animate-fade-in-up delay-100"></div>
 
             <p className="text-lg md:text-xl text-white font-light tracking-[0.3em] uppercase animate-fade-in-up delay-200 drop-shadow-md">
-              real estate capital market
+              {t('hero.tagline')}
             </p>
           </div>
 
@@ -59,64 +64,52 @@ export default function Home() {
                 <div className="lg:w-5/12 pt-12 z-10">
                     <FadeIn>
                         <div className="flex flex-col gap-4 mb-8">
-                            <span className="text-xs font-bold tracking-[0.2em] text-secondary uppercase block">À Propos</span>
+                            <span className="text-xs font-bold tracking-[0.2em] text-secondary uppercase block">{t('about.label')}</span>
                             <div className="w-12 h-px relative">
                                 <ScrollLine color="bg-secondary" />
                             </div>
                         </div>
                         <h2 className="text-6xl md:text-8xl font-serif text-primary leading-[0.9] mb-12">
-                            Qui <br/> Sommes <br/> <span className="italic text-gray-300">Nous ?</span>
+                            {t('about.title1')} <br/> {t('about.title2')} <br/> <span className="italic text-gray-300">{t('about.title3')}</span>
                         </h2>
                     </FadeIn>
                     
                     <FadeIn delay={200}>
-                        <div className="space-y-8 text-lg text-gray-600 font-light leading-relaxed max-w-xl relative pl-8">
+                      <div className="space-y-6 md:space-y-8 text-base md:text-lg text-gray-600 font-light leading-relaxed max-w-xl relative pl-8">
                             {/* Vertical Line Decoration */}
                             <div className="absolute left-0 top-2 bottom-2 w-px">
                                 <ScrollLine direction="vertical" color="bg-secondary/30" />
                             </div>
                             
-                            <p className="text-2xl text-primary font-normal leading-tight">
-                                ARCAN Transactions SA est une société spécialisée dans les transactions d&apos;immeubles de rendement en Suisse.
+                        <p className="text-xl md:text-2xl text-primary font-normal leading-tight">
+                                {t('about.intro')}
                             </p>
                             <p>
-                                Nous intervenons exclusivement sur le segment institutionnel et professionnel, en lien direct avec les acteurs du marché immobilier.
+                                {t('about.text1')}
                             </p>
                             <p>
-                                Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l&apos;acquisition et dans la structuration de transactions immobilières.
+                                {t('about.text2')}
                             </p>
 
-                            <div className="w-full h-[0.5px] relative overflow-hidden my-8">
-                                <div className="absolute top-0 left-0 h-full w-full bg-secondary animate-draw-line"></div>
+                        <div className="w-full h-[0.5px] relative overflow-hidden my-6 md:my-8">
+                          <div className="absolute top-0 left-0 h-full w-full bg-secondary/80 animate-draw-line"></div>
                             </div>
 
-                            <ul className="mt-8 space-y-3 text-base text-gray-500 font-light">
-                                <li className="flex items-start gap-3">
-                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
-                                    <span>La gestion complète du processus de vente et accompagnement du mandant</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
-                                    <span>La préparation de l’ensemble des documents de transaction</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
-                                    <span>Due Diligence dans le cadre de mandats buy side</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
-                                    <span>L’évaluation des actifs et les études de mise aux normes énergétiques</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="mt-2 w-1 h-1 rounded-full bg-secondary flex-shrink-0"></span>
-                                    <span>Un service de Capital Advisory et de recherche de financement</span>
-                                </li>
-                            </ul>
+                        <ul className="mt-6 list-disc pl-5 space-y-2 text-[15px] md:text-base text-gray-600 font-light">
+                          <li>{t('about.services.1')}</li>
+                          <li>{t('about.services.2')}</li>
+                          <li>{t('about.services.3')}</li>
+                          <li>{t('about.services.4')}</li>
+                          <li>{t('about.services.5')}</li>
+                        </ul>
 
-                            <div className="pt-2">
-                                <a href="#realisations" className="inline-block px-8 py-3 bg-[#03081f] text-white text-base font-medium hover:bg-[#5483B3] transition-colors duration-300">
-                                    Consulter nos réalisations
-                                </a>
+                        <div className="pt-6">
+                          <a href="#realisations" className="inline-flex items-center gap-3 px-8 py-3.5 bg-primary text-white text-sm font-medium tracking-wide hover:bg-accent transition-colors duration-300">
+                            <span>{t('about.cta')}</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </a>
                             </div>
                         </div>
                     </FadeIn>
@@ -138,25 +131,25 @@ export default function Home() {
                             </div>
 
                             {/* Stats Box - Horizontal & Overlapping */}
-                            <div className="absolute -bottom-12 -left-4 lg:-bottom-16 lg:-left-24 bg-[#03081f] p-8 lg:p-10 shadow-2xl z-20 max-w-[90vw] lg:max-w-none">
+                            <div className="absolute -bottom-12 -left-4 lg:-bottom-16 lg:-left-24 bg-primary p-8 lg:p-10 shadow-2xl z-20 max-w-[90vw] lg:max-w-none">
                                 <div className="flex flex-col md:flex-row gap-8 md:gap-12">
                                     <div className="group">
                                         <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">30+</span>
-                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Plus de 30 ans d’expériences cumulées</p>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">{t('about.stats.experience')}</p>
                                     </div>
                                     
                                     <div className="hidden md:block w-px bg-white/10"></div>
                                     
                                     <div className="group">
                                         <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">100+</span>
-                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Plus de 100 immeubles vendus</p>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">{t('about.stats.buildings')}</p>
                                     </div>
 
                                     <div className="hidden md:block w-px bg-white/10"></div>
 
                                     <div className="group">
-                                        <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">2 Mrd+</span>
-                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">Volume de transaction cumulé</p>
+                                      <span className="text-4xl lg:text-5xl font-serif text-white block mb-2">{t('about.stats.volumeValue')}</span>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold leading-relaxed max-w-[140px]">{t('about.stats.volume')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -187,12 +180,12 @@ export default function Home() {
               {/* Header */}
               <div className="max-w-[1400px] mx-auto px-6 mb-20">
                 <FadeIn>
-                  <span className="inline-block text-accent text-xs font-bold tracking-[0.3em] uppercase mb-6">Nos processus de vente</span>
+                  <span className="inline-block text-accent text-xs font-bold tracking-[0.3em] uppercase mb-6">{t('process.label')}</span>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.15] mb-8 max-w-4xl">
-                    Une maîtrise rigoureuse des processus de vente pour <span className="text-accent">sécuriser</span> et <span className="text-accent">optimiser</span> vos transactions.
+                    {t('process.title')} <span className="text-accent">{t('process.secure')}</span> {t('process.and')} <span className="text-accent">{t('process.optimize')}</span> {t('process.titleEnd')}
                   </h2>
                   <a href="/procedure-de-vente" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
-                    <span>Découvrez nos processus de vente</span>
+                    <span>{t('process.cta')}</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -207,12 +200,12 @@ export default function Home() {
                 <div className="flex w-max animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
                   {/* First Set */}
                   {[
-                    { title: "Professionnalisme", desc: "Excellence & rigueur" },
-                    { title: "Efficacité", desc: "Résultats rapides" },
-                    { title: "Réseau", desc: "Relations clés" },
-                    { title: "Confiance", desc: "Partenariat durable" },
-                    { title: "Transparence", desc: "Communication claire" },
-                    { title: "Flexibilité", desc: "Solutions sur mesure" }
+                    { title: t('values.professionalism'), desc: t('values.professionalismDesc') },
+                    { title: t('values.efficiency'), desc: t('values.efficiencyDesc') },
+                    { title: t('values.network'), desc: t('values.networkDesc') },
+                    { title: t('values.trust'), desc: t('values.trustDesc') },
+                    { title: t('values.transparency'), desc: t('values.transparencyDesc') },
+                    { title: t('values.flexibility'), desc: t('values.flexibilityDesc') }
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
                       <div>
@@ -224,12 +217,12 @@ export default function Home() {
                   ))}
                   {/* Duplicate Set for Seamless Loop */}
                   {[
-                    { title: "Professionnalisme", desc: "Excellence & rigueur" },
-                    { title: "Efficacité", desc: "Résultats rapides" },
-                    { title: "Réseau", desc: "Relations clés" },
-                    { title: "Confiance", desc: "Partenariat durable" },
-                    { title: "Transparence", desc: "Communication claire" },
-                    { title: "Flexibilité", desc: "Solutions sur mesure" }
+                    { title: t('values.professionalism'), desc: t('values.professionalismDesc') },
+                    { title: t('values.efficiency'), desc: t('values.efficiencyDesc') },
+                    { title: t('values.network'), desc: t('values.networkDesc') },
+                    { title: t('values.trust'), desc: t('values.trustDesc') },
+                    { title: t('values.transparency'), desc: t('values.transparencyDesc') },
+                    { title: t('values.flexibility'), desc: t('values.flexibilityDesc') }
                   ].map((item, index) => (
                     <div key={`dup-${index}`} className="flex items-center gap-16 md:gap-32 px-8 md:px-16 shrink-0">
                       <div>
@@ -254,11 +247,11 @@ export default function Home() {
             <div className="max-w-[1400px] mx-auto px-6">
                   <div className="flex justify-between items-end mb-16 border-b border-gray-100 pb-8">
                       <FadeIn>
-                        <h3 className="text-4xl font-serif text-primary">L&apos;équipe</h3>
+                        <h3 className="text-4xl font-serif text-primary">{t('team.title')}</h3>
                       </FadeIn>
                       <FadeIn delay={200}>
                         <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
-                            Nos réalisations <span className="text-lg">→</span>
+                            {t('team.realisationsLink')} <span className="text-lg">→</span>
                         </a>
                       </FadeIn>
                   </div>

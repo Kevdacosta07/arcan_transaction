@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
@@ -9,6 +10,7 @@ import jsPDF from "jspdf";
 
 export default function CriteresPage() {
   const router = useRouter();
+    const t = useTranslations("investmentCriteria");
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -76,26 +78,26 @@ export default function CriteresPage() {
     const newErrors: string[] = [];
 
     if (step === 1) {
-      if (!formData.companyName) newErrors.push("Le nom de la société ou personne privée est requis.");
-      if (!formData.address) newErrors.push("L'adresse complète est requise.");
-      if (!formData.contact1Name) newErrors.push("Le nom du contact principal est requis.");
-      if (!formData.contact1Email) newErrors.push("L'email du contact principal est requis.");
-      if (!formData.contact1Mobile) newErrors.push("Le portable du contact principal est requis.");
+            if (!formData.companyName) newErrors.push(t("errors.step1.companyNameRequired"));
+            if (!formData.address) newErrors.push(t("errors.step1.addressRequired"));
+            if (!formData.contact1Name) newErrors.push(t("errors.step1.contact1NameRequired"));
+            if (!formData.contact1Email) newErrors.push(t("errors.step1.contact1EmailRequired"));
+            if (!formData.contact1Mobile) newErrors.push(t("errors.step1.contact1MobileRequired"));
     }
 
     if (step === 2) {
-      if (formData.investmentVolume.length === 0) newErrors.push("Veuillez sélectionner au moins un volume d'investissement.");
-      if (formData.location.length === 0) newErrors.push("Veuillez sélectionner au moins une localisation.");
+            if (formData.investmentVolume.length === 0) newErrors.push(t("errors.step2.investmentVolumeRequired"));
+            if (formData.location.length === 0) newErrors.push(t("errors.step2.locationRequired"));
     }
 
     if (step === 3) {
-      if (formData.objectType.length === 0) newErrors.push("Veuillez sélectionner au moins un type d'objet.");
-      if (formData.assignment.length === 0) newErrors.push("Veuillez sélectionner au moins une affectation.");
+            if (formData.objectType.length === 0) newErrors.push(t("errors.step3.objectTypeRequired"));
+            if (formData.assignment.length === 0) newErrors.push(t("errors.step3.assignmentRequired"));
     }
 
     if (step === 4) {
-      if (formData.propertyForm.length === 0) newErrors.push("Veuillez sélectionner au moins une forme de propriété.");
-      if (formData.transactionNature.length === 0) newErrors.push("Veuillez sélectionner au moins une nature de transaction.");
+            if (formData.propertyForm.length === 0) newErrors.push(t("errors.step4.propertyFormRequired"));
+            if (formData.transactionNature.length === 0) newErrors.push(t("errors.step4.transactionNatureRequired"));
     }
 
     setErrors(newErrors);
@@ -122,7 +124,59 @@ export default function CriteresPage() {
     scrollToForm();
   };
 
-  const generatePDF = (): Promise<Blob> => {
+    type OptionItem = { id: string; label: string };
+
+    const investmentVolumeOptions: OptionItem[] = [
+        { id: "lt_5", label: t("options.investmentVolume.lt_5") },
+        { id: "5_10", label: t("options.investmentVolume.5_10") },
+        { id: "10_25", label: t("options.investmentVolume.10_25") },
+        { id: "25_50", label: t("options.investmentVolume.25_50") },
+        { id: "50_100", label: t("options.investmentVolume.50_100") },
+        { id: "gt_100", label: t("options.investmentVolume.gt_100") }
+    ];
+
+    const locationOptions: OptionItem[] = [
+        { id: "geneva", label: t("options.location.geneva") },
+        { id: "lausanne", label: t("options.location.lausanne") },
+        { id: "vaud", label: t("options.location.vaud") },
+        { id: "fribourg", label: t("options.location.fribourg") },
+        { id: "neuchatel", label: t("options.location.neuchatel") },
+        { id: "valais", label: t("options.location.valais") },
+        { id: "germanSwitzerland", label: t("options.location.germanSwitzerland") },
+        { id: "allSwitzerland", label: t("options.location.allSwitzerland") }
+    ];
+
+    const objectTypeOptions: OptionItem[] = [
+        { id: "plotNoPermit", label: t("options.objectType.plotNoPermit") },
+        { id: "plotWithPermit", label: t("options.objectType.plotWithPermit") },
+        { id: "building", label: t("options.objectType.building") },
+        { id: "buildingLeasehold", label: t("options.objectType.buildingLeasehold") },
+        { id: "portfolio", label: t("options.objectType.portfolio") }
+    ];
+
+    const assignmentOptions: OptionItem[] = [
+        { id: "residential", label: t("options.assignment.residential") },
+        { id: "office", label: t("options.assignment.office") },
+        { id: "mixed", label: t("options.assignment.mixed") },
+        { id: "hotel", label: t("options.assignment.hotel") },
+        { id: "retailSales", label: t("options.assignment.retailSales") },
+        { id: "logisticsIndustrial", label: t("options.assignment.logisticsIndustrial") },
+        { id: "medicoSocial", label: t("options.assignment.medicoSocial") }
+    ];
+
+    const propertyFormOptions: OptionItem[] = [
+        { id: "freehold", label: t("options.propertyForm.freehold") },
+        { id: "coownership", label: t("options.propertyForm.coownership") },
+        { id: "ppe", label: t("options.propertyForm.ppe") }
+    ];
+
+    const transactionNatureOptions: OptionItem[] = [
+        { id: "assetDeal", label: t("options.transactionNature.assetDeal") },
+        { id: "shareDeal", label: t("options.transactionNature.shareDeal") },
+        { id: "saleLeaseback", label: t("options.transactionNature.saleLeaseback") }
+    ];
+
+    const generatePDF = (): Promise<Blob> => {
     return new Promise((resolve, reject) => {
     const doc = new jsPDF({ compress: true });
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -146,7 +200,7 @@ export default function CriteresPage() {
         
         doc.setFontSize(11);
         doc.setFont("times", "bold");
-        doc.text("Critères d'investissement", pageWidth / 2, 35, { align: "center" });
+        doc.text(t("pdf.title"), pageWidth / 2, 35, { align: "center" });
         
         let y = 45;
         const leftMargin = 20;
@@ -156,7 +210,7 @@ export default function CriteresPage() {
         
         // Société
         doc.setFont("times", "bold");
-        doc.text("Société / Personne privée", leftMargin, y);
+        doc.text(t("pdf.sections.company"), leftMargin, y);
         doc.setFont("times", "normal");
         doc.text(formData.companyName || "................................................................................................................................", leftMargin + 45, y);
         
@@ -164,8 +218,8 @@ export default function CriteresPage() {
         
         // Contacts Header
         doc.setFont("times", "bold");
-        doc.text("Contact (1)", leftMargin, y);
-        doc.text("Contact (2)", rightColX, y);
+        doc.text(t("pdf.sections.contact", { index: 1 }), leftMargin, y);
+        doc.text(t("pdf.sections.contact", { index: 2 }), rightColX, y);
         
         y += 5;
         doc.setFont("times", "normal");
@@ -183,11 +237,11 @@ export default function CriteresPage() {
                 currentY += 4;
             };
 
-            drawField("Nom", data[`contact${suffix}Name`]);
-            drawField("Position", data[`contact${suffix}Position`]);
-            drawField("Email", data[`contact${suffix}Email`]);
-            drawField("Portable", data[`contact${suffix}Mobile`]);
-            drawField("Ligne directe", data[`contact${suffix}Direct`]);
+            drawField(t("pdf.fields.name"), data[`contact${suffix}Name`]);
+            drawField(t("pdf.fields.position"), data[`contact${suffix}Position`]);
+            drawField(t("pdf.fields.email"), data[`contact${suffix}Email`]);
+            drawField(t("pdf.fields.mobile"), data[`contact${suffix}Mobile`]);
+            drawField(t("pdf.fields.directLine"), data[`contact${suffix}Direct`]);
             
             return currentY;
         };
@@ -199,7 +253,7 @@ export default function CriteresPage() {
         
         // Contact 3
         doc.setFont("times", "bold");
-        doc.text("Contact (3)", leftMargin, y);
+        doc.text(t("pdf.sections.contact", { index: 3 }), leftMargin, y);
         y += 5;
         doc.setFont("times", "normal");
         drawContact(leftMargin, "3", y);
@@ -209,14 +263,14 @@ export default function CriteresPage() {
         // Adresse
         doc.setFontSize(9);
         doc.setFont("times", "bold");
-        doc.text("Adresse", leftMargin, y);
+        doc.text(t("pdf.sections.address"), leftMargin, y);
         doc.setFont("times", "normal");
         doc.text(formData.address || "................................................................................................................................................................................................", leftMargin + 20, y);
         
         y += 15;
         
         // Checkbox Helper
-        const drawCheckboxGroup = (title: string, items: string[], selectedItems: string[], x: number, startY: number) => {
+        const drawCheckboxGroup = (title: string, items: OptionItem[], selectedItems: string[], x: number, startY: number) => {
             doc.setFont("times", "bold");
             doc.text(title, x, startY);
             let currentY = startY + 5;
@@ -226,46 +280,37 @@ export default function CriteresPage() {
                 // Box
                 doc.rect(x, currentY - 3, 3, 3);
                 // Check
-                if (selectedItems.includes(item)) {
+                if (selectedItems.includes(item.id)) {
                     doc.text("x", x + 0.5, currentY - 0.5);
                 }
                 // Label
-                doc.text(item, x + 5, currentY);
+                doc.text(item.label, x + 5, currentY);
                 currentY += 4;
             });
             return currentY;
         };
 
         // Row 1: Volume & Localisation
-        const volItems = ["< CHF 5 millions", "Entre CHF 5 et CHF 10 millions", "Entre CHF 10 et CHF 25 millions", "Entre CHF 25 et CHF 50 millions", "Entre CHF 50 et CHF 100 millions", "> CHF 100 millions"];
-        const locItems = ["Genève", "Lausanne", "Canton de Vaud", "Canton de Fribourg", "Canton de Neuchâtel", "Canton du Valais", "Suisse Alémanique", "Partout en Suisse"];
-        
-        const yVol = drawCheckboxGroup("Volume d'investissement :", volItems, formData.investmentVolume, leftMargin, y);
-        const yLoc = drawCheckboxGroup("Localisation des objets :", locItems, formData.location, rightColX, y);
+        const yVol = drawCheckboxGroup(t("pdf.groups.investmentVolume"), investmentVolumeOptions, formData.investmentVolume, leftMargin, y);
+        const yLoc = drawCheckboxGroup(t("pdf.groups.location"), locationOptions, formData.location, rightColX, y);
         
         y = Math.max(yVol, yLoc) + 8;
         
         // Row 2: Type & Affectation
-        const typeItems = ["Parcelle sans permis de construire", "Parcelle avec permis de construire", "Bâtiment", "Bâtiment en droit de superficie", "Portefeuille"];
-        const affItems = ["Résidentielle", "Commerciale – Bureau", "Mixte", "Hôtel", "Vente retail", "Logistique / Industrielle", "Médico-sociale"];
-        
-        const yType = drawCheckboxGroup("Type d'objet :", typeItems, formData.objectType, leftMargin, y);
-        const yAff = drawCheckboxGroup("Affectation :", affItems, formData.assignment, rightColX, y);
+        const yType = drawCheckboxGroup(t("pdf.groups.objectType"), objectTypeOptions, formData.objectType, leftMargin, y);
+        const yAff = drawCheckboxGroup(t("pdf.groups.assignment"), assignmentOptions, formData.assignment, rightColX, y);
         
         y = Math.max(yType, yAff) + 8;
         
         // Row 3: Forme & Nature
-        const formItems = ["Pleine propriété", "Copropriété", "PPE"];
-        const natureItems = ["Asset Deal", "Share Deal", "Sale and lease back"];
-        
-        const yForm = drawCheckboxGroup("Forme de la propriété :", formItems, formData.propertyForm, leftMargin, y);
-        const yNature = drawCheckboxGroup("Nature de la transaction :", natureItems, formData.transactionNature, rightColX, y);
+        const yForm = drawCheckboxGroup(t("pdf.groups.propertyForm"), propertyFormOptions, formData.propertyForm, leftMargin, y);
+        const yNature = drawCheckboxGroup(t("pdf.groups.transactionNature"), transactionNatureOptions, formData.transactionNature, rightColX, y);
         
         y = Math.max(yForm, yNature) + 10;
         
         // Remarques
         doc.setFont("times", "bold");
-        doc.text("Remarques:", leftMargin, y);
+        doc.text(t("pdf.sections.remarks"), leftMargin, y);
         y += 7;
         doc.setFont("times", "normal");
         
@@ -287,7 +332,7 @@ export default function CriteresPage() {
         const footerY = doc.internal.pageSize.getHeight() - 10;
         doc.setFontSize(8);
         doc.setTextColor(100);
-        doc.text("Arcan Transactions SA – Route de Florissant 81, 1206 Genève – Phone +41 22 346 37 88", pageWidth / 2, footerY, { align: "center" });
+        doc.text(t("pdf.footer"), pageWidth / 2, footerY, { align: "center" });
 
         resolve(doc.output('blob'));
         } catch (err) {
@@ -323,16 +368,16 @@ export default function CriteresPage() {
                 const contentType = response.headers.get('content-type');
                 if (contentType && contentType.includes('application/json')) {
                     const errorData = await response.json();
-                    alert(`Erreur email: ${errorData.error || 'Erreur inconnue'}`);
+                    alert(`${t("alerts.emailErrorPrefix")}: ${errorData.error || t("alerts.unknownError")}`);
                 } else {
-                    alert(`Erreur serveur (${response.status}): L'API send-email n'est pas accessible.`);
+                    alert(`${t("alerts.serverErrorPrefix", { status: response.status })}`);
                 }
             }
           } catch (error: unknown) {
-            const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+            const errorMessage = error instanceof Error ? error.message : t("alerts.unknownError");
             console.error('PDF/Email error:', error);
             setIsSubmitting(false);
-            alert(`Erreur: ${errorMessage}`);
+            alert(`${t("alerts.errorPrefix")}: ${errorMessage}`);
           }
       }
   };
@@ -347,10 +392,10 @@ export default function CriteresPage() {
           {/* Header */}
           <div className="text-center mb-16">
             <FadeIn>
-                <span className="text-accent text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Investissement</span>
-                <h1 className="text-4xl md:text-6xl font-serif text-[#021024] mb-6">Critères d&apos;investissement</h1>
+                <span className="text-accent text-xs font-bold tracking-[0.3em] uppercase mb-4 block">{t("hero.label")}</span>
+                <h1 className="text-4xl md:text-6xl font-serif text-[#021024] mb-6">{t("hero.title")}</h1>
                 <p className="text-lg md:text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
-                    Définissez votre profil et vos objectifs pour nous permettre de vous proposer des opportunités ciblées.
+                    {t("hero.description")}
                 </p>
             </FadeIn>
           </div>
@@ -376,10 +421,10 @@ export default function CriteresPage() {
                             {step}
                         </div>
                         <span className="text-xs font-bold tracking-widest uppercase hidden md:block">
-                            {step === 1 && "Identité"}
-                            {step === 2 && "Stratégie"}
-                            {step === 3 && "Cible"}
-                            {step === 4 && "Modalités"}
+                            {step === 1 && t("steps.identity")}
+                            {step === 2 && t("steps.strategy")}
+                            {step === 3 && t("steps.target")}
+                            {step === 4 && t("steps.modalities")}
                         </span>
                     </div>
                 ))}
@@ -389,7 +434,7 @@ export default function CriteresPage() {
           {/* Error Message Display */}
           {errors.length > 0 && (
               <div className="mb-8 p-4 bg-red-50 border border-red-200 text-red-600 text-sm rounded-sm">
-                  <p className="font-bold mb-2">Veuillez corriger les erreurs suivantes :</p>
+                  <p className="font-bold mb-2">{t("errors.title")}</p>
                   <ul className="list-disc list-inside">
                       {errors.map((err, index) => (
                           <li key={index}>{err}</li>
@@ -409,23 +454,23 @@ export default function CriteresPage() {
                         <div className="bg-white p-8 border border-gray-100 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-1 h-full bg-[#03081f]"></div>
                             <h3 className="text-xl font-serif text-[#03081f] mb-8 flex items-center gap-3">
-                                Société / Personne privée
+                                {t("sections.company.title")}
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <Input 
                                     name="companyName" 
                                     value={formData.companyName} 
                                     onChange={handleInputChange} 
-                                    label="Nom de la société ou Personne privée*" 
-                                    placeholder="Raison sociale..." 
+                                    label={t("fields.companyName.label")}
+                                    placeholder={t("fields.companyName.placeholder")}
                                     required 
                                 />
                                 <Input 
                                     name="address" 
                                     value={formData.address} 
                                     onChange={handleInputChange} 
-                                    label="Adresse complète*" 
-                                    placeholder="Rue, NPA, Ville, Pays" 
+                                    label={t("fields.address.label")}
+                                    placeholder={t("fields.address.placeholder")}
                                     required 
                                 />
                             </div>
@@ -433,25 +478,25 @@ export default function CriteresPage() {
 
                         {/* Contacts Section */}
                         <div>
-                            <h3 className="text-xl font-serif text-[#03081f] mb-8 pl-2">Contacts</h3>
+                            <h3 className="text-xl font-serif text-[#03081f] mb-8 pl-2">{t("sections.contacts.title")}</h3>
                             
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                 {/* Contact 1 - Highlighted */}
                                 <div className="bg-white p-8 border border-gray-100 shadow-md relative">
                                     <div className="absolute top-0 left-0 w-full h-1 bg-accent"></div>
                                     <h4 className="font-bold text-sm uppercase tracking-widest text-accent mb-6 flex justify-between items-center">
-                                        Contact Principal (1)
-                                        <span className="text-[10px] bg-accent/10 text-accent px-2 py-1 rounded">Requis</span>
+                                        {t("sections.contacts.contactPrimary")}
+                                        <span className="text-[10px] bg-accent/10 text-accent px-2 py-1 rounded">{t("sections.contacts.requiredBadge")}</span>
                                     </h4>
                                     <div className="space-y-5">
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact1Name" value={formData.contact1Name} onChange={handleInputChange} label="Nom*" required />
-                                            <Input name="contact1Position" value={formData.contact1Position} onChange={handleInputChange} label="Position" />
+                                            <Input name="contact1Name" value={formData.contact1Name} onChange={handleInputChange} label={t("fields.contact.nameRequired")} required />
+                                            <Input name="contact1Position" value={formData.contact1Position} onChange={handleInputChange} label={t("fields.contact.position")} />
                                         </div>
-                                        <Input name="contact1Email" value={formData.contact1Email} onChange={handleInputChange} label="Email*" type="email" required />
+                                        <Input name="contact1Email" value={formData.contact1Email} onChange={handleInputChange} label={t("fields.contact.emailRequired")} type="email" required />
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact1Mobile" value={formData.contact1Mobile} onChange={handleInputChange} label="Portable*" required />
-                                            <Input name="contact1Direct" value={formData.contact1Direct} onChange={handleInputChange} label="Ligne directe" />
+                                            <Input name="contact1Mobile" value={formData.contact1Mobile} onChange={handleInputChange} label={t("fields.contact.mobileRequired")} required />
+                                            <Input name="contact1Direct" value={formData.contact1Direct} onChange={handleInputChange} label={t("fields.contact.directLine")} />
                                         </div>
                                     </div>
                                 </div>
@@ -459,16 +504,16 @@ export default function CriteresPage() {
                                 {/* Contact 2 */}
                                 <div className="bg-white p-8 border border-gray-100 shadow-sm relative opacity-80 hover:opacity-100 transition-opacity">
                                     <div className="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
-                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-6">Contact (2)</h4>
+                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-6">{t("sections.contacts.contact", { index: 2 })}</h4>
                                     <div className="space-y-5">
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact2Name" value={formData.contact2Name} onChange={handleInputChange} label="Nom" />
-                                            <Input name="contact2Position" value={formData.contact2Position} onChange={handleInputChange} label="Position" />
+                                            <Input name="contact2Name" value={formData.contact2Name} onChange={handleInputChange} label={t("fields.contact.name")} />
+                                            <Input name="contact2Position" value={formData.contact2Position} onChange={handleInputChange} label={t("fields.contact.position")} />
                                         </div>
-                                        <Input name="contact2Email" value={formData.contact2Email} onChange={handleInputChange} label="Email" type="email" />
+                                        <Input name="contact2Email" value={formData.contact2Email} onChange={handleInputChange} label={t("fields.contact.email")} type="email" />
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact2Mobile" value={formData.contact2Mobile} onChange={handleInputChange} label="Portable" />
-                                            <Input name="contact2Direct" value={formData.contact2Direct} onChange={handleInputChange} label="Ligne directe" />
+                                            <Input name="contact2Mobile" value={formData.contact2Mobile} onChange={handleInputChange} label={t("fields.contact.mobile")} />
+                                            <Input name="contact2Direct" value={formData.contact2Direct} onChange={handleInputChange} label={t("fields.contact.directLine")} />
                                         </div>
                                     </div>
                                 </div>
@@ -476,16 +521,16 @@ export default function CriteresPage() {
                                 {/* Contact 3 */}
                                 <div className="bg-white p-8 border border-gray-100 shadow-sm relative opacity-80 hover:opacity-100 transition-opacity">
                                     <div className="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
-                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-6">Contact (3)</h4>
+                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-6">{t("sections.contacts.contact", { index: 3 })}</h4>
                                     <div className="space-y-5">
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact3Name" value={formData.contact3Name} onChange={handleInputChange} label="Nom" />
-                                            <Input name="contact3Position" value={formData.contact3Position} onChange={handleInputChange} label="Position" />
+                                            <Input name="contact3Name" value={formData.contact3Name} onChange={handleInputChange} label={t("fields.contact.name")} />
+                                            <Input name="contact3Position" value={formData.contact3Position} onChange={handleInputChange} label={t("fields.contact.position")} />
                                         </div>
-                                        <Input name="contact3Email" value={formData.contact3Email} onChange={handleInputChange} label="Email" type="email" />
+                                        <Input name="contact3Email" value={formData.contact3Email} onChange={handleInputChange} label={t("fields.contact.email")} type="email" />
                                         <div className="grid grid-cols-2 gap-4">
-                                            <Input name="contact3Mobile" value={formData.contact3Mobile} onChange={handleInputChange} label="Portable" />
-                                            <Input name="contact3Direct" value={formData.contact3Direct} onChange={handleInputChange} label="Ligne directe" />
+                                            <Input name="contact3Mobile" value={formData.contact3Mobile} onChange={handleInputChange} label={t("fields.contact.mobile")} />
+                                            <Input name="contact3Direct" value={formData.contact3Direct} onChange={handleInputChange} label={t("fields.contact.directLine")} />
                                         </div>
                                     </div>
                                 </div>
@@ -500,28 +545,28 @@ export default function CriteresPage() {
                 <FadeIn>
                     <div className="space-y-12">
                         <div>
-                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Volume d&apos;investissement <span className="text-sm font-sans text-gray-400 font-normal ml-2">(Choix unique)</span></h3>
+                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step2.investmentVolume.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2">({t("step2.investmentVolume.note")})</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {["< CHF 5 millions", "Entre CHF 5 et CHF 10 millions", "Entre CHF 10 et CHF 25 millions", "Entre CHF 25 et CHF 50 millions", "Entre CHF 50 et CHF 100 millions", "> CHF 100 millions"].map(label => (
+                                {investmentVolumeOptions.map(({ id, label }) => (
                                     <Checkbox 
-                                        key={label} 
+                                        key={id} 
                                         label={label} 
-                                        checked={formData.investmentVolume.includes(label)}
-                                        onChange={() => handleCheckboxChange("investmentVolume", label)}
+                                        checked={formData.investmentVolume.includes(id)}
+                                        onChange={() => handleCheckboxChange("investmentVolume", id)}
                                     />
                                 ))}
                             </div>
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Localisation des objets <span className="text-sm font-sans text-gray-400 font-normal ml-2">(1 obligatoire)</span></h3>
+                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step2.location.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2">({t("common.requiredOne")})</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                {["Genève", "Lausanne", "Canton de Vaud", "Canton de Fribourg", "Canton de Neuchâtel", "Canton du Valais", "Suisse Alémanique", "Partout en Suisse"].map(label => (
+                                {locationOptions.map(({ id, label }) => (
                                     <Checkbox 
-                                        key={label} 
+                                        key={id} 
                                         label={label} 
-                                        checked={formData.location.includes(label)}
-                                        onChange={() => handleCheckboxChange("location", label)}
+                                        checked={formData.location.includes(id)}
+                                        onChange={() => handleCheckboxChange("location", id)}
                                     />
                                 ))}
                             </div>
@@ -535,28 +580,28 @@ export default function CriteresPage() {
                 <FadeIn>
                     <div className="space-y-12">
                         <div>
-                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Type d&apos;objet <span className="text-sm font-sans text-gray-400 font-normal ml-2">(1 obligatoire)</span></h3>
+                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step3.objectType.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2">({t("common.requiredOne")})</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {["Parcelle sans permis de construire", "Parcelle avec permis de construire", "Bâtiment", "Bâtiment en droit de superficie", "Portefeuille"].map(label => (
+                                {objectTypeOptions.map(({ id, label }) => (
                                     <Checkbox 
-                                        key={label} 
+                                        key={id} 
                                         label={label} 
-                                        checked={formData.objectType.includes(label)}
-                                        onChange={() => handleCheckboxChange("objectType", label)}
+                                        checked={formData.objectType.includes(id)}
+                                        onChange={() => handleCheckboxChange("objectType", id)}
                                     />
                                 ))}
                             </div>
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Affectation <span className="text-sm font-sans text-gray-400 font-normal ml-2">(1 obligatoire)</span></h3>
+                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step3.assignment.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2">({t("common.requiredOne")})</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {["Résidentielle", "Commerciale – Bureau", "Mixte", "Hôtel", "Vente retail", "Logistique / Industrielle", "Médico-sociale"].map(label => (
+                                {assignmentOptions.map(({ id, label }) => (
                                     <Checkbox 
-                                        key={label} 
+                                        key={id} 
                                         label={label} 
-                                        checked={formData.assignment.includes(label)}
-                                        onChange={() => handleCheckboxChange("assignment", label)}
+                                        checked={formData.assignment.includes(id)}
+                                        onChange={() => handleCheckboxChange("assignment", id)}
                                     />
                                 ))}
                             </div>
@@ -571,51 +616,54 @@ export default function CriteresPage() {
                     <div className="space-y-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Forme de la propriété <span className="text-sm font-sans text-gray-400 font-normal ml-2 block mt-1 lg:inline lg:mt-0">(1 obligatoire)</span></h3>
+                                <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step4.propertyForm.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2 block mt-1 lg:inline lg:mt-0">({t("common.requiredOne")})</span></h3>
                                 <div className="space-y-4">
-                                    {["Pleine propriété", "Copropriété", "PPE"].map(label => (
+                                    {propertyFormOptions.map(({ id, label }) => (
                                         <Checkbox 
-                                            key={label} 
+                                            key={id} 
                                             label={label} 
-                                            checked={formData.propertyForm.includes(label)}
-                                            onChange={() => handleCheckboxChange("propertyForm", label)}
+                                            checked={formData.propertyForm.includes(id)}
+                                            onChange={() => handleCheckboxChange("propertyForm", id)}
                                         />
                                     ))}
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Nature de la transaction <span className="text-sm font-sans text-gray-400 font-normal ml-2 block mt-1 lg:inline lg:mt-0">(1 obligatoire)</span></h3>
+                                <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step4.transactionNature.title")} <span className="text-sm font-sans text-gray-400 font-normal ml-2 block mt-1 lg:inline lg:mt-0">({t("common.requiredOne")})</span></h3>
                                 <div className="space-y-4">
                                     <Checkbox 
-                                        label="Asset Deal" 
+                                        label={transactionNatureOptions.find(o => o.id === "assetDeal")?.label || "Asset Deal"}
                                         infoLink="/procedure-de-vente#asset-deal" 
-                                        checked={formData.transactionNature.includes("Asset Deal")}
-                                        onChange={() => handleCheckboxChange("transactionNature", "Asset Deal")}
+                                        infoTitle={t("moreInfo")}
+                                        checked={formData.transactionNature.includes("assetDeal")}
+                                        onChange={() => handleCheckboxChange("transactionNature", "assetDeal")}
                                     />
                                     <Checkbox 
-                                        label="Share Deal" 
+                                        label={transactionNatureOptions.find(o => o.id === "shareDeal")?.label || "Share Deal"}
                                         infoLink="/procedure-de-vente#share-deal" 
-                                        checked={formData.transactionNature.includes("Share Deal")}
-                                        onChange={() => handleCheckboxChange("transactionNature", "Share Deal")}
+                                        infoTitle={t("moreInfo")}
+                                        checked={formData.transactionNature.includes("shareDeal")}
+                                        onChange={() => handleCheckboxChange("transactionNature", "shareDeal")}
                                     />
                                     <Checkbox 
-                                        label="Sale and lease back" 
+                                        label={transactionNatureOptions.find(o => o.id === "saleLeaseback")?.label || "Sale and lease back"}
                                         infoLink="/procedure-de-vente#sale-leaseback" 
-                                        checked={formData.transactionNature.includes("Sale and lease back")}
-                                        onChange={() => handleCheckboxChange("transactionNature", "Sale and lease back")}
+                                        infoTitle={t("moreInfo")}
+                                        checked={formData.transactionNature.includes("saleLeaseback")}
+                                        onChange={() => handleCheckboxChange("transactionNature", "saleLeaseback")}
                                     />
                                 </div>
                             </div>
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">Remarques</h3>
+                            <h3 className="text-2xl font-serif text-[#03081f] mb-8 border-b border-gray-200 pb-4">{t("step4.remarks.title")}</h3>
                             <textarea 
                                 name="remarks"
                                 value={formData.remarks}
                                 onChange={handleInputChange}
                                 className="w-full bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#03081f] transition-colors min-h-[150px]"
-                                placeholder="Vos remarques éventuelles..."
+                                placeholder={t("step4.remarks.placeholder")}
                             ></textarea>
                         </div>
                     </div>
@@ -633,7 +681,7 @@ export default function CriteresPage() {
                     currentStep === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-[#03081f] hover:text-accent'
                 }`}
             >
-                ← Précédent
+                ← {t("buttons.previous")}
             </button>
 
             {currentStep < 4 ? (
@@ -641,14 +689,14 @@ export default function CriteresPage() {
                     onClick={nextStep}
                     className="px-8 py-3 bg-[#03081f] text-white text-sm font-bold tracking-widest uppercase hover:bg-[#5483B3] transition-colors"
                 >
-                    Suivant →
+                    {t("buttons.next")} →
                 </button>
             ) : (
                 <button 
                     onClick={handleSubmit}
                     className="px-8 py-3 bg-accent text-white text-sm font-bold tracking-widest uppercase hover:bg-[#03081f] transition-colors"
                 >
-                    Envoyer le dossier
+                    {t("buttons.submit")}
                 </button>
             )}
           </div>
@@ -662,7 +710,7 @@ export default function CriteresPage() {
       {isSubmitting && (
         <div className="fixed inset-0 bg-white/90 z-50 flex flex-col items-center justify-center">
             <div className="w-16 h-16 border-4 border-gray-200 border-t-[#03081f] rounded-full animate-spin mb-4"></div>
-            <p className="text-[#03081f] font-serif text-xl animate-pulse">Génération et envoi du dossier en cours...</p>
+                        <p className="text-[#03081f] font-serif text-xl animate-pulse">{t("overlays.loading")}</p>
         </div>
       )}
 
@@ -674,8 +722,8 @@ export default function CriteresPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" className="animate-[drawCheck_0.5s_ease-out_0.5s_both]" />
                 </svg>
             </div>
-            <h2 className="text-3xl md:text-4xl font-serif mb-4 animate-[fadeIn_0.5s_ease-out_0.8s_both]">Dossier envoyé avec succès</h2>
-            <p className="text-gray-300 text-lg animate-[fadeIn_0.5s_ease-out_1s_both]">Redirection vers l&apos;accueil...</p>
+            <h2 className="text-3xl md:text-4xl font-serif mb-4 animate-[fadeIn_0.5s_ease-out_0.8s_both]">{t("overlays.successTitle")}</h2>
+            <p className="text-gray-300 text-lg animate-[fadeIn_0.5s_ease-out_1s_both]">{t("overlays.successRedirect")}</p>
             
             <style jsx>{`
                 @keyframes scaleIn {
@@ -732,11 +780,12 @@ function Input({ label, placeholder, type = "text", name, value, onChange, requi
 interface CheckboxProps {
     label: string;
     infoLink?: string;
+    infoTitle?: string;
     checked: boolean;
     onChange: () => void;
 }
 
-function Checkbox({ label, infoLink, checked, onChange }: CheckboxProps) {
+function Checkbox({ label, infoLink, infoTitle, checked, onChange }: CheckboxProps) {
     return (
         <div className="flex items-center">
             <label className="flex items-center gap-4 cursor-pointer group">
@@ -760,7 +809,7 @@ function Checkbox({ label, infoLink, checked, onChange }: CheckboxProps) {
                     href={infoLink}
                     target="_blank"
                     className="ml-2 w-4 h-4 rounded-full border border-gray-300 text-gray-400 flex items-center justify-center text-[10px] hover:border-[#5483B3] hover:text-[#5483B3] transition-colors flex-shrink-0"
-                    title="En savoir plus"
+                    title={infoTitle}
                 >
                     ?
                 </a>

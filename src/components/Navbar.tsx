@@ -2,16 +2,85 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import { Link, useRouter, usePathname } from '@/i18n/navigation';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProcessusOpen, setIsProcessusOpen] = useState(false);
+  const t = useTranslations('nav');
+  const router = useRouter();
+  const pathname = usePathname();
+
+    const setFormeDeVenteSelection = (forme: string) => {
+        try {
+            window.sessionStorage.setItem('arcan_forme_de_vente', forme);
+        } catch {
+            // Ignore if storage is unavailable
+        }
+    };
+
+  const handleSmoothNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const hashIndex = href.indexOf('#');
+    if (hashIndex === -1) return; // No hash, let normal navigation happen
+    
+    const hash = href.substring(hashIndex + 1);
+    const queryIndex = href.indexOf('?');
+    const pathEndIndex = queryIndex !== -1 && queryIndex < hashIndex ? queryIndex : hashIndex;
+    const path = href.substring(0, pathEndIndex);
+
+        const formesValues = ['asset-deal', 'share-deal', 'sale-leaseback'] as const;
+
+        // "Formes de Vente" is controlled by page state; we detect it either via legacy hashes
+        // (#asset-deal, etc.) or via the newer query param (?forme=asset-deal) pattern.
+        const isFormesDeVente = hash === 'formes-de-vente' || (formesValues as readonly string[]).includes(hash);
+
+    // Check if we're already on the same page
+    // We need to check if the current pathname ends with the target path (handling locale prefix)
+    const currentPath = pathname;
+    const targetPath = path.startsWith('/') ? path : '/' + path;
+    const isOnSamePage = currentPath === targetPath || 
+                        (targetPath === '/' && (currentPath === '/' || currentPath === '/en' || currentPath === '/fr')) ||
+                        currentPath.endsWith(targetPath);
+
+    if (isOnSamePage) {
+      e.preventDefault();
+      
+      if (isFormesDeVente) {
+          // Update hash and notify page to let it handle state and scrolling
+          window.history.pushState(null, '', href);
+          window.dispatchEvent(new Event('hashchange'));
+      } else {
+          const element = document.getElementById(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+      }
+    } else {
+      // For Formes de Vente, let the page handle the hash on mount
+      if (isFormesDeVente) {
+        return;
+      }
+
+      // Navigate to the page, then scroll after load
+      e.preventDefault();
+      router.push(href);
+      
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 h-24">
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="relative w-40 md:w-52 h-12 md:h-16 block z-50">
+        <Link href="/" className="relative w-40 md:w-52 h-12 md:h-16 block z-50">
             <Image
               src="/assets/logo/Arcan_Logo_Bleu.webp"
               alt="Arcan Transaction"
@@ -20,21 +89,21 @@ export default function Navbar() {
               quality={100}
               priority
             />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-12">
-            <div className="flex items-center gap-4 xl:gap-8">
-                
-                <a href="/" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
-                    Accueil
-                </a>
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
+            <div className="flex items-center gap-4 xl:gap-6">
+
+                <Link href="/" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                    {t('home')}
+                </Link>
 
                 <div className="relative group h-full flex items-center">
-                    <a href="/procedure-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
-                        Procédures de vente
+                    <Link href="/procedure-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
+                        {t('salesProcedures')}
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
+                    </Link>
                     
                     {/* Dropdown Menu */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-[700px]">
@@ -44,63 +113,84 @@ export default function Navbar() {
 
                             {/* Column 1 - Type de Mandat */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Type de Mandat</h4>
+                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('mandateType')}</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/procedure-de-vente?mandat=simple#type-mandat" className="group/link flex items-center gap-2">
+                                        <Link href="/procedure-de-vente?mandat=simple#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Simple</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('simpleMandate')}</span>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/procedure-de-vente?mandat=exclusif#type-mandat" className="group/link flex items-center gap-2">
+                                        <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Mandat Exclusif</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('exclusiveMandate')}</span>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Column 2 - Processus de Vente */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Processus de Vente</h4>
+                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('salesProcess')}</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/procedure-de-vente#vente-directe" className="group/link flex items-center gap-2">
+                                        <Link href="/procedure-de-vente#vente-directe" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente#vente-directe')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Vente Directe</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('directSale')}</span>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/procedure-de-vente#appel-d-offres" className="group/link flex items-center gap-2">
+                                        <Link href="/procedure-de-vente#appel-d-offres" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Appel d'Offres</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('callForTenders')}</span>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Column 3 - Formes de Vente */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">Formes de Vente</h4>
+                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('salesForms')}</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <a href="/procedure-de-vente#asset-deal" className="group/link flex items-center gap-2">
+                                        <Link
+                                            href="/procedure-de-vente#formes-de-vente"
+                                            onClick={(e) => {
+                                                setFormeDeVenteSelection('asset-deal');
+                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                            }}
+                                            className="group/link flex items-center gap-2"
+                                        >
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Asset Deal</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('assetDeal')}</span>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/procedure-de-vente#share-deal" className="group/link flex items-center gap-2">
+                                        <Link
+                                            href="/procedure-de-vente#formes-de-vente"
+                                            onClick={(e) => {
+                                                setFormeDeVenteSelection('share-deal');
+                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                            }}
+                                            className="group/link flex items-center gap-2"
+                                        >
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Share Deal</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('shareDeal')}</span>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/procedure-de-vente#sale-leaseback" className="group/link flex items-center gap-2">
+                                        <Link
+                                            href="/procedure-de-vente#formes-de-vente"
+                                            onClick={(e) => {
+                                                setFormeDeVenteSelection('sale-leaseback');
+                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                            }}
+                                            className="group/link flex items-center gap-2"
+                                        >
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
-                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">Sale & Leaseback</span>
-                                        </a>
+                                            <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('saleLeaseback')}</span>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -108,21 +198,23 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <a href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
-                    Critères d&apos;investissement
-                </a>
+                <Link href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                    {t('investmentCriteria')}
+                </Link>
 
-                <a href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
-                    Réalisations
-                </a>
+                <Link href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                    {t('realisations')}
+                </Link>
             </div>
             
-            <div className="h-8 w-[1px] bg-gray-200"></div>
+            <div className="h-7 w-[1px] bg-gray-200"></div>
+            
+            <LanguageSwitcher />
 
-            <a href="/contact" className="group flex items-center gap-3 text-primary hover:text-secondary transition-colors whitespace-nowrap">
-                <span className="font-serif italic text-lg">Contactez nous</span>
+            <Link href="/contact" className="group flex items-center gap-2.5 text-primary hover:text-secondary transition-colors whitespace-nowrap">
+                <span className="font-serif italic text-lg">{t('contact')}</span>
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </a>
+            </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -158,13 +250,13 @@ export default function Navbar() {
                         {/* 01. Accueil */}
                         <div className={`group transition-all duration-300 delay-75 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">01</span>
-                            <a 
+                            <Link 
                                 href="/" 
                                 className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block"
                                 onClick={() => setIsOpen(false)}
                             >
                                 Accueil
-                            </a>
+                            </Link>
                         </div>
 
                         {/* 02. Processus */}
@@ -182,19 +274,19 @@ export default function Navbar() {
                                 <div className="pl-4 border-l border-white/10 space-y-3">
                                     <div className="space-y-2">
                                         <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Type de Mandat</h4>
-                                        <a href="/procedure-de-vente?mandat=simple#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Mandat Simple</a>
-                                        <a href="/procedure-de-vente?mandat=exclusif#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Mandat Exclusif</a>
+                                        <Link href="/procedure-de-vente?mandat=simple#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat'); }}>Mandat Simple</Link>
+                                        <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat'); }}>Mandat Exclusif</Link>
                                     </div>
                                     <div className="space-y-2 pt-2">
                                         <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Processus de Vente</h4>
-                                        <a href="/procedure-de-vente#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Vente Directe</a>
-                                        <a href="/procedure-de-vente#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Appel d&apos;Offres</a>
+                                        <Link href="/procedure-de-vente#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#vente-directe'); }}>Vente Directe</Link>
+                                        <Link href="/procedure-de-vente#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres'); }}>Appel d&apos;Offres</Link>
                                     </div>
                                     <div className="space-y-2 pt-2">
                                         <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Formes de Vente</h4>
-                                        <a href="/procedure-de-vente#asset-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Asset Deal</a>
-                                        <a href="/procedure-de-vente#share-deal" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Share Deal</a>
-                                        <a href="/procedure-de-vente#sale-leaseback" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Sale & Leaseback</a>
+                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('asset-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Asset Deal</Link>
+                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('share-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Share Deal</Link>
+                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('sale-leaseback'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Sale & Leaseback</Link>
                                     </div>
                                 </div>
                             </div>
@@ -203,25 +295,25 @@ export default function Navbar() {
                         {/* 03. Critères */}
                         <div className={`group transition-all duration-300 delay-150 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">03</span>
-                            <a 
+                            <Link 
                                 href="/criteres" 
                                 className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block leading-tight"
                                 onClick={() => setIsOpen(false)}
                             >
                                 Critères <br/> d&apos;investissement
-                            </a>
+                            </Link>
                         </div>
 
                         {/* 04. Réalisations */}
                         <div className={`group transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                             <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">04</span>
-                            <a 
+                            <Link 
                                 href="/realisations" 
                                 className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block"
                                 onClick={() => setIsOpen(false)}
                             >
                                 Réalisations
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -233,12 +325,12 @@ export default function Navbar() {
                             <p className="text-[#021024] font-serif italic text-lg">Un projet ?</p>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Contact</span>
                         </div>
-                        <a href="/contact" onClick={() => setIsOpen(false)} className="flex items-center justify-between bg-[#021024] text-white px-5 py-4 rounded-xl group hover:bg-[#5483B3] transition-colors">
+                        <Link href="/contact" onClick={() => setIsOpen(false)} className="flex items-center justify-between bg-[#021024] text-white px-5 py-4 rounded-xl group hover:bg-[#5483B3] transition-colors">
                             <span className="uppercase tracking-widest text-[10px] font-bold">Contactez nous</span>
                             <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                                 <span className="group-hover:translate-x-0.5 transition-transform text-xs">→</span>
                             </span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

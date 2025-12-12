@@ -1,0 +1,557 @@
+{
+  "metadata": {
+    "title": "Arcan Transactions",
+    "description": "Investment property transactions in Switzerland - Institutional and professional segment"
+  },
+  "nav": {
+    "home": "Home",
+    "salesProcedures": "Sales Procedures",
+    "realisations": "Achievements",
+    "investmentCriteria": "Investment Criteria",
+    "contact": "Contact Us",
+    "mandateType": "Mandate Type",
+    "simpleMandate": "Simple Mandate",
+    "exclusiveMandate": "Exclusive Mandate",
+    "salesProcess": "Sales Process",
+    "directSale": "Direct Sale",
+    "callForTenders": "Call for Tenders",
+    "salesForms": "Sales Forms",
+    "assetDeal": "Asset Deal",
+    "shareDeal": "Share Deal",
+    "saleLeaseback": "Sale & Leaseback"
+  },
+  "hero": {
+    "tagline": "real estate capital market"
+  },
+  "about": {
+    "label": "About",
+    "title1": "Who",
+    "title2": "Are",
+    "title3": "We?",
+    "intro": "ARCAN Transactions SA specializes in investment property transactions in Switzerland.",
+    "text1": "We operate exclusively in the institutional and professional segment, in direct contact with real estate market players.",
+    "text2": "We support our customers - owners, investors, pension funds, family offices and developers - in the sale, acquisition and structuring of real estate transactions.",
+    "services": {
+      "1": "Complete management of the sales process and support for clients",
+      "2": "Preparation of all transaction documents",
+      "3": "Due diligence for buy-side mandates",
+      "4": "Asset valuation and energy upgrading studies",
+      "5": "Capital Advisory service and search for financing"
+    },
+    "cta": "See our achievements",
+    "stats": {
+      "experience": "Over 30 years of combined experience",
+      "buildings": "Over 100 buildings sold",
+      "volume": "Cumulative transaction volume",
+      "volumeValue": "2B+"
+    }
+  },
+  "process": {
+    "label": "Our sales processes",
+    "title": "Rigorous control of sales processes to",
+    "secure": "secure",
+    "and": "and",
+    "optimize": "optimize",
+    "titleEnd": "your transactions.",
+    "cta": "Discover our sales processes"
+  },
+  "salesProcedure": {
+    "hero": {
+      "label": "Methodology",
+      "titleLine1": "Sales",
+      "titleLine2": "Procedures",
+      "description": "Arcan Transactions SA manages the entire sales process to maximize the sale price of the asset, whether through a direct sale or a call for tenders, as an Asset Deal (sale of the property), a Share Deal (sale of the company) or a sale and lease-back.",
+      "imageAlt": "Architecture background"
+    },
+    "mandate": {
+      "introLabel": "Foreword",
+      "titlePrefix": "Type of",
+      "titleEmphasis": "Mandate",
+      "description": "The mandate type defines the framework of our collaboration and the terms of our involvement in the sale of your property.",
+      "simple": {
+        "title": "Simple Mandate",
+        "description": "The owner may appoint several intermediaries simultaneously. This option offers greater flexibility but can limit each intermediary’s level of investment."
+      },
+      "exclusive": {
+        "title": "Exclusive Mandate",
+        "description": "Arcan Transactions SA is the sole intermediary appointed for the sale of the property. This exclusivity enables us to deploy all our resources and ensure an optimal approach and control."
+      }
+    },
+    "directSale": {
+      "label": "Methodology",
+      "titleLine1": "Direct",
+      "titleLine2": "Sale",
+      "description": "A targeted and confidential approach for fast, well-controlled transactions. Ideal for owners seeking discretion and speed.",
+      "imageAlt": "Meeting",
+      "saleForm": {
+        "title": "Sale format",
+        "exclusive": {
+          "title": "Exclusive",
+          "description": "The property is presented to a single prospect at the set price. The sale is completed only if the price is accepted, ensuring total confidentiality."
+        },
+        "selective": {
+          "title": "Selective",
+          "description": "The property is presented at the set price to several qualified investors. The principle is simple: the first offer at the asking price gets the allocation (“first in, first served”)."
+        }
+      },
+      "timeline": {
+        "title": "Timeline",
+        "label": "Process & Timing",
+        "duration": "3 wks - 1.5 months",
+        "steps": [
+          "Selection of one or more investor(s)",
+          "Sending teaser + NDA",
+          "Receipt of signed NDAs & opening of short data room",
+          "Receipt of NBO & opening of full data room",
+          "Due diligence",
+          "Receipt of BOs and acceptance",
+          "Review of the draft notarial deed",
+          "Signing & closing"
+        ]
+      },
+      "advantages": {
+        "title": "Advantages",
+        "items": [
+          "Sale price set in advance",
+          "Targeted approach",
+          "Negotiation flexibility",
+          "Fast procedure",
+          "Private treaty allocation procedure"
+        ]
+      }
+    },
+    "callForTenders": {
+      "label": "Methodology",
+      "titleLine1": "Call",
+      "titleLine2": "for Tenders",
+      "description": "A structured process to maximize value through competition. Recommended for assets with strong market potential.",
+      "imageAlt": "Signing",
+      "saleForm": {
+        "title": "Sale format",
+        "selective": {
+          "title": "Selective",
+          "description": "For highly specific assets, it is advisable to limit the pool of potential investors to a few carefully selected prospects."
+        },
+        "open": {
+          "title": "Open",
+          "description": "For assets that are highly sought-after by the market, it is advisable to open the investor pool as widely as possible to create competition and optimize the sale price."
+        }
+      },
+      "timeline": {
+        "title": "Timeline",
+        "label": "Process & Timing",
+        "duration": "2 to 3 months",
+        "steps": [
+          "Selection of multiple investors",
+          "Sending teaser + NDA",
+          "Receipt of signed NDAs & sending of Information Memorandum",
+          "Receipt of NBO, selection of the short list & opening of the full data room",
+          "Due diligence",
+          "Receipt of BO & award",
+          "Review of the draft notarial deed",
+          "Signing & closing"
+        ]
+      },
+      "advantages": {
+        "title": "Advantages",
+        "items": [
+          "Floor sale price",
+          "Structured and controlled process",
+          "Strict, fixed deadlines",
+          "Competition & overbidding",
+          "Suitable for institutional investors"
+        ]
+      }
+    },
+    "salesForms": {
+      "label": "Structuring",
+      "title": "Sales Forms",
+      "imageAlt": "Modern architecture",
+      "assetDeal": {
+        "title": "Asset Deal",
+        "subtitle": "Sale of the property",
+        "p1": "In an Asset Deal, it is the property itself that is sold.",
+        "p2": "A sale of the property involves fewer risks for the investor, since only those related to the property are transferred to the buyer.",
+        "p3": "Sale costs (notary, land registry, transfer taxes) are borne by the buyer, in accordance with customary practice."
+      },
+      "shareDeal": {
+        "title": "Share Deal",
+        "subtitle": "Sale of the company",
+        "p1": "In a Share Deal, the shares of the company that owns the property are sold.",
+        "p2": "A sale of the company offers financial and tax advantages for both seller and buyer. However, a more in-depth due diligence is required, as the buyer assumes all risks related to the company’s history."
+      },
+      "saleLeaseback": {
+        "title": "Sale & Leaseback",
+        "subtitle": "Sale-leaseback",
+        "p1": "A sale and leaseback can take the form of either an Asset Deal or a Share Deal.",
+        "p2": "In this particular case, the owner sells the property while remaining as a tenant. The most advantageous option for the principal must be determined: maximizing the sale price or, conversely, optimizing the lease terms."
+      }
+    }
+  },
+  "realisationsPage": {
+    "hero": {
+      "topLabel": "Portfolio",
+      "years": "2020 — 2025",
+      "kicker": "Our",
+      "title": "Track Record",
+      "tagline": "The art of real estate transactions.",
+      "volumeValue": "2B+",
+      "volumeLabel": "Cumulative transaction volume",
+      "imageAlt": "Realisations background"
+    },
+    "labels": {
+      "seller": "Seller",
+      "buyer": "Buyer",
+      "location": "Location"
+    },
+    "cta": "Contact us",
+    "projects": {
+      "p1": {
+        "title": "Purely residential building",
+        "seller": "Private",
+        "buyer": "Institutional",
+        "location": "Renens, Vaud",
+        "description": "Buy-side mandate executed within an extremely short timeframe."
+      },
+      "p2": {
+        "title": "Mixed-use building",
+        "seller": "Private",
+        "buyer": "Institutional",
+        "location": "Mies, Vaud",
+        "description": "Mixed-use building transaction completed under an exclusive mandate via a two-round call for tenders process."
+      },
+      "p3": {
+        "title": "Purely residential building",
+        "seller": "Private",
+        "buyer": "Private",
+        "location": "Meyrin, Geneva",
+        "description": "Residential building transaction completed under an exclusive mandate via a direct sale process."
+      },
+      "p4": {
+        "title": "Hotel",
+        "seller": "Private",
+        "buyer": "Foundation",
+        "location": "Cornavin, Geneva",
+        "description": "Sale of a hotel near the train station in Geneva."
+      },
+      "p5": {
+        "title": "Portfolio of 11 buildings",
+        "seller": "Private",
+        "buyer": "Institutional",
+        "location": "Geneva, Switzerland",
+        "description": "Transaction of 11 residential buildings completed through a two-round call for tenders process."
+      },
+      "p6": {
+        "title": "Portfolio of 15 buildings",
+        "seller": "Private",
+        "buyer": "Institutional",
+        "location": "Geneva, Switzerland",
+        "description": "Transaction of 15 buildings carried out through a two-round call for tenders process."
+      }
+    }
+  },
+  "investmentCriteria": {
+    "hero": {
+      "label": "Investment",
+      "title": "Investment Criteria",
+      "description": "Define your profile and objectives so we can propose targeted opportunities."
+    },
+    "steps": {
+      "identity": "Identity",
+      "strategy": "Strategy",
+      "target": "Target",
+      "modalities": "Terms"
+    },
+    "common": {
+      "requiredOne": "At least 1 required"
+    },
+    "errors": {
+      "title": "Please correct the following errors:",
+      "step1": {
+        "companyNameRequired": "The company name or private individual is required.",
+        "addressRequired": "The full address is required.",
+        "contact1NameRequired": "The primary contact name is required.",
+        "contact1EmailRequired": "The primary contact email is required.",
+        "contact1MobileRequired": "The primary contact mobile number is required."
+      },
+      "step2": {
+        "investmentVolumeRequired": "Please select an investment volume.",
+        "locationRequired": "Please select at least one location."
+      },
+      "step3": {
+        "objectTypeRequired": "Please select at least one asset type.",
+        "assignmentRequired": "Please select at least one use category."
+      },
+      "step4": {
+        "propertyFormRequired": "Please select at least one ownership form.",
+        "transactionNatureRequired": "Please select at least one transaction type."
+      }
+    },
+    "sections": {
+      "company": {
+        "title": "Company / Private individual"
+      },
+      "contacts": {
+        "title": "Contacts",
+        "contactPrimary": "Primary Contact (1)",
+        "requiredBadge": "Required",
+        "contact": "Contact ({index})"
+      }
+    },
+    "fields": {
+      "companyName": {
+        "label": "Company name or private individual*",
+        "placeholder": "Legal name..."
+      },
+      "address": {
+        "label": "Full address*",
+        "placeholder": "Street, postal code, city, country"
+      },
+      "contact": {
+        "nameRequired": "Name*",
+        "name": "Name",
+        "position": "Position",
+        "emailRequired": "Email*",
+        "email": "Email",
+        "mobileRequired": "Mobile*",
+        "mobile": "Mobile",
+        "directLine": "Direct line"
+      }
+    },
+    "step2": {
+      "investmentVolume": {
+        "title": "Investment volume",
+        "note": "Single choice"
+      },
+      "location": {
+        "title": "Asset locations"
+      }
+    },
+    "step3": {
+      "objectType": {
+        "title": "Asset type"
+      },
+      "assignment": {
+        "title": "Use category"
+      }
+    },
+    "step4": {
+      "propertyForm": {
+        "title": "Ownership form"
+      },
+      "transactionNature": {
+        "title": "Transaction type"
+      },
+      "remarks": {
+        "title": "Remarks",
+        "placeholder": "Any remarks..."
+      }
+    },
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Send the file"
+    },
+    "overlays": {
+      "loading": "Generating and sending the file...",
+      "successTitle": "File sent successfully",
+      "successRedirect": "Redirecting to home..."
+    },
+    "moreInfo": "Learn more",
+    "alerts": {
+      "emailErrorPrefix": "Email error",
+      "serverErrorPrefix": "Server error ({status}): The send-email API is not accessible.",
+      "unknownError": "Unknown error",
+      "errorPrefix": "Error"
+    },
+    "options": {
+      "investmentVolume": {
+        "lt_5": "< CHF 5 million",
+        "5_10": "Between CHF 5 and CHF 10 million",
+        "10_25": "Between CHF 10 and CHF 25 million",
+        "25_50": "Between CHF 25 and CHF 50 million",
+        "50_100": "Between CHF 50 and CHF 100 million",
+        "gt_100": "> CHF 100 million"
+      },
+      "location": {
+        "geneva": "Geneva",
+        "lausanne": "Lausanne",
+        "vaud": "Canton of Vaud",
+        "fribourg": "Canton of Fribourg",
+        "neuchatel": "Canton of Neuchâtel",
+        "valais": "Canton of Valais",
+        "germanSwitzerland": "German-speaking Switzerland",
+        "allSwitzerland": "Anywhere in Switzerland"
+      },
+      "objectType": {
+        "plotNoPermit": "Plot without building permit",
+        "plotWithPermit": "Plot with building permit",
+        "building": "Building",
+        "buildingLeasehold": "Building under a right of superficies",
+        "portfolio": "Portfolio"
+      },
+      "assignment": {
+        "residential": "Residential",
+        "office": "Commercial — Office",
+        "mixed": "Mixed-use",
+        "hotel": "Hotel",
+        "retailSales": "Retail",
+        "logisticsIndustrial": "Logistics / Industrial",
+        "medicoSocial": "Healthcare / Social"
+      },
+      "propertyForm": {
+        "freehold": "Freehold",
+        "coownership": "Co-ownership",
+        "ppe": "Condominium (PPE)"
+      },
+      "transactionNature": {
+        "assetDeal": "Asset Deal",
+        "shareDeal": "Share Deal",
+        "saleLeaseback": "Sale and lease back"
+      }
+    },
+    "pdf": {
+      "title": "Investment Criteria",
+      "sections": {
+        "company": "Company / Private individual",
+        "contact": "Contact ({index})",
+        "address": "Address",
+        "remarks": "Remarks:"
+      },
+      "fields": {
+        "name": "Name",
+        "position": "Position",
+        "email": "Email",
+        "mobile": "Mobile",
+        "directLine": "Direct line"
+      },
+      "groups": {
+        "investmentVolume": "Investment volume:",
+        "location": "Asset locations:",
+        "objectType": "Asset type:",
+        "assignment": "Use category:",
+        "propertyForm": "Ownership form:",
+        "transactionNature": "Transaction type:"
+      },
+      "footer": "Arcan Transactions SA – Route de Florissant 81, 1206 Geneva – Phone +41 22 346 37 88"
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "mapTitle": "Arcan Transactions location",
+    "office": {
+      "label": "Office",
+      "addressLine1": "81 Route de Florissant",
+      "addressLine2": "1206 Geneva"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send",
+      "placeholders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "you@example.com",
+        "message": "Your message..."
+      }
+    }
+  },
+  "values": {
+    "professionalism": "Professionalism",
+    "professionalismDesc": "Excellence & rigor",
+    "efficiency": "Efficiency",
+    "efficiencyDesc": "Fast results",
+    "network": "Network",
+    "networkDesc": "Key relationships",
+    "trust": "Trust",
+    "trustDesc": "Lasting partnership",
+    "transparency": "Transparency",
+    "transparencyDesc": "Clear communication",
+    "flexibility": "Flexibility",
+    "flexibilityDesc": "Tailored solutions"
+  },
+  "team": {
+    "title": "The team",
+    "realisationsLink": "Our portfolio"
+  },
+  "typologie": {
+    "label": "Our Sectors",
+    "title1": "Asset",
+    "title2": "Classification",
+    "description": "Arcan Transactions SA specializes in real estate transactions for all types of properties.",
+    "cta": "Investment Criteria",
+    "residential": "Residential",
+    "residentialItems": ["Residential buildings", "Mixed-use buildings (predominantly residential)"],
+    "commercial": "Commercial",
+    "commercialItems": ["Office buildings", "Retail space", "Shopping centers", "Mixed-use buildings (predominantly commercial)"],
+    "hospitality": "Hospitality",
+    "hospitalityItems": ["Walls and operations", "Walls only", "Operations only"],
+    "healthcare": "Medical and social care",
+    "healthcareItems": ["Nursing homes / Senior care", "Student residences", "Hospitals", "Clinics"],
+    "industrial": "Industrial",
+    "industrialItems": ["Industrial properties", "Logistics", "Data centers", "Warehouses, parking lots..."],
+    "land": "Land",
+    "landItems": ["Plots with or without permits", "All types of zoning"]
+  },
+  "footer": {
+    "description": "Contact us for any information request or to schedule an appointment.",
+    "email": "Email",
+    "phone": "Phone",
+    "legal": "Legal Notice",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "designedBy": "Designed and developed by Helveit"
+  },
+  "cookie": {
+    "title": "We use cookies",
+    "description": "This site uses cookies to improve your browsing experience.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "settings": "Cookie settings"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "back": "Back"
+  },
+  "legal": {
+    "pageTitle1": "Legal Notice &",
+    "pageTitle2": "Privacy",
+    "juridicalInfo": "Legal Information",
+    "companyName": "Company Name",
+    "headquarters": "Headquarters",
+    "registration": "Registration",
+    "registrationDetails": "Geneva Commercial Registry",
+    "date": "Date",
+    "number": "Number",
+    "ideUid": "IDE / UID",
+    "legalForm": "Legal Form",
+    "legalFormValue": "Public Limited Company (SA)",
+    "shareCapital": "Share capital: CHF 100,000.00 (50% paid up)",
+    "administration": "Administration",
+    "president": "President (Joint signature of 2)",
+    "administrator": "Director (Joint signature of 2)",
+    "purpose": "Corporate Purpose",
+    "purposeText": "The holding, purchase, sale, administration, management, rental, brokerage, operation, and property management of real estate, as well as the promotion and management of real estate projects and the granting of loans and guarantees to shareholders or third parties. The company may carry out, either on its own behalf or on behalf of third parties, all financial, commercial, movable or real estate operations directly or indirectly related to its corporate purpose and may participate, in any form, in any similar enterprises. The company may also establish branches and subsidiaries in Switzerland and abroad.",
+    "hosting": "Hosting",
+    "hostedBy": "This site is hosted by:",
+    "privacyPolicy": "Privacy Policy",
+    "privacyIntro": "Arcan Transactions SA attaches great importance to protecting your privacy. This privacy policy explains how we collect, use and protect your personal data, in accordance with the Swiss Federal Data Protection Act (FADP) and, where applicable, the General Data Protection Regulation (GDPR).",
+    "dataCollection": "Data Collection",
+    "dataCollectionText": "We only collect personal data that you voluntarily provide to us, particularly through our contact form or by email (name, surname, email address, phone number). This data is necessary to respond to your requests and provide our services.",
+    "dataUsage": "Data Usage",
+    "dataUsageText": "Your data is used exclusively within the framework of our business relationship. It is never sold to third parties. We may share certain information with trusted service providers (hosting, IT maintenance) only to the extent necessary for the performance of their duties.",
+    "cookies": "Cookies and Tracking",
+    "cookiesText": "This site may use cookies to improve your browsing experience and analyze traffic (anonymous statistics). You can configure your browser to refuse cookies.",
+    "yourRights": "Your Rights",
+    "yourRightsText": "In accordance with applicable legislation, you have the right to access, rectify, delete and limit the processing of your personal data. To exercise these rights, please contact us at:"
+  }
+}

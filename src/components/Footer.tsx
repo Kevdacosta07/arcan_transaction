@@ -1,7 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 import CookieSettingsLink from "./CookieSettingsLink";
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
+  const localePath = locale === 'fr' ? '' : `/${locale}`;
+  
   return (
     <footer className="relative overflow-hidden bg-[#021024] text-white pt-20 pb-10 border-t border-white/10">
         {/* Background Image */}
@@ -31,18 +39,18 @@ export default function Footer() {
                 />
               </div>
               <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">
-                Contactez-nous pour toute demande d&apos;information ou pour convenir d&apos;un rendez-vous.
+                {t('description')}
               </p>
             </div>
             
             <div className="flex flex-col justify-center items-start md:items-end gap-8 w-full overflow-hidden">
               <a href="mailto:contact@arcan-transactions.ch" className="group flex flex-col items-start md:items-end max-w-full">
                   <h4 className="text-[clamp(0.7rem,4.5vw,1.5rem)] sm:text-[clamp(1rem,4vw,2rem)] md:text-[clamp(0.9rem,1.7vw,2rem)] font-serif group-hover:text-accent transition-colors whitespace-nowrap">contact@arcan-transactions.ch</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Email</p>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">{t('email')}</p>
               </a>
               <a href="tel:+41223463788" className="group flex flex-col items-start md:items-end max-w-full">
                   <h4 className="text-[clamp(0.7rem,4.5vw,1.5rem)] sm:text-[clamp(1rem,4vw,2rem)] md:text-[clamp(0.9rem,1.7vw,2rem)] font-serif group-hover:text-accent transition-colors whitespace-nowrap">+41 22 346 37 88</h4>
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">Téléphone</p>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mt-1">{t('phone')}</p>
               </a>
             </div>
           </div>
@@ -51,8 +59,8 @@ export default function Footer() {
              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-xs text-gray-600 uppercase tracking-widest">
                <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
                <div className="flex gap-6">
-                   <a href="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</a>
-                   <a href="/mentions-legales#confidentialite" className="hover:text-white transition-colors">Confidentialité</a>
+                   <Link href={`${localePath}/mentions-legales`} className="hover:text-white transition-colors">{t('legal')}</Link>
+                   <Link href={`${localePath}/mentions-legales#confidentialite`} className="hover:text-white transition-colors">{t('privacy')}</Link>
                    <CookieSettingsLink />
                </div>
              </div>
@@ -60,7 +68,7 @@ export default function Footer() {
 
           <div className="mt-12 text-center">
              <a href="https://helveit.ch" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 uppercase tracking-widest hover:text-white transition-colors">
-                Conceptualisé et développé par Helveit
+                {t('designedBy')}
              </a>
           </div>
         </div>

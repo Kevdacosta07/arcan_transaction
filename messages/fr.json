@@ -1,0 +1,557 @@
+{
+  "metadata": {
+    "title": "Arcan Transactions",
+    "description": "Transactions d'immeubles de rendement en Suisse - Segment institutionnel et professionnel"
+  },
+  "nav": {
+    "home": "Accueil",
+    "salesProcedures": "Procédures de vente",
+    "realisations": "Réalisations",
+    "investmentCriteria": "Critères d'investissement",
+    "contact": "Contactez-Nous",
+    "mandateType": "Type de Mandat",
+    "simpleMandate": "Mandat Simple",
+    "exclusiveMandate": "Mandat Exclusif",
+    "salesProcess": "Processus de Vente",
+    "directSale": "Vente Directe",
+    "callForTenders": "Appel d'Offres",
+    "salesForms": "Formes de Vente",
+    "assetDeal": "Asset Deal",
+    "shareDeal": "Share Deal",
+    "saleLeaseback": "Sale & Leaseback"
+  },
+  "hero": {
+    "tagline": "real estate capital market"
+  },
+  "about": {
+    "label": "À Propos",
+    "title1": "Qui",
+    "title2": "Sommes",
+    "title3": "Nous ?",
+    "intro": "ARCAN Transactions SA est une société spécialisée dans les transactions d'immeubles de rendement en Suisse.",
+    "text1": "Nous intervenons exclusivement sur le segment institutionnel et professionnel, en lien direct avec les acteurs du marché immobilier.",
+    "text2": "Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l'acquisition et dans la structuration de transactions immobilières.",
+    "services": {
+      "1": "La gestion complète du processus de vente et accompagnement du mandant",
+      "2": "La préparation de l'ensemble des documents de transaction",
+      "3": "Due Diligence dans le cadre de mandats buy side",
+      "4": "L'évaluation des actifs et les études de mise aux normes énergétiques",
+      "5": "Un service de Capital Advisory et de recherche de financement"
+    },
+    "cta": "Consulter nos réalisations",
+    "stats": {
+      "experience": "Plus de 30 ans d'expériences cumulées",
+      "buildings": "Plus de 100 immeubles vendus",
+      "volume": "Volume de transaction cumulé",
+      "volumeValue": "2 Mrd+"
+    }
+  },
+  "process": {
+    "label": "Nos processus de vente",
+    "title": "Une maîtrise rigoureuse des processus de vente pour",
+    "secure": "sécuriser",
+    "and": "et",
+    "optimize": "optimiser",
+    "titleEnd": "vos transactions.",
+    "cta": "Découvrez nos processus de vente"
+  },
+  "salesProcedure": {
+    "hero": {
+      "label": "Méthodologie",
+      "titleLine1": "Procédures",
+      "titleLine2": "de vente",
+      "description": "Arcan Transactions SA s’occupe de la gestion complète du processus de vente en vue de maximiser le prix de vente de l’actif que se soit par le biais d’une vente directe ou d’un appel d’offres, en Asset Deal (vente en nom), Share Deal (vente en société) ou en Sale and lease-back.",
+      "imageAlt": "Architecture Background"
+    },
+    "mandate": {
+      "introLabel": "Avant-propos",
+      "titlePrefix": "Type de",
+      "titleEmphasis": "Mandat",
+      "description": "Le type de mandat définit le cadre de notre collaboration et les modalités d'intervention pour la vente de votre bien.",
+      "simple": {
+        "title": "Mandat Simple",
+        "description": "Le propriétaire peut mandater plusieurs intermédiaires simultanément. Cette formule offre une plus grande flexibilité mais peut limiter l'investissement de chaque mandataire."
+      },
+      "exclusive": {
+        "title": "Mandat Exclusif",
+        "description": "Arcan Transactions SA est le seul intermédiaire mandaté pour la vente du bien. Cette exclusivité nous permet de déployer l’ensemble de nos ressources et de garantir une approche et un contrôle optimal."
+      }
+    },
+    "directSale": {
+      "label": "Méthodologie",
+      "titleLine1": "Vente",
+      "titleLine2": "Directe",
+      "description": "Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et rapidité.",
+      "imageAlt": "Meeting",
+      "saleForm": {
+        "title": "Forme de la vente",
+        "exclusive": {
+          "title": "Exclusive",
+          "description": "L’objet est présenté à un seul prospect, au prix fixé. La vente se concrétise uniquement si le prix est accepté, garantissant une confidentialité totale."
+        },
+        "selective": {
+          "title": "Sélective",
+          "description": "L’objet est présenté au prix fixé à plusieurs investisseurs qualifiés. Le principe est simple : le premier offrant au prix obtient l’attribution (« first in, first served »)."
+        }
+      },
+      "timeline": {
+        "title": "Timeline",
+        "label": "Processus & Timing",
+        "duration": "3 sem. - 1.5 mois",
+        "steps": [
+          "Sélection de un ou plusieurs investisseur/s",
+          "Envoi teaser + NDA",
+          "Réception NDA signées & ouverture short-dataroom",
+          "Réception NBO & ouverture full dataroom",
+          "Due diligence",
+          "Réception des BO et acceptation",
+          "Revue du projet d’acte notarié",
+          "Signing & closing"
+        ]
+      },
+      "advantages": {
+        "title": "Avantages",
+        "items": [
+          "Prix de vente fixé à l’avance",
+          "Approche ciblée",
+          "Souplesse de négociation",
+          "Rapidité de la procédure",
+          "Procédure d’attribution de gré à gré"
+        ]
+      }
+    },
+    "callForTenders": {
+      "label": "Méthodologie",
+      "titleLine1": "Appel",
+      "titleLine2": "d'Offres",
+      "description": "Un processus structuré pour maximiser la valeur par la concurrence. Recommandé pour les actifs à fort potentiel de marché.",
+      "imageAlt": "Signing",
+      "saleForm": {
+        "title": "Forme de la vente",
+        "selective": {
+          "title": "Sélective",
+          "description": "Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs potentiels à quelques prospects triés sur le volet."
+        },
+        "open": {
+          "title": "Ouverte",
+          "description": "Pour des objets très recherchés par le marché, il convient d’ouvrir le cercle des investisseurs au maximum en vue de créer de la concurrence pour optimiser le prix de vente."
+        }
+      },
+      "timeline": {
+        "title": "Timeline",
+        "label": "Processus & Timing",
+        "duration": "2 à 3 mois",
+        "steps": [
+          "Sélection de multiples investisseurs",
+          "Envoi teaser + NDA",
+          "Réception NDA signées & envoi Information Memorandum",
+          "Réception NBO, sélection de la short list & ouverture de la dataroom complète",
+          "Due diligence",
+          "Réception BO & adjudication",
+          "Revue du projet d’acte notarié",
+          "Signing & closing"
+        ]
+      },
+      "advantages": {
+        "title": "Avantages",
+        "items": [
+          "Prix de vente « plancher »",
+          "Processus structuré et contrôlé",
+          "Délais fixés impératifs",
+          "Concurrence & Surenchère",
+          "Adapté aux institutionnels"
+        ]
+      }
+    },
+    "salesForms": {
+      "label": "Structuration",
+      "title": "Formes de Vente",
+      "imageAlt": "Modern Architecture",
+      "assetDeal": {
+        "title": "Asset Deal",
+        "subtitle": "Vente en nom",
+        "p1": "Dans le cadre d'un Asset Deal, c'est l'immeuble lui-même qui est vendu.",
+        "p2": "La vente en nom présente moins de risques pour l’investisseur, car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.",
+        "p3": "Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l'acheteur, conformément à l'usage."
+      },
+      "shareDeal": {
+        "title": "Share Deal",
+        "subtitle": "Vente en société",
+        "p1": "Dans le cadre d’un Share Deal, ce sont les actions de la société propriétaire de l’immeuble qui sont vendues.",
+        "p2": "La vente en société présente des avantages financiers et fiscaux pour le vendeur comme pour l’acquéreur. Ici, une due diligence plus approfondie est toutefois nécessaire, car l’acquéreur reprend l’ensemble des risques liés à l’historique de la société."
+      },
+      "saleLeaseback": {
+        "title": "Sale & Leaseback",
+        "subtitle": "Cession-bail",
+        "p1": "Le sale and leaseback peut prendre la forme soit d'un Asset Deal soit d'un Share Deal.",
+        "p2": "Dans ce cas particulier, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : maximiser le prix de vente ou, à l'inverse, d'optimiser les conditions de location."
+      }
+    }
+  },
+  "realisationsPage": {
+    "hero": {
+      "topLabel": "Portfolio",
+      "years": "2020 — 2025",
+      "kicker": "Nos",
+      "title": "Réalisations",
+      "tagline": "L'art de la transaction immobilière.",
+      "volumeValue": "2 Mrd+",
+      "volumeLabel": "Total cumulé des transactions",
+      "imageAlt": "Realisations Background"
+    },
+    "labels": {
+      "seller": "Vendeur",
+      "buyer": "Acquéreur",
+      "location": "Localisation"
+    },
+    "cta": "Contactez-nous",
+    "projects": {
+      "p1": {
+        "title": "Immeuble exclusivement résidentiel",
+        "seller": "Privé",
+        "buyer": "Institutionnel",
+        "location": "Renens, Vaud",
+        "description": "Mandat buy-side exécuté dans un laps de temps extrêmement court."
+      },
+      "p2": {
+        "title": "Immeuble mixte",
+        "seller": "Privé",
+        "buyer": "Institutionnel",
+        "location": "Mies, Vaud",
+        "description": "Transaction d’un immeuble mixte réalisée sur la base d’un mandat exclusif via une procédure d’appel d’offres à deux tours."
+      },
+      "p3": {
+        "title": "Immeuble exclusivement résidentiel",
+        "seller": "Privé",
+        "buyer": "Privé",
+        "location": "Meyrin, Genève",
+        "description": "Transaction d’un immeuble résidentiel sur la base d’un mandat exclusif via une procédure de vente directe."
+      },
+      "p4": {
+        "title": "Hôtel",
+        "seller": "Privé",
+        "buyer": "Fondation",
+        "location": "Cornavin, Genève",
+        "description": "Vente d’un hôtel proche de la gare à Genève."
+      },
+      "p5": {
+        "title": "Portefeuille de 11 immeubles",
+        "seller": "Privé",
+        "buyer": "Institutionnel",
+        "location": "Genève, Suisse",
+        "description": "Transaction de 11 immeubles résidentiels réalisée au travers d’une procédure d’appel d’offres à deux tours."
+      },
+      "p6": {
+        "title": "Portefeuille de 15 immeubles",
+        "seller": "Privé",
+        "buyer": "Institutionnel",
+        "location": "Genève, Suisse",
+        "description": "Transaction de 15 immeubles menée dans le cadre d’une procédure d’appel d’offres à deux tours."
+      }
+    }
+  },
+  "investmentCriteria": {
+    "hero": {
+      "label": "Investissement",
+      "title": "Critères d'investissement",
+      "description": "Définissez votre profil et vos objectifs pour nous permettre de vous proposer des opportunités ciblées."
+    },
+    "steps": {
+      "identity": "Identité",
+      "strategy": "Stratégie",
+      "target": "Cible",
+      "modalities": "Modalités"
+    },
+    "common": {
+      "requiredOne": "1 obligatoire"
+    },
+    "errors": {
+      "title": "Veuillez corriger les erreurs suivantes :",
+      "step1": {
+        "companyNameRequired": "Le nom de la société ou personne privée est requis.",
+        "addressRequired": "L'adresse complète est requise.",
+        "contact1NameRequired": "Le nom du contact principal est requis.",
+        "contact1EmailRequired": "L'email du contact principal est requis.",
+        "contact1MobileRequired": "Le portable du contact principal est requis."
+      },
+      "step2": {
+        "investmentVolumeRequired": "Veuillez sélectionner au moins un volume d'investissement.",
+        "locationRequired": "Veuillez sélectionner au moins une localisation."
+      },
+      "step3": {
+        "objectTypeRequired": "Veuillez sélectionner au moins un type d'objet.",
+        "assignmentRequired": "Veuillez sélectionner au moins une affectation."
+      },
+      "step4": {
+        "propertyFormRequired": "Veuillez sélectionner au moins une forme de propriété.",
+        "transactionNatureRequired": "Veuillez sélectionner au moins une nature de transaction."
+      }
+    },
+    "sections": {
+      "company": {
+        "title": "Société / Personne privée"
+      },
+      "contacts": {
+        "title": "Contacts",
+        "contactPrimary": "Contact Principal (1)",
+        "requiredBadge": "Requis",
+        "contact": "Contact ({index})"
+      }
+    },
+    "fields": {
+      "companyName": {
+        "label": "Nom de la société ou Personne privée*",
+        "placeholder": "Raison sociale..."
+      },
+      "address": {
+        "label": "Adresse complète*",
+        "placeholder": "Rue, NPA, Ville, Pays"
+      },
+      "contact": {
+        "nameRequired": "Nom*",
+        "name": "Nom",
+        "position": "Position",
+        "emailRequired": "Email*",
+        "email": "Email",
+        "mobileRequired": "Portable*",
+        "mobile": "Portable",
+        "directLine": "Ligne directe"
+      }
+    },
+    "step2": {
+      "investmentVolume": {
+        "title": "Volume d'investissement",
+        "note": "Choix unique"
+      },
+      "location": {
+        "title": "Localisation des objets"
+      }
+    },
+    "step3": {
+      "objectType": {
+        "title": "Type d'objet"
+      },
+      "assignment": {
+        "title": "Affectation"
+      }
+    },
+    "step4": {
+      "propertyForm": {
+        "title": "Forme de la propriété"
+      },
+      "transactionNature": {
+        "title": "Nature de la transaction"
+      },
+      "remarks": {
+        "title": "Remarques",
+        "placeholder": "Vos remarques éventuelles..."
+      }
+    },
+    "buttons": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "submit": "Envoyer le dossier"
+    },
+    "overlays": {
+      "loading": "Génération et envoi du dossier en cours...",
+      "successTitle": "Dossier envoyé avec succès",
+      "successRedirect": "Redirection vers l'accueil..."
+    },
+    "moreInfo": "En savoir plus",
+    "alerts": {
+      "emailErrorPrefix": "Erreur email",
+      "serverErrorPrefix": "Erreur serveur ({status}): L'API send-email n'est pas accessible.",
+      "unknownError": "Erreur inconnue",
+      "errorPrefix": "Erreur"
+    },
+    "options": {
+      "investmentVolume": {
+        "lt_5": "< CHF 5 millions",
+        "5_10": "Entre CHF 5 et CHF 10 millions",
+        "10_25": "Entre CHF 10 et CHF 25 millions",
+        "25_50": "Entre CHF 25 et CHF 50 millions",
+        "50_100": "Entre CHF 50 et CHF 100 millions",
+        "gt_100": "> CHF 100 millions"
+      },
+      "location": {
+        "geneva": "Genève",
+        "lausanne": "Lausanne",
+        "vaud": "Canton de Vaud",
+        "fribourg": "Canton de Fribourg",
+        "neuchatel": "Canton de Neuchâtel",
+        "valais": "Canton du Valais",
+        "germanSwitzerland": "Suisse Alémanique",
+        "allSwitzerland": "Partout en Suisse"
+      },
+      "objectType": {
+        "plotNoPermit": "Parcelle sans permis de construire",
+        "plotWithPermit": "Parcelle avec permis de construire",
+        "building": "Bâtiment",
+        "buildingLeasehold": "Bâtiment en droit de superficie",
+        "portfolio": "Portefeuille"
+      },
+      "assignment": {
+        "residential": "Résidentielle",
+        "office": "Commerciale – Bureau",
+        "mixed": "Mixte",
+        "hotel": "Hôtel",
+        "retailSales": "Vente retail",
+        "logisticsIndustrial": "Logistique / Industrielle",
+        "medicoSocial": "Médico-sociale"
+      },
+      "propertyForm": {
+        "freehold": "Pleine propriété",
+        "coownership": "Copropriété",
+        "ppe": "PPE"
+      },
+      "transactionNature": {
+        "assetDeal": "Asset Deal",
+        "shareDeal": "Share Deal",
+        "saleLeaseback": "Sale and lease back"
+      }
+    },
+    "pdf": {
+      "title": "Critères d'investissement",
+      "sections": {
+        "company": "Société / Personne privée",
+        "contact": "Contact ({index})",
+        "address": "Adresse",
+        "remarks": "Remarques:"
+      },
+      "fields": {
+        "name": "Nom",
+        "position": "Position",
+        "email": "Email",
+        "mobile": "Portable",
+        "directLine": "Ligne directe"
+      },
+      "groups": {
+        "investmentVolume": "Volume d'investissement :",
+        "location": "Localisation des objets :",
+        "objectType": "Type d'objet :",
+        "assignment": "Affectation :",
+        "propertyForm": "Forme de la propriété :",
+        "transactionNature": "Nature de la transaction :"
+      },
+      "footer": "Arcan Transactions SA – Route de Florissant 81, 1206 Genève – Phone +41 22 346 37 88"
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "mapTitle": "Localisation Arcan Transactions",
+    "office": {
+      "label": "Bureau",
+      "addressLine1": "81 route de Florissant",
+      "addressLine2": "1206 Genève"
+    },
+    "phone": {
+      "label": "Téléphone"
+    },
+    "email": {
+      "label": "Email"
+    },
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Envoyer",
+      "placeholders": {
+        "firstName": "Votre prénom",
+        "lastName": "Votre nom",
+        "email": "votre@email.com",
+        "message": "Votre message..."
+      }
+    }
+  },
+  "values": {
+    "professionalism": "Professionnalisme",
+    "professionalismDesc": "Excellence & rigueur",
+    "efficiency": "Efficacité",
+    "efficiencyDesc": "Résultats rapides",
+    "network": "Réseau",
+    "networkDesc": "Relations clés",
+    "trust": "Confiance",
+    "trustDesc": "Partenariat durable",
+    "transparency": "Transparence",
+    "transparencyDesc": "Communication claire",
+    "flexibility": "Flexibilité",
+    "flexibilityDesc": "Solutions sur mesure"
+  },
+  "team": {
+    "title": "L'équipe",
+    "realisationsLink": "Nos réalisations"
+  },
+  "typologie": {
+    "label": "Nos Domaines",
+    "title1": "Typologie",
+    "title2": "d'actifs",
+    "description": "Arcan Transactions SA est spécialisée dans la transaction d'immeubles, de tous types d'affectations.",
+    "cta": "Critères d'investissement",
+    "residential": "Résidentiel",
+    "residentialItems": ["Immeubles de logement", "Immeubles mixtes (prédominance résidentielle)"],
+    "commercial": "Commercial",
+    "commercialItems": ["Immeubles de bureaux", "Surfaces retail", "Centres commerciaux", "Immeubles mixtes (prédominance commerciale)"],
+    "hospitality": "Hôtellerie",
+    "hospitalityItems": ["Mur et exploitation", "Mur", "Exploitation"],
+    "healthcare": "Médico-social",
+    "healthcareItems": ["EMS / Senior", "Résidences étudiantes", "Hôpitaux", "Cliniques"],
+    "industrial": "Industriel",
+    "industrialItems": ["Industriel à proprement parler", "Logistique", "Data centers", "Dépôts, parkings…"],
+    "land": "Terrains",
+    "landItems": ["Parcelles avec ou sans permis", "De tout type d'affectation"]
+  },
+  "footer": {
+    "description": "Contactez-nous pour toute demande d'information ou pour convenir d'un rendez-vous.",
+    "email": "Email",
+    "phone": "Téléphone",
+    "legal": "Mentions Légales",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
+    "designedBy": "Conceptualisé et développé par Helveit"
+  },
+  "cookie": {
+    "title": "Nous utilisons des cookies",
+    "description": "Ce site utilise des cookies pour améliorer votre expérience de navigation.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "settings": "Paramètres des cookies"
+  },
+  "common": {
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "back": "Retour"
+  },
+  "legal": {
+    "pageTitle1": "Mentions Légales &",
+    "pageTitle2": "Confidentialité",
+    "juridicalInfo": "Informations Juridiques",
+    "companyName": "Raison Sociale",
+    "headquarters": "Siège Social",
+    "registration": "Inscription",
+    "registrationDetails": "Registre du Commerce de Genève",
+    "date": "Date",
+    "number": "Numéro",
+    "ideUid": "IDE / UID",
+    "legalForm": "Forme Juridique",
+    "legalFormValue": "Société Anonyme (SA)",
+    "shareCapital": "Capital-actions: CHF 100'000.00 (libéré à 50%)",
+    "administration": "Administration",
+    "president": "Président (Signature collective à 2)",
+    "administrator": "Administrateur (Signature collective à 2)",
+    "purpose": "But Social",
+    "purposeText": "La détention, l'achat, la vente, l'administration, la gestion, la location, le courtage, l'exploitation, la gérance d'immeubles, les promotions et pilotages de projets immobiliers ainsi que l'octroi de prêts et de garanties aux actionnaires ou à des tiers. Elle peut faire, soit pour son compte, soit pour le compte de tiers, toutes opérations financières, commerciales, mobilières ou immobilières se rattachant directement ou indirectement à son but social et s'intéresser, sous toutes formes, à toutes entreprises similaires. La société pourra également constituer des succursales et des filiales en Suisse et à l'étranger.",
+    "hosting": "Hébergement",
+    "hostedBy": "Ce site est hébergé par :",
+    "privacyPolicy": "Politique de Confidentialité",
+    "privacyIntro": "Arcan Transactions SA accorde une grande importance à la protection de votre vie privée. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos données personnelles, conformément à la Loi fédérale sur la protection des données (LPD) et, le cas échéant, au Règlement général sur la protection des données (RGPD).",
+    "dataCollection": "Collecte des données",
+    "dataCollectionText": "Nous collectons uniquement les données personnelles que vous nous transmettez volontairement, notamment via notre formulaire de contact ou par email (nom, prénom, adresse email, numéro de téléphone). Ces données sont nécessaires pour répondre à vos demandes et vous fournir nos services.",
+    "dataUsage": "Utilisation des données",
+    "dataUsageText": "Vos données sont utilisées exclusivement dans le cadre de notre relation commerciale. Elles ne sont jamais vendues à des tiers. Nous pouvons être amenés à partager certaines informations avec des prestataires de confiance (hébergement, maintenance informatique) uniquement dans la limite nécessaire à l'exécution de leurs missions.",
+    "cookies": "Cookies et Tracking",
+    "cookiesText": "Ce site peut utiliser des cookies pour améliorer votre expérience de navigation et analyser le trafic (statistiques anonymes). Vous avez la possibilité de configurer votre navigateur pour refuser les cookies.",
+    "yourRights": "Vos droits",
+    "yourRightsText": "Conformément à la législation en vigueur, vous disposez d'un droit d'accès, de rectification, de suppression et de limitation du traitement de vos données personnelles. Pour exercer ces droits, veuillez nous contacter à l'adresse suivante :"
+  }
+}

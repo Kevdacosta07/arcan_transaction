@@ -2,66 +2,44 @@
 
 import FadeIn from "./FadeIn";
 import TypologieItem from "./TypologieItem";
-
-const assets = [
-  { 
-    name: "Résidentiel", 
-    num: "01",
-    items: [
-      "Immeubles de logement",
-      "Immeubles mixtes (prédominance résidentielle)"
-    ]
-  },
-  { 
-    name: "Commercial", 
-    num: "02",
-    items: [
-      "Immeubles de bureaux",
-      "Surfaces retail",
-      "Centres commerciaux",
-      "Immeubles mixtes (prédominance commerciale)"
-    ]
-  },
-  { 
-    name: "Hôtellerie", 
-    num: "03",
-    items: [
-      "Mur et exploitation",
-      "Mur",
-      "Exploitation"
-    ]
-  },
-  { 
-    name: "Médico-social", 
-    num: "04",
-    items: [
-      "EMS / Senior",
-      "Résidences étudiantes",
-      "Hôpitaux",
-      "Cliniques"
-    ]
-  },
-  { 
-    name: "Industriel", 
-    num: "05",
-    items: [
-      "Industriel à proprement parler",
-      "Logistique",
-      "Data centers",
-      "Dépôts, parkings…"
-    ]
-  },
-  { 
-    name: "Terrains", 
-    num: "06",
-    items: [
-      "Parcelles avec ou sans permis",
-      "De tout type d'affectation"
-    ]
-  }
-];
+import { useTranslations } from 'next-intl';
 
 export default function TypologieSection() {
+  const t = useTranslations('typologie');
+  
+  const assets = [
+    { 
+      name: t('residential'), 
+      num: "01",
+      items: t.raw('residentialItems') as string[]
+    },
+    { 
+      name: t('commercial'), 
+      num: "02",
+      items: t.raw('commercialItems') as string[]
+    },
+    { 
+      name: t('hospitality'), 
+      num: "03",
+      items: t.raw('hospitalityItems') as string[]
+    },
+    { 
+      name: t('healthcare'), 
+      num: "04",
+      items: t.raw('healthcareItems') as string[]
+    },
+    { 
+      name: t('industrial'), 
+      num: "05",
+      items: t.raw('industrialItems') as string[]
+    },
+    { 
+      name: t('land'), 
+      num: "06",
+      items: t.raw('landItems') as string[]
+    }
+  ];
+
   return (
     <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
       {/* Decorative Background Elements */}
@@ -75,13 +53,13 @@ export default function TypologieSection() {
            <div>
               <FadeIn>
                 <span className="text-accent text-xs font-bold tracking-[0.3em] uppercase mb-6 block">
-                  Nos Domaines
+                  {t('label')}
                 </span>
                 <h2 className="text-5xl md:text-6xl font-serif text-[#021024] mb-8 leading-tight">
-                  Typologie <br/> d&apos;actifs
+                  {t('title1')} <br/> {t('title2')}
                 </h2>
                 <p className="text-lg text-gray-500 font-light mb-12 max-w-md leading-relaxed">
-                  Arcan Transactions SA est spécialisée dans la transaction d&apos;immeubles, de tous types d&apos;affectations.
+                  {t('description')}
                 </p>
               </FadeIn>
 
@@ -102,7 +80,7 @@ export default function TypologieSection() {
               <div className="mt-12">
                 <FadeIn delay={600}>
                   <a href="/criteres" className="inline-flex items-center gap-3 px-8 py-4 bg-[#021024] text-white rounded-sm hover:bg-[#5483B3] transition-colors group">
-                      <span className="text-sm font-medium">Critères d&apos;investissement</span>
+                      <span className="text-sm font-medium">{t('cta')}</span>
                       <span className="group-hover:translate-x-1 transition-transform">→</span>
                   </a>
                 </FadeIn>

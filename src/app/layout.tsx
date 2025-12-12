@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat, Roboto, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import CookieBanner from "@/components/CookieBanner";
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
@@ -30,21 +29,20 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Arcan Transactions",
-  description: "Transactions d'immeubles de rendement en Suisse - Segment institutionnel et professionnel",
+  description: "Transactions d'immeubles de rendement en Suisse",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="fr">
       <body
         className={`${libreBaskerville.variable} ${montserrat.variable} ${roboto.variable} ${cormorantGaramond.variable} antialiased`}
       >
         {children}
-        <CookieBanner />
       </body>
     </html>
   );

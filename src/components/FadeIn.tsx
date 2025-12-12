@@ -28,8 +28,9 @@ export default function FadeIn({
       },
       {
         root: null,
-        rootMargin: "0px",
-        threshold: 0.15,
+        // Trigger a bit earlier (before the element fully enters the viewport)
+        rootMargin: "0px 0px 15% 0px",
+        threshold: 0.05,
       }
     );
 
@@ -44,26 +45,12 @@ export default function FadeIn({
     };
   }, []);
 
-  const getInitialTransform = () => {
-    switch (direction) {
-      case "up": return "translateY(30px)";
-      case "down": return "translateY(-30px)";
-      case "left": return "translateX(30px)";
-      case "right": return "translateX(-30px)";
-      default: return "translateY(0)";
-    }
-  };
-
   return (
     <div
       ref={ref}
-      className={className}
+      className={`reveal reveal--${direction} ${isVisible ? "is-visible" : ""} ${className}`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0) translateX(0)" : getInitialTransform(),
-        transition: `opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
-        transitionDelay: `${delay}ms`,
-        willChange: "opacity, transform"
+        ["--reveal-delay" as any]: `${delay}ms`
       }}
     >
       {children}

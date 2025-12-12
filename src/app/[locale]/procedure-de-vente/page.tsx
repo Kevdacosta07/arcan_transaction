@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 
 // --- Elegant Animation Component ---
 function RevealOnScroll({ 
@@ -226,7 +227,7 @@ function FormeDeVenteItem({
     index: number
 }) {
     return (
-        <div id={id} className="border-b border-white/10 last:border-0 scroll-mt-32">
+        <div id={id} className="border-b border-white/10 last:border-0 scroll-mt-48">
             <button 
                 onClick={onClick}
                 className="w-full py-8 flex items-center justify-between text-left group"
@@ -269,6 +270,8 @@ function FormeDeVenteItem({
 }
 
 export default function ProcessusPage() {
+    const t = useTranslations('salesProcedure');
+
   // Independent state for each section to allow default open on both
   const [venteAccordion, setVenteAccordion] = useState<string | null>("vente-types");
   const [appelAccordion, setAppelAccordion] = useState<string | null>("appel-types");
@@ -282,40 +285,73 @@ export default function ProcessusPage() {
   const [formesAccordion, setFormesAccordion] = useState<string | null>("asset-deal");
   const toggleFormes = (id: string) => setFormesAccordion(formesAccordion === id ? null : id);
 
+    const venteTimelineSteps = t.raw('directSale.timeline.steps') as string[];
+    const venteAdvantages = t.raw('directSale.advantages.items') as string[];
+    const appelTimelineSteps = t.raw('callForTenders.timeline.steps') as string[];
+    const appelAdvantages = t.raw('callForTenders.advantages.items') as string[];
+
   useEffect(() => {
-      const handleHashChange = () => {
-          if (window.location.hash) {
-              const hash = window.location.hash.substring(1);
-              if (hash === 'mandat-exclusif' || hash === 'mandat-simple') {
-                  setMandatOpen(hash);
+      const formesValues = new Set(['asset-deal', 'share-deal', 'sale-leaseback']);
+
+      const applyUrlState = () => {
+          const params = new URLSearchParams(window.location.search);
+
+          // Query params (from navbar)
+          const mandat = params.get('mandat');
+          if (mandat === 'exclusif') setMandatOpen('mandat-exclusif');
+          if (mandat === 'simple') setMandatOpen('mandat-simple');
+
+          // Hash-based state (legacy + direct anchors)
+          const hash = window.location.hash ? window.location.hash.substring(1) : '';
+          if (hash === 'mandat-exclusif' || hash === 'mandat-simple') {
+              setMandatOpen(hash);
+          }
+
+          // "Formes de Vente" can be selected via legacy hashes OR via ?forme=...
+          let forme: string | null = null;
+          if (formesValues.has(hash)) {
+              forme = hash;
+          } else if (hash === 'formes-de-vente') {
+              // Clean URL option: store the intended accordion in sessionStorage before navigation.
+              try {
+                  const stored = window.sessionStorage.getItem('arcan_forme_de_vente');
+                  if (stored && formesValues.has(stored)) {
+                      forme = stored;
+                  }
+                  window.sessionStorage.removeItem('arcan_forme_de_vente');
+              } catch {
+                  // Ignore if storage is unavailable
               }
-              if (hash === 'asset-deal' || hash === 'share-deal' || hash === 'sale-leaseback') {
-                  setFormesAccordion(hash);
-                  setTimeout(() => {
-                      const element = document.getElementById('formes-de-vente');
-                      if (element) {
-                          const yOffset = -50; // Adjust this value to control scroll position
-                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                          window.scrollTo({ top: y, behavior: 'smooth' });
-                      }
-                  }, 300);
+          } else {
+              // Backward compatibility if an old link is still used
+              const formeParam = params.get('forme');
+              if (formeParam && formesValues.has(formeParam)) {
+                  forme = formeParam;
               }
+          }
+
+          if (forme) {
+              setFormesAccordion(forme);
+              setTimeout(() => {
+                  const element = document.getElementById('formes-de-vente');
+                  if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                  }
+              }, 300);
           }
       };
 
       if (typeof window !== 'undefined') {
           // Handle initial load
-          handleHashChange();
+          applyUrlState();
 
-          // Handle query params (from navbar)
-          const params = new URLSearchParams(window.location.search);
-          const mandat = params.get('mandat');
-          if (mandat === 'exclusif') setMandatOpen('mandat-exclusif');
-          if (mandat === 'simple') setMandatOpen('mandat-simple');
-
-          // Listen for hash changes
-          window.addEventListener('hashchange', handleHashChange);
-          return () => window.removeEventListener('hashchange', handleHashChange);
+          // Keep state synced with URL changes
+          window.addEventListener('hashchange', applyUrlState);
+          window.addEventListener('popstate', applyUrlState);
+          return () => {
+              window.removeEventListener('hashchange', applyUrlState);
+              window.removeEventListener('popstate', applyUrlState);
+          };
       }
   }, []);
 
@@ -330,7 +366,7 @@ export default function ProcessusPage() {
          <div className="absolute inset-0 z-0">
             <img 
                 src="https://images.unsplash.com/photo-1721074488012-d2cadea78113?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                alt="Architecture Background" 
+                alt={t('hero.imageAlt')} 
                 className="w-full h-full object-cover"
             />
             {/* Overlay - Deep & Professional */}
@@ -345,14 +381,14 @@ export default function ProcessusPage() {
                 {/* Title Area */}
                 <div className="lg:col-span-7">
                     <RevealOnScroll variant="up" delay={100} triggerOnMount>
-                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">Méthodologie</span>
+                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">{t('hero.label')}</span>
                     </RevealOnScroll>
                     <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9]">
                         <RevealOnScroll variant="left" delay={200} triggerOnMount>
-                            <span className="block">Procédures</span>
+                            <span className="block">{t('hero.titleLine1')}</span>
                         </RevealOnScroll>
                         <RevealOnScroll variant="left" delay={350} triggerOnMount>
-                            <span className="block text-white/80 italic font-light">de vente</span>
+                            <span className="block text-white/80 italic font-light">{t('hero.titleLine2')}</span>
                         </RevealOnScroll>
                     </h1>
                 </div>
@@ -361,7 +397,7 @@ export default function ProcessusPage() {
                 <div className="lg:col-span-5 pb-2">
                     <RevealOnScroll variant="up" delay={500} triggerOnMount>
                         <p className="text-base md:text-lg text-gray-300 font-light leading-relaxed text-justify">
-                            Arcan Transactions SA s’occupe de la gestion complète du processus de vente en vue de maximiser le prix de vente de l’actif que se soit par le biais d’une vente directe ou d’un appel d’offres, en Asset Deal (vente en nom), Share Deal (vente en société) ou en Sale and lease-back.
+                            {t('hero.description')}
                         </p>
                     </RevealOnScroll>
                 </div>
@@ -378,14 +414,14 @@ export default function ProcessusPage() {
                 {/* Left: Header */}
                 <div>
                     <RevealOnScroll variant="left">
-                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">Avant-propos</span>
+                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">{t('mandate.introLabel')}</span>
                         <h2 className="text-5xl md:text-6xl font-serif text-white leading-none mb-8">
-                            Type de <span className="italic text-[#5483B3]">Mandat</span>
+                            {t('mandate.titlePrefix')} <span className="italic text-[#5483B3]">{t('mandate.titleEmphasis')}</span>
                         </h2>
                     </RevealOnScroll>
                     <RevealOnScroll variant="up" delay={150}>
                         <p className="text-lg text-gray-300 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6">
-                            Le type de mandat définit le cadre de notre collaboration et les modalités d'intervention pour la vente de votre bien.
+                            {t('mandate.description')}
                         </p>
                     </RevealOnScroll>
                 </div>
@@ -395,24 +431,24 @@ export default function ProcessusPage() {
                     <RevealOnScroll variant="up" delay={200}>
                         <MandatAccordionItem 
                             id="mandat-simple"
-                            title="Mandat Simple" 
+                            title={t('mandate.simple.title')} 
                             letter="S"
                             isOpen={mandatOpen === "mandat-simple"}
                             onClick={() => toggleMandat("mandat-simple")}
                         >
-                            Le propriétaire peut mandater plusieurs intermédiaires simultanément. Cette formule offre une plus grande flexibilité mais peut limiter l'investissement de chaque mandataire.
+                            {t('mandate.simple.description')}
                         </MandatAccordionItem>
                     </RevealOnScroll>
 
                     <RevealOnScroll variant="up" delay={300}>
                         <MandatAccordionItem 
                             id="mandat-exclusif"
-                            title="Mandat Exclusif" 
+                            title={t('mandate.exclusive.title')} 
                             letter="E"
                             isOpen={mandatOpen === "mandat-exclusif"}
                             onClick={() => toggleMandat("mandat-exclusif")}
                         >
-                            Arcan Transactions SA est le seul intermédiaire mandaté pour la vente du bien. Cette exclusivité nous permet de déployer l’ensemble de nos ressources et de garantir une approche et un contrôle optimal.
+                            {t('mandate.exclusive.description')}
                         </MandatAccordionItem>
                     </RevealOnScroll>
                 </div>
@@ -448,15 +484,15 @@ export default function ProcessusPage() {
                 <div className="lg:col-span-5">
                     <div className="sticky top-32">
                         <RevealOnScroll variant="left">
-                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">01. Méthodologie</span>
+                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">{t('directSale.label')}</span>
                             <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
-                                Vente<br/><span className="italic text-[#5483B3]">Directe</span>
+                                {t('directSale.titleLine1')}<br/><span className="italic text-[#5483B3]">{t('directSale.titleLine2')}</span>
                             </h2>
                         </RevealOnScroll>
                         
                         <RevealOnScroll variant="up" delay={150}>
                             <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
-                                Une approche ciblée et confidentielle pour des transactions rapides et maîtrisées. Idéale pour les propriétaires souhaitant discrétion et rapidité.
+                                {t('directSale.description')}
                             </p>
                         </RevealOnScroll>
 
@@ -464,7 +500,7 @@ export default function ProcessusPage() {
                             <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
                                 <img 
                                     src="https://images.unsplash.com/photo-1620223715854-f3c2b1157fec?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                                    alt="Meeting" 
+                                    alt={t('directSale.imageAlt')} 
                                     className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
                                 />
                             </div>
@@ -477,46 +513,37 @@ export default function ProcessusPage() {
                     <RevealOnScroll variant="up" delay={200}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
-                                title="Forme de la vente" 
+                                title={t('directSale.saleForm.title')} 
                                 isOpen={venteAccordion === "vente-types"} 
                                 onClick={() => toggleVente("vente-types")}
                             >
                                 <div className="space-y-8 pb-4">
                                     <div>
-                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Exclusive</h4>
-                                        <p>L’objet est présenté à un seul prospect, au prix fixé. La vente se concrétise uniquement si le prix est accepté, garantissant une confidentialité totale.</p>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">{t('directSale.saleForm.exclusive.title')}</h4>
+                                        <p>{t('directSale.saleForm.exclusive.description')}</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Sélective</h4>
-                                        <p>L’objet est présenté au prix fixé à plusieurs investisseurs qualifiés. Le principe est simple : le premier offrant au prix obtient l’attribution (« first in, first served »).</p>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">{t('directSale.saleForm.selective.title')}</h4>
+                                        <p>{t('directSale.saleForm.selective.description')}</p>
                                     </div>
                                 </div>
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Timeline" 
+                                title={t('directSale.timeline.title')} 
                                 isOpen={venteAccordion === "vente-timeline"} 
                                 onClick={() => toggleVente("vente-timeline")}
                             >
                                 <div className="relative pb-4 pt-2">
                                     <div className="flex items-center justify-between mb-10 relative z-10">
-                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Processus & Timing</span>
+                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">{t('directSale.timeline.label')}</span>
                                         <div className="px-4 py-1.5 bg-white border border-gray-200 text-[#5483B3] text-sm font-serif rounded-full shadow-sm">
-                                            3 sem. - 1.5 mois
+                                            {t('directSale.timeline.duration')}
                                         </div>
                                     </div>
 
                                     <div className="relative space-y-0 z-10">
-                                        {[
-                                            "Sélection de un ou plusieurs investisseur/s",
-                                            "Envoi teaser + NDA",
-                                            "Réception NDA signées & ouverture short-dataroom",
-                                            "Réception NBO & ouverture full dataroom",
-                                            "Due diligence",
-                                            "Réception des BO et acceptation",
-                                            "Revue du projet d’acte notarié",
-                                            "Signing & closing"
-                                        ].map((step, i, arr) => (
+                                        {venteTimelineSteps.map((step, i, arr) => (
                                             <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
                                                 {/* Connecting Line */}
                                                 {i !== arr.length - 1 && (
@@ -539,14 +566,14 @@ export default function ProcessusPage() {
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Avantages" 
+                                title={t('directSale.advantages.title')} 
                                 isOpen={venteAccordion === "vente-proscons"} 
                                 onClick={() => toggleVente("vente-proscons")}
                             >
                                 <div className="pb-4">
                                     <div>
                                         <ul className="space-y-2">
-                                            {["Prix de vente fixé à l’avance", "Approche ciblée", "Souplesse de négociation", "Rapidité de la procédure", "Procédure d’attribution de gré à gré"].map((item, i) => (
+                                            {venteAdvantages.map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">
                                                     <span className="text-gray-400">+</span> {item}
                                                 </li>
@@ -589,15 +616,15 @@ export default function ProcessusPage() {
                 <div className="lg:col-span-5 lg:order-2">
                     <div className="sticky top-32">
                         <RevealOnScroll variant="right">
-                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">02. Méthodologie</span>
+                            <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">{t('callForTenders.label')}</span>
                             <h2 className="text-5xl md:text-7xl font-serif text-[#021024] leading-none mb-8">
-                                Appel<br/><span className="italic text-[#5483B3]">d'Offres</span>
+                                {t('callForTenders.titleLine1')}<br/><span className="italic text-[#5483B3]">{t('callForTenders.titleLine2')}</span>
                             </h2>
                         </RevealOnScroll>
                         
                         <RevealOnScroll variant="up" delay={150}>
                             <p className="text-lg text-gray-600 font-light leading-relaxed border-l-2 border-[#5483B3] pl-6 mb-12">
-                                Un processus structuré pour maximiser la valeur par la concurrence. Recommandé pour les actifs à fort potentiel de marché.
+                                {t('callForTenders.description')}
                             </p>
                         </RevealOnScroll>
 
@@ -605,7 +632,7 @@ export default function ProcessusPage() {
                             <div className="relative h-[300px] w-full overflow-hidden hidden lg:block">
                                 <img 
                                     src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1470&auto=format&fit=crop" 
-                                    alt="Signing" 
+                                    alt={t('callForTenders.imageAlt')} 
                                     className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
                                 />
                             </div>
@@ -618,46 +645,37 @@ export default function ProcessusPage() {
                     <RevealOnScroll variant="up" delay={200}>
                         <div className="border-t border-gray-200">
                             <AccordionItem 
-                                title="Forme de la vente" 
+                                title={t('callForTenders.saleForm.title')} 
                                 isOpen={appelAccordion === "appel-types"} 
                                 onClick={() => toggleAppel("appel-types")}
                             >
                                 <div className="space-y-8 pb-4">
                                     <div>
-                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Sélective</h4>
-                                        <p>Pour des objets très spécifiques, il convient de limiter le cercle des investisseurs potentiels à quelques prospects triés sur le volet.</p>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">{t('callForTenders.saleForm.selective.title')}</h4>
+                                        <p>{t('callForTenders.saleForm.selective.description')}</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-xl font-serif text-[#021024] mb-2">Ouverte</h4>
-                                        <p>Pour des objets très recherchés par le marché, il convient d’ouvrir le cercle des investisseurs au maximum en vue de créer de la concurrence pour optimiser le prix de vente.</p>
+                                        <h4 className="text-xl font-serif text-[#021024] mb-2">{t('callForTenders.saleForm.open.title')}</h4>
+                                        <p>{t('callForTenders.saleForm.open.description')}</p>
                                     </div>
                                 </div>
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Timeline" 
+                                title={t('callForTenders.timeline.title')} 
                                 isOpen={appelAccordion === "appel-timeline"} 
                                 onClick={() => toggleAppel("appel-timeline")}
                             >
                                 <div className="relative pb-4 pt-2">
                                     <div className="flex items-center justify-between mb-10 relative z-10">
-                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Processus & Timing</span>
+                                        <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">{t('callForTenders.timeline.label')}</span>
                                         <div className="px-4 py-1.5 bg-white border border-gray-200 text-[#5483B3] text-sm font-serif rounded-full shadow-sm">
-                                            2 à 3 mois
+                                            {t('callForTenders.timeline.duration')}
                                         </div>
                                     </div>
 
                                     <div className="relative space-y-0 z-10">
-                                        {[
-                                            "Sélection de multiples investisseurs",
-                                            "Envoi teaser + NDA",
-                                            "Réception NDA signées & envoi Information Memorandum",
-                                            "Réception NBO, sélection de la short list & ouverture de la dataroom complète",
-                                            "Due diligence",
-                                            "Réception BO & adjudication",
-                                            "Revue du projet d’acte notarié",
-                                            "Signing & closing"
-                                        ].map((step, i, arr) => (
+                                        {appelTimelineSteps.map((step, i, arr) => (
                                             <div key={i} className="relative pl-12 pb-8 last:pb-0 group">
                                                 {/* Connecting Line */}
                                                 {i !== arr.length - 1 && (
@@ -680,14 +698,14 @@ export default function ProcessusPage() {
                             </AccordionItem>
 
                             <AccordionItem 
-                                title="Avantages" 
+                                title={t('callForTenders.advantages.title')} 
                                 isOpen={appelAccordion === "appel-proscons"} 
                                 onClick={() => toggleAppel("appel-proscons")}
                             >
                                 <div className="pb-4">
                                     <div>
                                         <ul className="space-y-2">
-                                            {["Prix de vente « plancher »", "Processus structuré et contrôlé", "Délais fixés impératifs", "Concurrence & Surenchère", "Adapté aux institutionnels"].map((item, i) => (
+                                            {appelAdvantages.map((item, i) => (
                                                 <li key={i} className="flex items-start gap-2 text-sm">
                                                     <span className="text-gray-400">+</span> {item}
                                                 </li>
@@ -740,10 +758,10 @@ export default function ProcessusPage() {
             <div className="text-center mb-16 lg:mb-24">
                 <RevealOnScroll variant="up">
                     <span className="text-xs uppercase tracking-[0.3em] text-[#5483B3] mb-4 block">
-                        Structuration
+                        {t('salesForms.label')}
                     </span>
                     <h2 className="text-5xl md:text-7xl font-serif leading-none">
-                        Formes de Vente
+                        {t('salesForms.title')}
                     </h2>
                 </RevealOnScroll>
             </div>
@@ -756,7 +774,7 @@ export default function ProcessusPage() {
                         <div className="relative h-[500px] w-full overflow-hidden rounded-sm shadow-2xl shadow-[#021024]/50">
                             <img 
                                 src="https://images.unsplash.com/photo-1531062655013-ebcacdf1c350?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                                alt="Modern Architecture" 
+                                alt={t('salesForms.imageAlt')} 
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                             />
                         </div>
@@ -768,22 +786,22 @@ export default function ProcessusPage() {
                     <div className="space-y-0">
                         <RevealOnScroll variant="up" delay={100}>
                         <FormeDeVenteItem 
-                            id="item-asset-deal"
-                            title="Asset Deal"
-                            subtitle="Vente en nom"
+                            id="asset-deal"
+                            title={t('salesForms.assetDeal.title')}
+                            subtitle={t('salesForms.assetDeal.subtitle')}
                             index={1}
                             isOpen={formesAccordion === "asset-deal"}
                             onClick={() => toggleFormes("asset-deal")}
                             description={
                                 <>
                                     <p className="mb-4">
-                                        Dans le cadre d&apos;un Asset Deal, c&apos;est l&apos;immeuble lui-même qui est vendu.
+                                        {t('salesForms.assetDeal.p1')}
                                     </p>
                                     <p className="mb-4">
-                                        La vente en nom présente moins de risques pour l’investisseur, car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.
+                                        {t('salesForms.assetDeal.p2')}
                                     </p>
                                     <p>
-                                        Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l&apos;acheteur, conformément à l&apos;usage.
+                                        {t('salesForms.assetDeal.p3')}
                                     </p>
                                 </>
                             }
@@ -792,19 +810,19 @@ export default function ProcessusPage() {
 
                         <RevealOnScroll variant="up" delay={250}>
                         <FormeDeVenteItem 
-                            id="item-share-deal"
-                            title="Share Deal"
-                            subtitle="Vente en société"
+                            id="share-deal"
+                            title={t('salesForms.shareDeal.title')}
+                            subtitle={t('salesForms.shareDeal.subtitle')}
                             index={2}
                             isOpen={formesAccordion === "share-deal"}
                             onClick={() => toggleFormes("share-deal")}
                             description={
                                 <>
                                     <p className="mb-4">
-                                        Dans le cadre d’un Share Deal, ce sont les actions de la société propriétaire de l’immeuble qui sont vendues.
+                                        {t('salesForms.shareDeal.p1')}
                                     </p>
                                     <p className="mb-4">
-                                        La vente en société présente des avantages financiers et fiscaux pour le vendeur comme pour l’acquéreur. Ici, une due diligence plus approfondie est toutefois nécessaire, car l’acquéreur reprend l’ensemble des risques liés à l’historique de la société.
+                                        {t('salesForms.shareDeal.p2')}
                                     </p>
                                 </>
                             }
@@ -813,19 +831,19 @@ export default function ProcessusPage() {
 
                         <RevealOnScroll variant="up" delay={400}>
                         <FormeDeVenteItem
-                            id="item-sale-leaseback"
-                            title="Sale & Leaseback"
-                            subtitle="Cession-bail"
+                            id="sale-leaseback"
+                            title={t('salesForms.saleLeaseback.title')}
+                            subtitle={t('salesForms.saleLeaseback.subtitle')}
                             index={3}
                             isOpen={formesAccordion === "sale-leaseback"}
                             onClick={() => toggleFormes("sale-leaseback")}
                             description={
                                 <>
                                     <p className="mb-4">
-                                        Le sale and leaseback peut prendre la forme soit d'un Asset Deal soit d'un Share Deal.
+                                        {t('salesForms.saleLeaseback.p1')}
                                     </p>
                                     <p className="mb-4">
-                                        Dans ce cas particulier, le propriétaire cède son immeuble tout en y demeurant locataire. Il convient ici de déterminer quelle option est la plus avantageuse pour le mandant : maximiser le prix de vente ou, à l'inverse, d'optimiser les conditions de location.
+                                        {t('salesForms.saleLeaseback.p2')}
                                     </p>
                                 </>
                             }
