@@ -580,5 +580,10 @@
     "cookiesText": "This site may use cookies to improve your browsing experience and analyze traffic (anonymous statistics). You can configure your browser to refuse cookies.",
     "yourRights": "Your Rights",
     "yourRightsText": "In accordance with applicable legislation, you have the right to access, rectify, delete and limit the processing of your personal data. To exercise these rights, please contact us at:"
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to Home"
   }
 }

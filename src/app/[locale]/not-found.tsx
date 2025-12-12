@@ -1,7 +1,10 @@
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
+  const t = useTranslations('NotFound');
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center px-4 text-center bg-[#021024] text-white relative overflow-hidden">
       
@@ -26,11 +29,11 @@ export default function NotFound() {
         <div className="w-16 h-[1px] bg-white/60 mx-auto my-6"></div>
         
         <h2 className="text-xl md:text-2xl font-light tracking-wide mb-6 text-white">
-          Page Introuvable
+          {t('title')}
         </h2>
         
         <p className="text-white/70 text-base md:text-lg font-light max-w-md mx-auto mb-10">
-          La page que vous recherchez n'existe pas ou a été déplacée.
+          {t('description')}
         </p>
         
         <Link 
@@ -38,7 +41,7 @@ export default function NotFound() {
           className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden transition-all duration-300 border border-white hover:bg-white"
         >
           <span className="text-xs font-medium tracking-[0.2em] uppercase text-white group-hover:text-[#021024] transition-colors duration-300">
-            Retour à l'accueil
+            {t('backHome')}
           </span>
         </Link>
       </div>
