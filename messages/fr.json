@@ -1,7 +1,33 @@
 {
   "metadata": {
-    "title": "Arcan Transactions",
-    "description": "Transactions d'immeubles de rendement en Suisse - Segment institutionnel et professionnel"
+    "title": "Arcan Transactions | Transactions immobilières en Suisse",
+    "description": "Transactions d'immeubles de rendement en Suisse - Segment institutionnel et professionnel",
+    "pages": {
+      "home": {
+        "title": "Arcan Transactions | Transactions immobilières en Suisse",
+        "description": "Spécialiste des transactions d'immeubles de rendement en Suisse. Accompagnement sur mesure pour investisseurs institutionnels, caisses de pension et family offices."
+      },
+      "contact": {
+        "title": "Contact | Arcan Transactions",
+        "description": "Contactez Arcan Transactions SA à Genève. Experts en transactions immobilières pour le segment institutionnel et professionnel en Suisse."
+      },
+      "realisations": {
+        "title": "Réalisations | Arcan Transactions",
+        "description": "Découvrez nos transactions immobilières réalisées en Suisse. Plus de 100 immeubles vendus et un volume cumulé de plus de 2 milliards."
+      },
+      "criteres": {
+        "title": "Critères d'investissement | Arcan Transactions",
+        "description": "Définissez vos critères d'investissement immobilier. Nous vous proposons des opportunités ciblées en fonction de votre profil."
+      },
+      "procedureDeVente": {
+        "title": "Procédures de vente | Arcan Transactions",
+        "description": "Découvrez nos procédures de vente immobilière : vente directe, appel d'offres, Asset Deal, Share Deal et Sale & Leaseback."
+      },
+      "mentionsLegales": {
+        "title": "Mentions légales | Arcan Transactions",
+        "description": "Mentions légales et politique de confidentialité d'Arcan Transactions SA, société spécialisée dans les transactions immobilières en Suisse."
+      }
+    }
   },
   "nav": {
     "language": "Langue",

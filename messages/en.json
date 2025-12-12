@@ -1,7 +1,33 @@
 {
   "metadata": {
-    "title": "Arcan Transactions",
-    "description": "Investment property transactions in Switzerland - Institutional and professional segment"
+    "title": "Arcan Transactions | Real Estate Transactions in Switzerland",
+    "description": "Investment property transactions in Switzerland - Institutional and professional segment",
+    "pages": {
+      "home": {
+        "title": "Arcan Transactions | Real Estate Transactions in Switzerland",
+        "description": "Specialists in investment property transactions in Switzerland. Tailored support for institutional investors, pension funds and family offices."
+      },
+      "contact": {
+        "title": "Contact | Arcan Transactions",
+        "description": "Contact Arcan Transactions SA in Geneva. Experts in real estate transactions for the institutional and professional segment in Switzerland."
+      },
+      "realisations": {
+        "title": "Track Record | Arcan Transactions",
+        "description": "Discover our completed real estate transactions in Switzerland. Over 100 buildings sold and a cumulative volume of over 2 billion."
+      },
+      "criteres": {
+        "title": "Investment Criteria | Arcan Transactions",
+        "description": "Define your real estate investment criteria. We offer targeted opportunities based on your profile."
+      },
+      "procedureDeVente": {
+        "title": "Sales Procedures | Arcan Transactions",
+        "description": "Discover our real estate sales procedures: direct sale, call for tenders, Asset Deal, Share Deal and Sale & Leaseback."
+      },
+      "mentionsLegales": {
+        "title": "Legal Notice | Arcan Transactions",
+        "description": "Legal notice and privacy policy of Arcan Transactions SA, a company specializing in real estate transactions in Switzerland."
+      }
+    }
   },
   "nav": {
     "language": "Language",

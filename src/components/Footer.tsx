@@ -1,14 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import CookieSettingsLink from "./CookieSettingsLink";
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
   const t = useTranslations('footer');
-  const locale = useLocale();
-  const localePath = locale === 'fr' ? '' : `/${locale}`;
   
   return (
     <footer className="relative overflow-hidden bg-[#021024] text-white pt-20 pb-10 border-t border-white/10">
@@ -59,8 +57,8 @@ export default function Footer() {
              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-xs text-gray-600 uppercase tracking-widest">
                <p>&copy; {new Date().getFullYear()} Arcan Transactions SA</p>
                <div className="flex gap-6">
-                   <Link href={`${localePath}/mentions-legales`} className="hover:text-white transition-colors">{t('legal')}</Link>
-                   <Link href={`${localePath}/mentions-legales#confidentialite`} className="hover:text-white transition-colors">{t('privacy')}</Link>
+                   <Link href="/mentions-legales" className="hover:text-white transition-colors">{t('legal')}</Link>
+                   <Link href="/mentions-legales#confidentialite" className="hover:text-white transition-colors">{t('privacy')}</Link>
                    <CookieSettingsLink />
                </div>
              </div>
