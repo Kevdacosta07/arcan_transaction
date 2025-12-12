@@ -1,13 +1,13 @@
 "use client";
 
 import { useLocale } from 'next-intl';
-import { usePathname } from '@/i18n/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/i18n/navigation';
 import { useTransition, useState, useRef, useEffect } from 'react';
+import { type Locale } from '@/i18n/routing';
 
-const languages = [
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'en', label: 'English', flag: '🇬🇧' },
+const languages: { code: Locale; label: string }[] = [
+  { code: 'fr', label: 'Français' },
+  { code: 'en', label: 'English' },
 ];
 
 export default function LanguageSwitcher() {
@@ -31,20 +31,14 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const switchLocale = (newLocale: string) => {
+  const switchLocale = (newLocale: Locale) => {
     if (newLocale === locale) {
       setIsOpen(false);
       return;
     }
     
     startTransition(() => {
-      if (newLocale === 'fr') {
-        // French = root path (no /fr prefix)
-        router.replace(pathname);
-      } else {
-        // English = /en prefix
-        router.replace(`/en${pathname}`);
-      }
+      router.replace(pathname, { locale: newLocale });
     });
     setIsOpen(false);
   };
