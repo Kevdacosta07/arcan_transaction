@@ -259,7 +259,10 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay - Optimized for Performance */}
         <div 
-            className={`fixed inset-0 z-50 bg-[#021024] lg:hidden transition-transform duration-500 ease-out will-change-transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            className={`fixed inset-0 z-50 bg-[#021024] lg:hidden transition-[clip-path] duration-700 ease-in-out ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+            style={{
+                clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0px at calc(100% - 3rem) 3rem)'
+            }}
         >
             {/* Background decorations - GPU optimized with no blur */}
             <div 

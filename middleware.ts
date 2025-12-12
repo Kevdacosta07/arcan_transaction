@@ -8,9 +8,11 @@ const intlMiddleware = createMiddleware(routing);
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Block /fr URLs - return 404
-  if (pathname === '/fr' || pathname.startsWith('/fr/')) {
-    return NextResponse.rewrite(new URL('/not-found', request.url));
+  // Redirect root to default locale
+  if (pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/fr';
+    return NextResponse.redirect(url);
   }
 
   // Apply next-intl middleware for locale handling

@@ -36,7 +36,7 @@ export default function LanguageSwitcher() {
       setIsOpen(false);
       return;
     }
-    
+
     startTransition(() => {
       router.replace(pathname, { locale: newLocale });
     });
