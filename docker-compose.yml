@@ -10,9 +10,9 @@ services:
       - "3000"
       
     environment:
-      - VIRTUAL_HOST=arcan.helveit.ch
-      - LETSENCRYPT_HOST=arcan.helveit.ch
-      - LETSENCRYPT_EMAIL=info@arcan.ch
+      - VIRTUAL_HOST=arcan.helveit.ch,arcan-transactions.ch
+      - LETSENCRYPT_HOST=arcan.helveit.ch,arcan-transactions.ch
+      - LETSENCRYPT_EMAIL=contact@arcan-transactions.ch
       - VIRTUAL_PORT=3000
       - SMTP_PASSWORD=${SMTP_PASSWORD}
     
