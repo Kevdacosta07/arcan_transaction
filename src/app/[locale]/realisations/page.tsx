@@ -233,17 +233,17 @@ export default function RealisationsPage() {
                 <div className="absolute top-[40%] -left-[10%] w-[40vw] h-[40vw] rounded-full border border-current opacity-5"></div>
                 
                 {/* Large Number Background */}
-                <div className="absolute bottom-[-5vh] left-[-2vw] text-[30vw] font-serif font-bold leading-none opacity-[0.04] select-none tracking-tighter">
+                <div className="absolute top-[5vh] left-[-5vw] text-[50vw] font-serif font-bold leading-none opacity-[0.04] select-none tracking-tighter">
                     0{index + 1}
                 </div>
              </div>
 
              {/* Content Layout */}
-             <div className="max-w-6xl w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+             <div className="max-w-6xl w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
                 
                 {/* Left: Title & Main Info (7 cols) */}
                 <div className="lg:col-span-7">
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-4 md:gap-8">
                         <RevealOnScroll delay={100} variant="slide">
                             <div className="flex items-center gap-4 opacity-60">
                                 <span className="text-sm tracking-[0.2em] uppercase">{card.date}</span>
@@ -253,7 +253,7 @@ export default function RealisationsPage() {
                         </RevealOnScroll>
                         
                         <RevealOnScroll delay={200} variant="fade">
-                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-serif leading-[0.9] tracking-tight break-words">
+                            <h2 className="text-3xl md:text-6xl lg:text-[5rem] font-serif leading-[0.9] tracking-tight break-words whitespace-pre-line">
                                 {t(`projects.${card.id}.title`)}
                             </h2>
                         </RevealOnScroll>
@@ -267,11 +267,11 @@ export default function RealisationsPage() {
                 </div>
 
                 {/* Right: Details Table (5 cols) */}
-                <div className={`lg:col-span-5 lg:border-l ${card.borderColor} lg:pl-12 pt-8 lg:pt-0 flex flex-col h-full justify-center`}>
+                <div className={`lg:col-span-5 lg:border-l ${card.borderColor} lg:pl-12 pt-6 lg:pt-0 flex flex-col h-full justify-center`}>
                     
-                    <div className="space-y-12">
+                    <div className="space-y-6 lg:space-y-12">
                         <RevealOnScroll delay={500} variant="fade">
-                            <div className="grid grid-cols-2 gap-8">
+                            <div className="grid grid-cols-2 gap-4 md:gap-8">
                                 <div>
                                     <span className="block text-xs uppercase tracking-[0.2em] opacity-50 mb-2">{t('labels.seller')}</span>
                                     <span className="font-serif text-2xl">{t(`projects.${card.id}.seller`)}</span>
@@ -291,7 +291,7 @@ export default function RealisationsPage() {
                         </RevealOnScroll>
 
                         <RevealOnScroll delay={700} variant="fade">
-                            <div className="pt-8 opacity-40 text-sm max-w-xs leading-relaxed">
+                            <div className="pt-4 lg:pt-8 opacity-40 text-sm max-w-xs leading-relaxed">
                                 {t(`projects.${card.id}.description`)}
                             </div>
                         </RevealOnScroll>

@@ -234,7 +234,7 @@
     "cta": "Contactez-nous",
     "projects": {
       "p1": {
-        "title": "Immeuble exclusivement résidentiel",
+        "title": "Immeuble\nexclusivement\nrésidentiel",
         "seller": "Privé",
         "buyer": "Institutionnel",
         "location": "Renens, Vaud",
@@ -248,7 +248,7 @@
         "description": "Transaction d’un immeuble mixte réalisée sur la base d’un mandat exclusif via une procédure d’appel d’offres à deux tours."
       },
       "p3": {
-        "title": "Immeuble exclusivement résidentiel",
+        "title": "Immeuble\nexclusivement\nrésidentiel",
         "seller": "Privé",
         "buyer": "Privé",
         "location": "Meyrin, Genève",

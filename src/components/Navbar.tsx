@@ -25,13 +25,16 @@ function MobileLanguageButton({ code, label }: { code: Locale; label: string }) 
     <button
       onClick={handleClick}
       disabled={isPending}
-      className={`flex-1 py-3 text-sm font-medium uppercase tracking-wider rounded-lg transition-all ${
+      className={`relative text-xl font-serif transition-all duration-500 ${
         isActive 
-          ? 'bg-[#5483B3] text-white' 
-          : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+          ? 'text-white' 
+          : 'text-white/20 hover:text-white/60'
       } ${isPending ? 'opacity-50 cursor-wait' : ''}`}
     >
       {label}
+      {isActive && (
+        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#5483B3]"></span>
+      )}
     </button>
   );
 }
@@ -257,122 +260,120 @@ export default function Navbar() {
             <span className={`h-[2px] transition-transform duration-300 ease-out ${isOpen ? 'w-6 -rotate-45 -translate-y-2 bg-white' : 'w-4 bg-[#021024] group-hover:w-8'}`}></span>
         </button>
 
-        {/* Mobile Menu Overlay - Optimized for Performance */}
+        {/* Mobile Menu Overlay - Minimalist Corporate */}
         <div 
-            className={`fixed inset-0 z-50 bg-[#021024] lg:hidden transition-[clip-path] duration-700 ease-in-out ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+            className="fixed inset-0 z-50 bg-[#021024] lg:hidden transition-[clip-path] duration-700 ease-in-out"
             style={{
-                clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0px at calc(100% - 3rem) 3rem)'
+                clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)'
             }}
         >
-            {/* Background decorations - GPU optimized with no blur */}
-            <div 
-                className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)' }}
-            />
-            <div 
-                className="absolute bottom-[20%] left-[-20%] w-[60vw] h-[60vw] rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(84,131,179,0.08) 0%, transparent 70%)' }}
-            />
+            {/* Background Ambient Effects */}
+            <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[#5483B3]/20 rounded-full blur-[120px] pointer-events-none"></div>
+            <div className="absolute bottom-[-10%] left-[-20%] w-[500px] h-[500px] bg-[#5483B3]/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-            <div className="flex flex-col h-full relative z-10">
-                {/* Scrollable Menu Area */}
-                <div className="flex-1 overflow-y-auto px-6 pt-24 pb-6 scrollbar-hide">
-                    <div className="flex flex-col gap-6">
-                        <h4 className={`text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-1 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>Navigation</h4>
-                        
-                        {/* 01. Accueil */}
-                        <div className={`group transition-all duration-300 delay-75 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                            <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">01</span>
+            <div className="relative flex flex-col h-full px-6 pt-28 pb-8">
+                
+                {/* Navigation Links */}
+                <nav className="flex-1">
+                    <ul className="flex flex-col">
+                        {/* Accueil */}
+                        <li className={`border-b border-white/10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-100`}>
                             <Link 
                                 href="/" 
-                                className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block"
                                 onClick={() => setIsOpen(false)}
+                                className="block py-5 text-2xl font-serif text-white hover:text-[#5483B3] transition-colors"
                             >
-                                Accueil
+                                {t('home')}
                             </Link>
-                        </div>
+                        </li>
 
-                        {/* 02. Processus */}
-                        <div className={`group transition-all duration-300 delay-100 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                            <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">02</span>
-                            <div className="flex items-center justify-between cursor-pointer" onClick={() => setIsProcessusOpen(!isProcessusOpen)}>
-                                <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>Procédures de vente</span>
-                                <div className={`w-6 h-6 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 ${isProcessusOpen ? 'bg-[#5483B3] border-[#5483B3] rotate-180' : 'group-hover:border-[#5483B3]'}`}>
-                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                        {/* Procédures */}
+                        <li className={`border-b border-white/10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-150`}>
+                            <div>
+                                <button 
+                                    onClick={() => setIsProcessusOpen(!isProcessusOpen)}
+                                    className="flex items-center justify-between w-full text-left group py-5"
+                                >
+                                    <span className={`text-2xl font-serif transition-colors ${isProcessusOpen ? 'text-[#5483B3]' : 'text-white group-hover:text-[#5483B3]'}`}>
+                                        {t('salesProcedures')}
+                                    </span>
+                                    <span className={`transition-transform duration-300 ${isProcessusOpen ? 'rotate-180 text-[#5483B3]' : 'text-white/50'}`}>
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </span>
+                                </button>
+
+                                {/* Submenu */}
+                                <div className={`grid transition-all duration-300 ease-in-out overflow-hidden ${isProcessusOpen ? 'grid-rows-[1fr] opacity-100 pb-5' : 'grid-rows-[0fr] opacity-0'}`}>
+                                    <div className="min-h-0 space-y-6 pl-4 border-l border-white/10 ml-1">
+                                        
+                                        {/* Type de Mandat */}
+                                        <div className="space-y-2">
+                                            <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('mandateType')}</span>
+                                            <Link href="/procedure-de-vente?mandat=simple#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('simpleMandate')}</Link>
+                                            <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('exclusiveMandate')}</Link>
+                                        </div>
+
+                                        {/* Processus de Vente */}
+                                        <div className="space-y-2">
+                                            <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('salesProcess')}</span>
+                                            <Link href="/procedure-de-vente#vente-directe" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#vente-directe'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('directSale')}</Link>
+                                            <Link href="/procedure-de-vente#appel-d-offres" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('callForTenders')}</Link>
+                                        </div>
+
+                                        {/* Formes de Vente */}
+                                        <div className="space-y-2">
+                                            <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('salesForms')}</span>
+                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('asset-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('assetDeal')}</Link>
+                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('share-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('shareDeal')}</Link>
+                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('sale-leaseback'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('saleLeaseback')}</Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            {/* Dropdown */}
-                            <div className={`overflow-hidden transition-all duration-300 ease-out ${isProcessusOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                                <div className="pl-4 border-l border-white/10 space-y-3">
-                                    <div className="space-y-2">
-                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Type de Mandat</h4>
-                                        <Link href="/procedure-de-vente?mandat=simple#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat'); }}>Mandat Simple</Link>
-                                        <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat'); }}>Mandat Exclusif</Link>
-                                    </div>
-                                    <div className="space-y-2 pt-2">
-                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Processus de Vente</h4>
-                                        <Link href="/procedure-de-vente#vente-directe" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#vente-directe'); }}>Vente Directe</Link>
-                                        <Link href="/procedure-de-vente#appel-d-offres" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres'); }}>Appel d&apos;Offres</Link>
-                                    </div>
-                                    <div className="space-y-2 pt-2">
-                                        <h4 className="text-[9px] font-bold uppercase tracking-widest text-gray-500">Formes de Vente</h4>
-                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('asset-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Asset Deal</Link>
-                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('share-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Share Deal</Link>
-                                        <Link href="/procedure-de-vente#formes-de-vente" className="block text-base text-gray-300 hover:text-white transition-colors" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('sale-leaseback'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }}>Sale & Leaseback</Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </li>
 
-                        {/* 03. Critères */}
-                        <div className={`group transition-all duration-300 delay-150 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                            <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">03</span>
+                        {/* Critères */}
+                        <li className={`border-b border-white/10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-200`}>
                             <Link 
                                 href="/criteres" 
-                                className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block leading-tight"
                                 onClick={() => setIsOpen(false)}
+                                className="block py-5 text-2xl font-serif text-white hover:text-[#5483B3] transition-colors"
                             >
-                                Critères <br/> d&apos;investissement
+                                {t('investmentCriteria')}
                             </Link>
-                        </div>
+                        </li>
 
-                        {/* 04. Réalisations */}
-                        <div className={`group transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                            <span className="text-[9px] font-mono text-[#5483B3] mb-1 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-y-1 group-hover:translate-y-0">04</span>
+                        {/* Réalisations */}
+                        <li className={`border-b border-white/10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-250`}>
                             <Link 
                                 href="/realisations" 
-                                className="text-2xl font-serif text-white group-hover:text-[#5483B3] transition-colors block"
                                 onClick={() => setIsOpen(false)}
+                                className="block py-5 text-2xl font-serif text-white hover:text-[#5483B3] transition-colors"
                             >
-                                Réalisations
+                                {t('realisations')}
                             </Link>
-                        </div>
+                        </li>
 
-                        {/* Language Switcher - Mobile */}
-                        <div className={`pt-6 border-t border-white/10 transition-all duration-300 delay-250 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-4">{t('language') || 'Langue'}</h4>
-                            <div className="flex gap-3">
-                                <MobileLanguageButton code="fr" label="Français" />
-                                <MobileLanguageButton code="en" label="English" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        {/* Contact - Moved to main list */}
+                        <li className={`border-b border-white/10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-300`}>
+                            <Link 
+                                href="/contact" 
+                                onClick={() => setIsOpen(false)}
+                                className="block py-5 text-2xl font-serif text-white hover:text-[#5483B3] transition-colors"
+                            >
+                                {t('contact')}
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
 
-                {/* Bottom White Panel - Contact */}
-                <div className={`bg-white p-6 rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] transition-transform duration-300 delay-250 will-change-transform ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}>
-                    <div className="flex flex-col gap-3">
-                        <div className="flex justify-between items-end">
-                            <p className="text-[#021024] font-serif italic text-lg">Un projet ?</p>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Contact</span>
+                {/* Footer - Language Only */}
+                <div className={`mt-auto pt-8 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} transition-all duration-500 delay-300`}>
+                    <div className="flex items-center justify-between px-1">
+                        <div className="flex items-center gap-6">
+                            <MobileLanguageButton code="fr" label="FR" />
+                            <MobileLanguageButton code="en" label="EN" />
                         </div>
-                        <Link href="/contact" onClick={() => setIsOpen(false)} className="flex items-center justify-between bg-[#021024] text-white px-5 py-4 rounded-xl group hover:bg-[#5483B3] transition-colors">
-                            <span className="uppercase tracking-widest text-[10px] font-bold">Contactez nous</span>
-                            <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                                <span className="group-hover:translate-x-0.5 transition-transform text-xs">→</span>
-                            </span>
-                        </Link>
                     </div>
                 </div>
             </div>

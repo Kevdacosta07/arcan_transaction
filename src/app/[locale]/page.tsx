@@ -95,22 +95,29 @@ export default function Home() {
                           <div className="absolute top-0 left-0 h-full w-full bg-secondary/80 animate-draw-line"></div>
                             </div>
 
-                        <ul className="mt-6 list-disc pl-5 space-y-2 text-[15px] md:text-base text-gray-600 font-light">
-                          <li>{t('about.services.1')}</li>
-                          <li>{t('about.services.2')}</li>
-                          <li>{t('about.services.3')}</li>
-                          <li>{t('about.services.4')}</li>
-                          <li>{t('about.services.5')}</li>
+                        <ul className="mt-8 space-y-3">
+                          {[
+                            t('about.services.1'),
+                            t('about.services.2'),
+                            t('about.services.3'),
+                            t('about.services.4'),
+                            t('about.services.5')
+                          ].map((text, index) => (
+                            <li key={index} className="flex items-start gap-3 text-[15px] md:text-base text-gray-600 font-light">
+                              <span className="mt-[0.6em] w-1.5 h-1.5 rounded-full bg-secondary/60 shrink-0"></span>
+                              <span>{text}</span>
+                            </li>
+                          ))}
                         </ul>
 
-                        <div className="pt-6">
-                          <a href="#realisations" className="inline-flex items-center gap-3 px-8 py-3.5 bg-primary text-white text-sm font-medium tracking-wide hover:bg-accent transition-colors duration-300">
+                        <div className="pt-8">
+                          <a href="#realisations" className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:bg-[#052659]">
                             <span>{t('about.cta')}</span>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                           </a>
-                            </div>
+                        </div>
                         </div>
                     </FadeIn>
                 </div>
