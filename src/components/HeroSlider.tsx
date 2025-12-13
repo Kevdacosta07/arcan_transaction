@@ -31,6 +31,15 @@ export default function HeroSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    // Précharge toutes les images du slider pour éviter un blanc
+    // lors des transitions (les images restent above-the-fold).
+    for (const { src } of images) {
+      const preloaded = new window.Image();
+      preloaded.src = src;
+    }
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 6000); // Change image every 6 seconds
@@ -60,6 +69,7 @@ export default function HeroSlider() {
             fill
             className={`object-cover ${image.position || "object-center"}`}
             priority={index === 0}
+            fetchPriority={index === 0 ? "high" : "auto"}
             quality={85}
             sizes="100vw"
           />
