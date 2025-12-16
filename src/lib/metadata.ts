@@ -53,7 +53,7 @@ export async function generatePageMetadata(
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/assets/logo/Arcan_Logo_Bleu.webp`,
+          url: `${baseUrl}/icon.png`,
           width: 1200,
           height: 630,
           alt: 'Arcan Transactions',
@@ -64,7 +64,7 @@ export async function generatePageMetadata(
       card: 'summary_large_image',
       title,
       description,
-      images: [`${baseUrl}/assets/logo/Arcan_Logo_Bleu.webp`],
+      images: [`${baseUrl}/icon.png`],
     },
     robots: {
       index: true,
