@@ -262,81 +262,67 @@ h1, h2, h3, h4, h5, h6 {
 /* === Global reveal system (CSS-driven, triggered by class) === */
 
 :root {
-  --reveal-duration: 900ms;
-  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 600ms;
+  --reveal-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --reveal-delay: 0ms;
-  --reveal-distance: 28px;
-  --reveal-blur: 10px;
+  --reveal-distance: 20px;
 }
 
 @keyframes revealUpSoft {
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(0, var(--reveal-distance), 0);
   }
-  70% {
-    transform: translate3d(0, calc(var(--reveal-distance) * -0.08), 0);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes revealLeftSoft {
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(calc(var(--reveal-distance) * -1), 0, 0);
   }
-  70% {
-    transform: translate3d(calc(var(--reveal-distance) * 0.06), 0, 0);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes revealRightSoft {
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(var(--reveal-distance), 0, 0);
   }
-  70% {
-    transform: translate3d(calc(var(--reveal-distance) * -0.06), 0, 0);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes revealDownSoft {
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(0, calc(var(--reveal-distance) * -1), 0);
   }
-  70% {
-    transform: translate3d(0, calc(var(--reveal-distance) * 0.08), 0);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes revealFadeSoft {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
 
 .reveal {
   opacity: 0;
-  will-change: opacity, transform;
 }
 
 .reveal--up { transform: translate3d(0, var(--reveal-distance), 0); }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface FadeInProps {
   direction?: "up" | "down" | "left" | "right" | "none";
 }
 
-export default function FadeIn({ 
+function FadeIn({ 
   children, 
   className = "", 
   delay = 0,
@@ -19,30 +19,32 @@ export default function FadeIn({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // Check if reduced motion is preferred
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+      (entries) => {
+        if (entries[0].isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          observer.disconnect();
         }
       },
       {
-        root: null,
-        // Trigger a bit earlier (before the element fully enters the viewport)
-        rootMargin: "0px 0px 15% 0px",
-        threshold: 0.05,
+        rootMargin: "0px 0px 50px 0px",
+        threshold: 0.1,
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -50,10 +52,12 @@ export default function FadeIn({
       ref={ref}
       className={`reveal reveal--${direction} ${isVisible ? "is-visible" : ""} ${className}`}
       style={{
-        ["--reveal-delay" as any]: `${delay}ms`
+        ["--reveal-delay" as string]: `${delay}ms`
       }}
     >
       {children}
     </div>
   );
 }
+
+export default memo(FadeIn);

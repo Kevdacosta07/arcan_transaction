@@ -262,10 +262,11 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay - Minimalist Corporate */}
         <div 
-            className="fixed inset-0 z-50 bg-[#021024] lg:hidden transition-[clip-path] duration-700 ease-in-out"
-            style={{
-                clipPath: isOpen ? 'circle(150% at calc(100% - 3rem) 3rem)' : 'circle(0% at calc(100% - 3rem) 3rem)'
-            }}
+            className={`fixed inset-0 z-50 bg-[#021024] lg:hidden transition-all duration-500 ease-out ${
+                isOpen 
+                    ? 'opacity-100 visible' 
+                    : 'opacity-0 invisible pointer-events-none'
+            }`}
         >
             {/* Background Ambient Effects */}
             <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[#5483B3]/20 rounded-full blur-[120px] pointer-events-none"></div>
