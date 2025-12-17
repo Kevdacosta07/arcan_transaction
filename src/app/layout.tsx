@@ -28,7 +28,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Arcan Transactions",
+  title: "Arcan Transactions | Transactions immobilières en Suisse",
   description: "Transactions d'immeubles de rendement en Suisse",
 };
 
