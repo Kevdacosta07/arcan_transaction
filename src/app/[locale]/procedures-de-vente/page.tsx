@@ -279,7 +279,7 @@ export default function ProcessusPage() {
   const toggleVente = (id: string) => setVenteAccordion(venteAccordion === id ? null : id);
   const toggleAppel = (id: string) => setAppelAccordion(appelAccordion === id ? null : id);
 
-  const [mandatOpen, setMandatOpen] = useState<string | null>("mandat-exclusif");
+  const [mandatOpen, setMandatOpen] = useState<string | null>("mandat-simple");
   const toggleMandat = (id: string) => setMandatOpen(mandatOpen === id ? null : id);
 
   const [formesAccordion, setFormesAccordion] = useState<string | null>("asset-deal");

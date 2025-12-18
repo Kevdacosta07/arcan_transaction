@@ -133,7 +133,7 @@ export default function Navbar() {
                 </Link>
 
                 <div className="relative group h-full flex items-center">
-                    <Link href="/procedure-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
+                    <Link href="/procedures-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
                         {t('salesProcedures')}
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </Link>
@@ -149,13 +149,13 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('mandateType')}</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <Link href="/procedure-de-vente?mandat=simple#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat')} className="group/link flex items-center gap-2">
+                                        <Link href="/procedures-de-vente?mandat=simple#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente?mandat=simple#type-mandat')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('simpleMandate')}</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat')} className="group/link flex items-center gap-2">
+                                        <Link href="/procedures-de-vente?mandat=exclusif#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente?mandat=exclusif#type-mandat')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('exclusiveMandate')}</span>
                                         </Link>
@@ -168,13 +168,13 @@ export default function Navbar() {
                                 <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('salesProcess')}</h4>
                                 <ul className="space-y-4">
                                     <li>
-                                        <Link href="/procedure-de-vente#vente-directe" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente#vente-directe')} className="group/link flex items-center gap-2">
+                                        <Link href="/procedures-de-vente#vente-directe" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente#vente-directe')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('directSale')}</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/procedure-de-vente#appel-d-offres" onClick={(e) => handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres')} className="group/link flex items-center gap-2">
+                                        <Link href="/procedures-de-vente#appel-d-offres" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente#appel-d-offres')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
                                             <span className="text-sm text-gray-500 group-hover/link:text-[#5483B3] transition-colors font-light">{t('callForTenders')}</span>
                                         </Link>
@@ -188,10 +188,10 @@ export default function Navbar() {
                                 <ul className="space-y-4">
                                     <li>
                                         <Link
-                                            href="/procedure-de-vente#formes-de-vente"
+                                            href="/procedures-de-vente#formes-de-vente"
                                             onClick={(e) => {
                                                 setFormeDeVenteSelection('asset-deal');
-                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                                handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente');
                                             }}
                                             className="group/link flex items-center gap-2"
                                         >
@@ -201,10 +201,10 @@ export default function Navbar() {
                                     </li>
                                     <li>
                                         <Link
-                                            href="/procedure-de-vente#formes-de-vente"
+                                            href="/procedures-de-vente#formes-de-vente"
                                             onClick={(e) => {
                                                 setFormeDeVenteSelection('share-deal');
-                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                                handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente');
                                             }}
                                             className="group/link flex items-center gap-2"
                                         >
@@ -214,10 +214,10 @@ export default function Navbar() {
                                     </li>
                                     <li>
                                         <Link
-                                            href="/procedure-de-vente#formes-de-vente"
+                                            href="/procedures-de-vente#formes-de-vente"
                                             onClick={(e) => {
                                                 setFormeDeVenteSelection('sale-leaseback');
-                                                handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente');
+                                                handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente');
                                             }}
                                             className="group/link flex items-center gap-2"
                                         >
@@ -310,23 +310,23 @@ export default function Navbar() {
                                         {/* Type de Mandat */}
                                         <div className="space-y-2">
                                             <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('mandateType')}</span>
-                                            <Link href="/procedure-de-vente?mandat=simple#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=simple#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('simpleMandate')}</Link>
-                                            <Link href="/procedure-de-vente?mandat=exclusif#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente?mandat=exclusif#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('exclusiveMandate')}</Link>
+                                            <Link href="/procedures-de-vente?mandat=simple#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedures-de-vente?mandat=simple#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('simpleMandate')}</Link>
+                                            <Link href="/procedures-de-vente?mandat=exclusif#type-mandat" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedures-de-vente?mandat=exclusif#type-mandat'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('exclusiveMandate')}</Link>
                                         </div>
 
                                         {/* Processus de Vente */}
                                         <div className="space-y-2">
                                             <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('salesProcess')}</span>
-                                            <Link href="/procedure-de-vente#vente-directe" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#vente-directe'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('directSale')}</Link>
-                                            <Link href="/procedure-de-vente#appel-d-offres" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedure-de-vente#appel-d-offres'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('callForTenders')}</Link>
+                                            <Link href="/procedures-de-vente#vente-directe" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedures-de-vente#vente-directe'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('directSale')}</Link>
+                                            <Link href="/procedures-de-vente#appel-d-offres" onClick={(e) => { setIsOpen(false); handleSmoothNavigation(e, '/procedures-de-vente#appel-d-offres'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('callForTenders')}</Link>
                                         </div>
 
                                         {/* Formes de Vente */}
                                         <div className="space-y-2">
                                             <span className="text-[10px] uppercase tracking-widest text-white/40 block mb-1">{t('salesForms')}</span>
-                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('asset-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('assetDeal')}</Link>
-                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('share-deal'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('shareDeal')}</Link>
-                                            <Link href="/procedure-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('sale-leaseback'); handleSmoothNavigation(e, '/procedure-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('saleLeaseback')}</Link>
+                                            <Link href="/procedures-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('asset-deal'); handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('assetDeal')}</Link>
+                                            <Link href="/procedures-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('share-deal'); handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('shareDeal')}</Link>
+                                            <Link href="/procedures-de-vente#formes-de-vente" onClick={(e) => { setIsOpen(false); setFormeDeVenteSelection('sale-leaseback'); handleSmoothNavigation(e, '/procedures-de-vente#formes-de-vente'); }} className="block text-base text-gray-300 hover:text-white transition-colors pl-2 border-l border-transparent hover:border-[#5483B3]">{t('saleLeaseback')}</Link>
                                         </div>
                                     </div>
                                 </div>
