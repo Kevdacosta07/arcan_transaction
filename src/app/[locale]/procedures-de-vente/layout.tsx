@@ -3,7 +3,7 @@ import { generatePageMetadata } from '@/lib/metadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return generatePageMetadata(locale, 'procedureDeVente', '/procedure-de-vente');
+  return generatePageMetadata(locale, 'procedureDeVente', '/procedures-de-vente');
 }
 
 export default function ProcedureDeVenteLayout({

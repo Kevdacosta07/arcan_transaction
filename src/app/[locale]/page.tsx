@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import HeroSlider from "@/components/HeroSlider";
 import FadeIn from "@/components/FadeIn";
 import ScrollLine from "@/components/ScrollLine";
@@ -111,12 +112,12 @@ export default function Home() {
                         </ul>
 
                         <div className="pt-8">
-                          <a href="#realisations" className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:bg-[#052659]">
+                          <Link href="/realisations" className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:bg-[#052659]">
                             <span>{t('about.cta')}</span>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
-                          </a>
+                          </Link>
                         </div>
                         </div>
                     </FadeIn>
@@ -191,12 +192,12 @@ export default function Home() {
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.15] mb-8 max-w-4xl">
                     {t('process.title')} <span className="text-accent">{t('process.secure')}</span> {t('process.and')} <span className="text-accent">{t('process.optimize')}</span> {t('process.titleEnd')}
                   </h2>
-                  <a href="/procedure-de-vente" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
+                  <Link href="/procedures-de-vente" className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white text-sm font-medium tracking-wide transition-all duration-300 group">
                     <span>{t('process.cta')}</span>
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </a>
+                  </Link>
                 </FadeIn>
               </div>
 
@@ -257,9 +258,9 @@ export default function Home() {
                         <h3 className="text-4xl font-serif text-primary">{t('team.title')}</h3>
                       </FadeIn>
                       <FadeIn delay={200}>
-                        <a href="#realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                        <Link href="/realisations" className="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                             {t('team.realisationsLink')} <span className="text-lg">→</span>
-                        </a>
+                        </Link>
                       </FadeIn>
                   </div>
 

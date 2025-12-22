@@ -258,21 +258,21 @@
         "title": "Hotel",
         "seller": "Private",
         "buyer": "Foundation",
-        "location": "Cornavin, Geneva",
+        "location": "Geneva",
         "description": "Sale of a hotel near the train station in Geneva."
       },
       "p5": {
         "title": "Portfolio of 11 buildings",
         "seller": "Private",
         "buyer": "Institutional",
-        "location": "Geneva, Switzerland",
+        "location": "Geneva",
         "description": "Transaction of 11 residential buildings completed through a two-round call for tenders process."
       },
       "p6": {
         "title": "Portfolio of 15 buildings",
         "seller": "Private",
         "buyer": "Institutional",
-        "location": "Geneva, Switzerland",
+        "location": "Geneva",
         "description": "Transaction of 15 buildings carried out through a two-round call for tenders process."
       }
     }
@@ -483,6 +483,9 @@
       "email": "Email",
       "message": "Message",
       "submit": "Send",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again.",
       "placeholders": {
         "firstName": "Your first name",
         "lastName": "Your last name",
@@ -516,7 +519,7 @@
     "description": "Arcan Transactions SA specializes in real estate transactions for all types of properties.",
     "cta": "Investment Criteria",
     "residential": "Residential",
-    "residentialItems": ["Residential buildings", "Mixed-use buildings (predominantly residential)"],
+    "residentialItems": ["Residential buildings", "Walls and operations", "Walls", "Operations"],
     "commercial": "Commercial",
     "commercialItems": ["Office buildings", "Retail space", "Shopping centers", "Mixed-use buildings (predominantly commercial)"],
     "hospitality": "Hospitality",
@@ -524,7 +527,7 @@
     "healthcare": "Medical and social care",
     "healthcareItems": ["Nursing homes / Senior care", "Student residences", "Hospitals", "Clinics"],
     "industrial": "Industrial",
-    "industrialItems": ["Industrial properties", "Logistics", "Data centers", "Warehouses, parking lots..."],
+    "industrialItems": ["Industrial & logistics", "Artisanal", "Data centers", "Warehouses, parking lots..."],
     "land": "Land",
     "landItems": ["Plots with or without permits", "All types of zoning"]
   },

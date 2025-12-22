@@ -57,11 +57,11 @@
     "title3": "Nous ?",
     "intro": "ARCAN Transactions SA est une société spécialisée dans les transactions d'immeubles de rendement en Suisse.",
     "text1": "Nous intervenons exclusivement sur le segment institutionnel et professionnel, en lien direct avec les acteurs du marché immobilier.",
-    "text2": "Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, dans l'acquisition et dans la structuration de transactions immobilières.",
+    "text2": "Nous accompagnons nos clients propriétaires, investisseurs, caisses de pension, family offices et développeurs dans la vente, l'acquisition et dans la structuration de transactions immobilières.",
     "services": {
       "1": "La gestion complète du processus de vente et accompagnement du mandant",
       "2": "La préparation de l'ensemble des documents de transaction",
-      "3": "Due Diligence dans le cadre de mandats buy side",
+      "3": "Due Diligence dans le cadre de mandats buy-side",
       "4": "L'évaluation des actifs et les études de mise aux normes énergétiques",
       "5": "Un service de Capital Advisory et de recherche de financement"
     },
@@ -80,7 +80,7 @@
     "and": "et",
     "optimize": "optimiser",
     "titleEnd": "vos transactions.",
-    "cta": "Découvrez nos processus de vente"
+    "cta": "Découvrez nos procedures de vente"
   },
   "salesProcedure": {
     "hero": {
@@ -199,7 +199,7 @@
         "subtitle": "Vente en nom",
         "p1": "Dans le cadre d'un Asset Deal, c'est l'immeuble lui-même qui est vendu.",
         "p2": "La vente en nom présente moins de risques pour l’investisseur, car seuls ceux liés à l’immeuble sont transférés à l’acquéreur.",
-        "p3": "Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l'acheteur, conformément à l'usage."
+        "p3": "Les frais de vente (notaire, registre foncier, droits de mutation) sont à la charge de l'acquéreur, conformément à l'usage."
       },
       "shareDeal": {
         "title": "Share Deal",
@@ -258,21 +258,21 @@
         "title": "Hôtel",
         "seller": "Privé",
         "buyer": "Fondation",
-        "location": "Cornavin, Genève",
+        "location": "Genève",
         "description": "Vente d’un hôtel proche de la gare à Genève."
       },
       "p5": {
         "title": "Portefeuille de 11 immeubles",
         "seller": "Privé",
         "buyer": "Institutionnel",
-        "location": "Genève, Suisse",
+        "location": "Genève",
         "description": "Transaction de 11 immeubles résidentiels réalisée au travers d’une procédure d’appel d’offres à deux tours."
       },
       "p6": {
         "title": "Portefeuille de 15 immeubles",
         "seller": "Privé",
         "buyer": "Institutionnel",
-        "location": "Genève, Suisse",
+        "location": "Genève",
         "description": "Transaction de 15 immeubles menée dans le cadre d’une procédure d’appel d’offres à deux tours."
       }
     }
@@ -290,7 +290,7 @@
       "modalities": "Modalités"
     },
     "common": {
-      "requiredOne": "1 obligatoire"
+      "requiredOne": "1 Min."
     },
     "errors": {
       "title": "Veuillez corriger les erreurs suivantes :",
@@ -348,7 +348,7 @@
     "step2": {
       "investmentVolume": {
         "title": "Volume d'investissement",
-        "note": "Choix unique"
+        "note": "1 Min."
       },
       "location": {
         "title": "Localisation des objets"
@@ -483,6 +483,9 @@
       "email": "Email",
       "message": "Message",
       "submit": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Erreur lors de l'envoi. Veuillez réessayer.",
       "placeholders": {
         "firstName": "Votre prénom",
         "lastName": "Votre nom",
@@ -516,7 +519,7 @@
     "description": "Arcan Transactions SA est spécialisée dans la transaction d'immeubles, de tous types d'affectations.",
     "cta": "Critères d'investissement",
     "residential": "Résidentiel",
-    "residentialItems": ["Immeubles de logement", "Immeubles mixtes (prédominance résidentielle)"],
+    "residentialItems": ["Immeubles de logements", "Murs et exploitation", "Murs", "Exploitation"],
     "commercial": "Commercial",
     "commercialItems": ["Immeubles de bureaux", "Surfaces retail", "Centres commerciaux", "Immeubles mixtes (prédominance commerciale)"],
     "hospitality": "Hôtellerie",
@@ -524,7 +527,7 @@
     "healthcare": "Médico-social",
     "healthcareItems": ["EMS / Senior", "Résidences étudiantes", "Hôpitaux", "Cliniques"],
     "industrial": "Industriel",
-    "industrialItems": ["Industriel à proprement parler", "Logistique", "Data centers", "Dépôts, parkings…"],
+    "industrialItems": ["Industriel & logistique", "Artisanale", "Data centers", "Dépôts, parkings…"],
     "land": "Terrains",
     "landItems": ["Parcelles avec ou sans permis", "De tout type d'affectation"]
   },

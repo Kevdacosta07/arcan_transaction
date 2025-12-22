@@ -3,9 +3,51 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 export default function ContactPage() {
     const t = useTranslations("contactPage");
+    
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: ""
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus("idle");
+
+        try {
+            const response = await fetch("/api/send-contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setSubmitStatus("success");
+                setFormData({ firstName: "", lastName: "", email: "", message: "" });
+            } else {
+                setSubmitStatus("error");
+            }
+        } catch {
+            setSubmitStatus("error");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
   return (
     <main className="bg-white min-h-screen">
@@ -64,7 +106,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Form */}
-                <form className="mb-16 border-t border-gray-100 pt-12 animate-fade-in-up delay-500" autoComplete="on">
+                <form onSubmit={handleSubmit} className="mb-16 border-t border-gray-100 pt-12 animate-fade-in-up delay-500" autoComplete="on">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
                         <div className="space-y-3">
                             <label className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">
@@ -74,6 +116,9 @@ export default function ContactPage() {
                                 name="firstName"
                                 type="text"
                                 autoComplete="given-name"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                required
                                 placeholder={t("form.placeholders.firstName")}
                                 className="w-full bg-transparent border-b border-gray-200 py-3 text-[#021024] placeholder-gray-300 focus:outline-none focus:border-[#021024] transition-colors text-sm"
                             />
@@ -87,6 +132,9 @@ export default function ContactPage() {
                                 name="lastName"
                                 type="text"
                                 autoComplete="family-name"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                required
                                 placeholder={t("form.placeholders.lastName")}
                                 className="w-full bg-transparent border-b border-gray-200 py-3 text-[#021024] placeholder-gray-300 focus:outline-none focus:border-[#021024] transition-colors text-sm"
                             />
@@ -100,6 +148,9 @@ export default function ContactPage() {
                                 name="email"
                                 type="email"
                                 autoComplete="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
                                 placeholder={t("form.placeholders.email")}
                                 className="w-full bg-transparent border-b border-gray-200 py-3 text-[#021024] placeholder-gray-300 focus:outline-none focus:border-[#021024] transition-colors text-sm"
                             />
@@ -112,19 +163,30 @@ export default function ContactPage() {
                             <textarea
                                 name="message"
                                 rows={6}
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
                                 placeholder={t("form.placeholders.message")}
                                 className="w-full bg-transparent border-b border-gray-200 py-3 text-[#021024] placeholder-gray-300 focus:outline-none focus:border-[#021024] transition-colors resize-none text-sm"
                             />
                         </div>
                     </div>
 
-                    <div className="mt-10 flex items-center justify-start">
+                    <div className="mt-10 flex items-center justify-start gap-4">
                         <button
                             type="submit"
-                            className="bg-[#021024] text-white px-10 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                            disabled={isSubmitting}
+                            className="bg-[#021024] text-white px-10 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {t("form.submit")}
+                            {isSubmitting ? t("form.sending") : t("form.submit")}
                         </button>
+                        
+                        {submitStatus === "success" && (
+                            <span className="text-green-600 text-sm">{t("form.success")}</span>
+                        )}
+                        {submitStatus === "error" && (
+                            <span className="text-red-600 text-sm">{t("form.error")}</span>
+                        )}
                     </div>
                 </form>
 

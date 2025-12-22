@@ -43,6 +43,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProcessusOpen, setIsProcessusOpen] = useState(false);
   const t = useTranslations('nav');
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -68,6 +69,12 @@ export default function Navbar() {
         // "Formes de Vente" is controlled by page state; we detect it either via legacy hashes
         // (#asset-deal, etc.) or via the newer query param (?forme=asset-deal) pattern.
         const isFormesDeVente = hash === 'formes-de-vente' || (formesValues as readonly string[]).includes(hash);
+        
+        // "Type de Mandat" is also controlled by page state via query param (?mandat=simple|exclusif)
+        const isTypeMandat = hash === 'type-mandat';
+        
+        // These sections need the page to handle URL params to open the right accordion/tab
+        const isPageControlled = isFormesDeVente || isTypeMandat;
 
     // Check if we're already on the same page
     // We need to check if the current pathname ends with the target path (handling locale prefix)
@@ -77,12 +84,15 @@ export default function Navbar() {
                         (targetPath === '/' && (currentPath === '/' || currentPath === '/en' || currentPath === '/fr')) ||
                         currentPath.endsWith(targetPath);
 
+    // Build the full href with locale prefix for browser history
+    const localizedHref = `/${locale}${href.startsWith('/') ? href : '/' + href}`;
+
     if (isOnSamePage) {
       e.preventDefault();
       
-      if (isFormesDeVente) {
+      if (isPageControlled) {
           // Update hash and notify page to let it handle state and scrolling
-          window.history.pushState(null, '', href);
+          window.history.pushState(null, '', localizedHref);
           window.dispatchEvent(new Event('hashchange'));
       } else {
           const element = document.getElementById(hash);
@@ -91,8 +101,8 @@ export default function Navbar() {
           }
       }
     } else {
-      // For Formes de Vente, let the page handle the hash on mount
-      if (isFormesDeVente) {
+      // For page-controlled sections, let the Link handle navigation so page can read URL params
+      if (isPageControlled) {
         return;
       }
 
@@ -125,29 +135,29 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
-            <div className="flex items-center gap-4 xl:gap-6">
+        <nav className="hidden lg:flex items-center gap-3 xl:gap-6 2xl:gap-8">
+            <div className="flex items-center gap-3 xl:gap-5 2xl:gap-6">
 
-                <Link href="/" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                <Link href="/" className="text-gray-600 hover:text-[#021024] font-sans text-xs xl:text-[13px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
                     {t('home')}
                 </Link>
 
                 <div className="relative group h-full flex items-center">
-                    <Link href="/procedures-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
+                    <Link href="/procedures-de-vente" className="text-gray-600 hover:text-[#021024] font-sans text-xs xl:text-[13px] font-medium uppercase tracking-wider transition-colors flex items-center gap-1 h-full py-8 whitespace-nowrap">
                         {t('salesProcedures')}
                         <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7"></path></svg>
                     </Link>
                     
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-[700px]">
-                        <div className="bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-t-2 border-[#021024] grid grid-cols-3 gap-12 relative mt-0">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-[520px] xl:min-w-[620px] 2xl:min-w-[700px]">
+                        <div className="bg-white p-5 xl:p-6 2xl:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-t-2 border-[#021024] grid grid-cols-3 gap-6 xl:gap-8 2xl:gap-12 relative mt-0">
                             {/* Triangle pointer */}
                             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-t border-l border-gray-100 rotate-45"></div>
 
                             {/* Column 1 - Type de Mandat */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('mandateType')}</h4>
-                                <ul className="space-y-4">
+                                <h4 className="font-serif text-base xl:text-lg text-[#021024] mb-4 xl:mb-6 italic border-b border-gray-100 pb-2">{t('mandateType')}</h4>
+                                <ul className="space-y-3 xl:space-y-4">
                                     <li>
                                         <Link href="/procedures-de-vente?mandat=simple#type-mandat" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente?mandat=simple#type-mandat')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
@@ -165,8 +175,8 @@ export default function Navbar() {
 
                             {/* Column 2 - Processus de Vente */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('salesProcess')}</h4>
-                                <ul className="space-y-4">
+                                <h4 className="font-serif text-base xl:text-lg text-[#021024] mb-4 xl:mb-6 italic border-b border-gray-100 pb-2">{t('salesProcess')}</h4>
+                                <ul className="space-y-3 xl:space-y-4">
                                     <li>
                                         <Link href="/procedures-de-vente#vente-directe" onClick={(e) => handleSmoothNavigation(e, '/procedures-de-vente#vente-directe')} className="group/link flex items-center gap-2">
                                             <span className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover/link:bg-[#5483B3] transition-colors"></span>
@@ -184,8 +194,8 @@ export default function Navbar() {
 
                             {/* Column 3 - Formes de Vente */}
                             <div>
-                                <h4 className="font-serif text-lg text-[#021024] mb-6 italic border-b border-gray-100 pb-2">{t('salesForms')}</h4>
-                                <ul className="space-y-4">
+                                <h4 className="font-serif text-base xl:text-lg text-[#021024] mb-4 xl:mb-6 italic border-b border-gray-100 pb-2">{t('salesForms')}</h4>
+                                <ul className="space-y-3 xl:space-y-4">
                                     <li>
                                         <Link
                                             href="/procedures-de-vente#formes-de-vente"
@@ -231,11 +241,11 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <Link href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                <Link href="/criteres" className="text-gray-600 hover:text-[#021024] font-sans text-xs xl:text-[13px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
                     {t('investmentCriteria')}
                 </Link>
 
-                <Link href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
+                <Link href="/realisations" className="text-gray-600 hover:text-[#021024] font-sans text-xs xl:text-[13px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap">
                     {t('realisations')}
                 </Link>
             </div>
@@ -244,8 +254,8 @@ export default function Navbar() {
             
             <LanguageSwitcher />
 
-            <Link href="/contact" className="group flex items-center gap-2.5 text-primary hover:text-secondary transition-colors whitespace-nowrap">
-                <span className="font-serif italic text-lg">{t('contact')}</span>
+            <Link href="/contact" className="group flex items-center gap-1.5 xl:gap-2.5 text-primary hover:text-secondary transition-colors whitespace-nowrap">
+                <span className="font-serif italic text-base xl:text-lg">{t('contact')}</span>
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
         </nav>

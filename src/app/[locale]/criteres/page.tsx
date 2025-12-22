@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
@@ -11,6 +11,7 @@ import jsPDF from "jspdf";
 export default function CriteresPage() {
   const router = useRouter();
     const t = useTranslations("investmentCriteria");
+  const locale = useLocale();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -57,22 +58,17 @@ export default function CriteresPage() {
     if (errors.length > 0) setErrors([]);
   };
 
-  const handleCheckboxChange = (category: keyof typeof formData, value: string) => {
-    setFormData(prev => {
-      // Special case for investmentVolume: Single choice only
-      if (category === "investmentVolume") {
-          return { ...prev, [category]: [value] };
-      }
-
-      const currentList = prev[category] as string[];
-      if (currentList.includes(value)) {
-        return { ...prev, [category]: currentList.filter(item => item !== value) };
-      } else {
-        return { ...prev, [category]: [...currentList, value] };
-      }
-    });
-    if (errors.length > 0) setErrors([]);
-  };
+    const handleCheckboxChange = (category: keyof typeof formData, value: string) => {
+        setFormData(prev => {
+            const currentList = prev[category] as string[];
+            if (currentList.includes(value)) {
+                return { ...prev, [category]: currentList.filter(item => item !== value) };
+            } else {
+                return { ...prev, [category]: [...currentList, value] };
+            }
+        });
+        if (errors.length > 0) setErrors([]);
+    };
 
   const validateStep = (step: number) => {
     const newErrors: string[] = [];
@@ -633,21 +629,21 @@ export default function CriteresPage() {
                                 <div className="space-y-4">
                                     <Checkbox 
                                         label={transactionNatureOptions.find(o => o.id === "assetDeal")?.label || "Asset Deal"}
-                                        infoLink="/procedure-de-vente#asset-deal" 
+                                        infoLink={`/${locale}/procedures-de-vente#asset-deal`} 
                                         infoTitle={t("moreInfo")}
                                         checked={formData.transactionNature.includes("assetDeal")}
                                         onChange={() => handleCheckboxChange("transactionNature", "assetDeal")}
                                     />
                                     <Checkbox 
                                         label={transactionNatureOptions.find(o => o.id === "shareDeal")?.label || "Share Deal"}
-                                        infoLink="/procedure-de-vente#share-deal" 
+                                        infoLink={`/${locale}/procedures-de-vente#share-deal`} 
                                         infoTitle={t("moreInfo")}
                                         checked={formData.transactionNature.includes("shareDeal")}
                                         onChange={() => handleCheckboxChange("transactionNature", "shareDeal")}
                                     />
                                     <Checkbox 
                                         label={transactionNatureOptions.find(o => o.id === "saleLeaseback")?.label || "Sale and lease back"}
-                                        infoLink="/procedure-de-vente#sale-leaseback" 
+                                        infoLink={`/${locale}/procedures-de-vente#sale-leaseback`} 
                                         infoTitle={t("moreInfo")}
                                         checked={formData.transactionNature.includes("saleLeaseback")}
                                         onChange={() => handleCheckboxChange("transactionNature", "saleLeaseback")}

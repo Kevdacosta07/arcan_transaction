@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/criteres',
     '/mentions-legales',
-    '/procedure-de-vente',
+    '/procedures-de-vente',
     '/realisations'
   ];
 

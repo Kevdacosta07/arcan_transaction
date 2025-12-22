@@ -46,29 +46,8 @@ export default function MentionsLegales() {
                             </div>
 
                             <div>
-                                <h3 className="text-sm font-bold uppercase tracking-widest text-[#021024] mb-2">{t('registration')}</h3>
-                                <p>{t('registrationDetails')}</p>
-                                <p>{t('date')}: 15 mai 2025</p>
-                                <p>{t('number')}: 10439/2025</p>
-                            </div>
-
-                            <div>
                                 <h3 className="text-sm font-bold uppercase tracking-widest text-[#021024] mb-2">{t('ideUid')}</h3>
                                 <p>CHE-438.745.978</p>
-                            </div>
-
-                            <div>
-                                <h3 className="text-sm font-bold uppercase tracking-widest text-[#021024] mb-2">{t('legalForm')}</h3>
-                                <p>{t('legalFormValue')}</p>
-                                <p>{t('shareCapital')}</p>
-                            </div>
-
-                            <div>
-                                <h3 className="text-sm font-bold uppercase tracking-widest text-[#021024] mb-2">{t('administration')}</h3>
-                                <ul className="space-y-1">
-                                    <li><strong>Aurèle Layat</strong>, {t('president')}</li>
-                                    <li><strong>Alexandre Arazi</strong>, {t('administrator')}</li>
-                                </ul>
                             </div>
                         </div>
 

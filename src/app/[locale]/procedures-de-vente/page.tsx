@@ -360,7 +360,7 @@ export default function ProcessusPage() {
       <Navbar />
 
       {/* Hero Section - Corporate Portfolio */}
-      <section className="h-[calc(100vh-6rem)] relative flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12 overflow-hidden">
+      <section className="min-h-[calc(100vh-6rem)] relative flex flex-col justify-end pb-12 md:pb-16 lg:pb-24 px-6 md:px-12 overflow-hidden">
          
          {/* Background Image */}
          <div className="absolute inset-0 z-0">
@@ -375,15 +375,15 @@ export default function ProcessusPage() {
          </div>
 
          {/* Content */}
-         <div className="relative z-10 max-w-[1800px] mx-auto w-full border-t border-white/10 pt-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+         <div className="relative z-10 max-w-[1800px] mx-auto w-full border-t border-white/10 pt-8 md:pt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-end">
                 
                 {/* Title Area */}
                 <div className="lg:col-span-7">
                     <RevealOnScroll variant="up" delay={100} triggerOnMount>
-                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-sm mb-4 block">{t('hero.label')}</span>
+                        <span className="text-[#5483B3] font-medium tracking-widest uppercase text-xs md:text-sm mb-3 md:mb-4 block">{t('hero.label')}</span>
                     </RevealOnScroll>
-                    <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white leading-[0.9]">
+                    <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-white leading-[0.9]">
                         <RevealOnScroll variant="left" delay={200} triggerOnMount>
                             <span className="block">{t('hero.titleLine1')}</span>
                         </RevealOnScroll>
@@ -396,7 +396,7 @@ export default function ProcessusPage() {
                 {/* Description Area - Restored Full Content */}
                 <div className="lg:col-span-5 pb-2">
                     <RevealOnScroll variant="up" delay={500} triggerOnMount>
-                        <p className="text-base md:text-lg text-gray-300 font-light leading-relaxed text-justify">
+                        <p className="text-sm sm:text-base md:text-lg text-gray-300 font-light leading-relaxed text-justify">
                             {t('hero.description')}
                         </p>
                     </RevealOnScroll>
