@@ -119,7 +119,7 @@ export default function Navbar() {
               alt="Arcan Transaction"
               fill
               className="object-contain object-left"
-              quality={100}
+              sizes="(max-width: 768px) 160px, 208px"
               priority
             />
         </Link>

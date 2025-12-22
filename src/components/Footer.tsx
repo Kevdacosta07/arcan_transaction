@@ -33,7 +33,8 @@ export default function Footer() {
                   alt="Arcan Transaction" 
                   fill 
                   className="object-contain object-left" 
-                  quality={100} 
+                  sizes="320px"
+                  loading="lazy"
                 />
               </div>
               <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">

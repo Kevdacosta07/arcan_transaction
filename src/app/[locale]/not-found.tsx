@@ -17,6 +17,7 @@ export default function NotFound() {
               alt="Arcan Transaction"
               fill
               className="object-contain"
+              sizes="(max-width: 768px) 192px, 256px"
               priority
             />
         </div>
