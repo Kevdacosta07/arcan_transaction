@@ -102,7 +102,7 @@ type ProjectCard = {
 const projectCards: ProjectCard[] = [
     {
         id: "p1",
-        amount: "> CHF 11mios",
+        amount: "CHF 11m",
         date: "2025",
         color: "bg-[#FDFBF7]",
         textColor: "text-[#021024]",
@@ -110,7 +110,7 @@ const projectCards: ProjectCard[] = [
     },
     {
         id: "p2",
-        amount: "> CHF 14 mios",
+        amount: "CHF 14m",
         date: "2025",
         color: "bg-[#021024]",
         textColor: "text-[#FDFBF7]",
@@ -118,7 +118,7 @@ const projectCards: ProjectCard[] = [
     },
     {
         id: "p3",
-        amount: "Env. CHF 8 mios",
+        amount: "Approx. CHF 8m",
         date: "2024",
         color: "bg-[#FDFBF7]",
         textColor: "text-[#021024]",
@@ -126,7 +126,7 @@ const projectCards: ProjectCard[] = [
     },
     {
         id: "p4",
-        amount: "> CHF 26 mios",
+        amount: "CHF 26m",
         date: "2023",
         color: "bg-[#021024]",
         textColor: "text-[#FDFBF7]",
@@ -134,7 +134,7 @@ const projectCards: ProjectCard[] = [
     },
     {
         id: "p5",
-        amount: "> 250 mios",
+        amount: "> CHF 250m",
         date: "2022",
         color: "bg-[#FDFBF7]",
         textColor: "text-[#021024]",
@@ -142,7 +142,7 @@ const projectCards: ProjectCard[] = [
     },
     {
         id: "p6",
-        amount: "> 500 mios",
+        amount: "> CHF 500m",
         date: "2020",
         color: "bg-[#021024]",
         textColor: "text-[#FDFBF7]",

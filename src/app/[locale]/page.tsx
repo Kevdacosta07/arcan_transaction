@@ -96,7 +96,9 @@ export default function Home() {
                           <div className="absolute top-0 left-0 h-full w-full bg-secondary/80 animate-draw-line"></div>
                             </div>
 
-                        <ul className="mt-8 space-y-3">
+                        <h3 className="text-xl md:text-2xl font-serif text-primary mb-4">{t('about.servicesTitle')}</h3>
+
+                        <ul className="space-y-3">
                           {[
                             t('about.services.1'),
                             t('about.services.2'),

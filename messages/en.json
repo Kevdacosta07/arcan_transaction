@@ -33,16 +33,16 @@
     "language": "Language",
     "home": "Home",
     "salesProcedures": "Sales Procedures",
-    "realisations": "Achievements",
+    "realisations": "Track Record",
     "investmentCriteria": "Investment Criteria",
     "contact": "Contact Us",
-    "mandateType": "Mandate Type",
-    "simpleMandate": "Simple Mandate",
+    "mandateType": "Type of Mandate",
+    "simpleMandate": "Non-Exclusive Mandate",
     "exclusiveMandate": "Exclusive Mandate",
     "salesProcess": "Sales Process",
     "directSale": "Direct Sale",
-    "callForTenders": "Call for Tenders",
-    "salesForms": "Sales Forms",
+    "callForTenders": "Tender Process",
+    "salesForms": "Sale Structures",
     "assetDeal": "Asset Deal",
     "shareDeal": "Share Deal",
     "saleLeaseback": "Sale & Leaseback"
@@ -51,87 +51,88 @@
     "tagline": "real estate capital market"
   },
   "about": {
-    "label": "About",
+    "label": "About Us",
     "title1": "Who",
-    "title2": "Are",
-    "title3": "We?",
-    "intro": "ARCAN Transactions SA specializes in investment property transactions in Switzerland.",
-    "text1": "We operate exclusively in the institutional and professional segment, in direct contact with real estate market players.",
-    "text2": "We support our customers - owners, investors, pension funds, family offices and developers - in the sale, acquisition and structuring of real estate transactions.",
+    "title2": "We",
+    "title3": "Are",
+    "intro": "ARCAN Transactions SA is a company specialized in real estate investment in Switzerland.",
+    "text1": "We operate exclusively in the institutional and professional segment, working in direct connection with key players in the real estate market.",
+    "text2": "We advise and support property owners, investors, pension funds, family offices, and developers in the sale, acquisition, and structuring of real estate transactions.",
+    "servicesTitle": "Our Services",
     "services": {
-      "1": "Complete management of the sales process and support for clients",
-      "2": "Preparation of all transaction documents",
+      "1": "End-to-end management of the sales process and full support of the client",
+      "2": "Preparation of all transaction-related documentation",
       "3": "Due diligence for buy-side mandates",
-      "4": "Asset valuation and energy upgrading studies",
-      "5": "Capital Advisory service and search for financing"
+      "4": "Asset valuation and energy compliance and upgrade studies",
+      "5": "Capital advisory services and financing advisory"
     },
-    "cta": "See our achievements",
+    "cta": "Track record",
     "stats": {
       "experience": "Over 30 years of combined experience",
       "buildings": "Over 100 buildings sold",
       "volume": "Cumulative transaction volume",
-      "volumeValue": "2B+"
+      "volumeValue": "2bn+"
     }
   },
   "process": {
-    "label": "Our sales processes",
+    "label": "The Sales Processes",
     "title": "Rigorous control of sales processes to",
     "secure": "secure",
     "and": "and",
     "optimize": "optimize",
     "titleEnd": "your transactions.",
-    "cta": "Discover our sales processes"
+    "cta": "Discover our sales procedures"
   },
   "salesProcedure": {
     "hero": {
       "label": "Methodology",
       "titleLine1": "Sales",
       "titleLine2": "Procedures",
-      "description": "Arcan Transactions SA manages the entire sales process to maximize the sale price of the asset, whether through a direct sale or a call for tenders, as an Asset Deal (sale of the property), a Share Deal (sale of the company) or a sale and lease-back.",
+      "description": "Arcan Transactions SA manages the entire sales process with the objective of maximizing the sale price of the asset, whether through a direct sale or a competitive bidding process, structured as an Asset Deal (direct property sale), Share Deal (sale of the owning company), or a sale and leaseback transaction.",
       "imageAlt": "Architecture background"
     },
     "mandate": {
-      "introLabel": "Foreword",
+      "introLabel": "Introduction",
       "titlePrefix": "Type of",
       "titleEmphasis": "Mandate",
-      "description": "The mandate type defines the framework of our collaboration and the terms of our involvement in the sale of your property.",
+      "description": "The type of mandate defines the framework of our collaboration and the scope of our involvement in the sale of your property.",
       "simple": {
-        "title": "Simple Mandate",
-        "description": "The owner may appoint several intermediaries simultaneously. This option offers greater flexibility but can limit each intermediary’s level of investment."
+        "title": "Non-Exclusive Mandate",
+        "description": "The owner may appoint several intermediaries simultaneously. This structure offers greater flexibility but may limit the level of commitment and investment from each advisor."
       },
       "exclusive": {
         "title": "Exclusive Mandate",
-        "description": "Arcan Transactions SA is the sole intermediary appointed for the sale of the property. This exclusivity enables us to deploy all our resources and ensure an optimal approach and control."
+        "description": "Arcan Transactions SA acts as the sole intermediary appointed for the sale of the property. This exclusivity allows us to deploy all our resources and ensure a fully controlled, consistent, and optimized approach."
       }
     },
     "directSale": {
       "label": "Methodology",
       "titleLine1": "Direct",
       "titleLine2": "Sale",
-      "description": "A targeted and confidential approach for fast, well-controlled transactions. Ideal for owners seeking discretion and speed.",
+      "description": "A targeted and confidential approach for fast and well-controlled transactions. Ideal for owners seeking discretion and speed.",
       "imageAlt": "Meeting",
       "saleForm": {
-        "title": "Sale format",
+        "title": "Sale Structure",
         "exclusive": {
           "title": "Exclusive",
-          "description": "The property is presented to a single prospect at the set price. The sale is completed only if the price is accepted, ensuring total confidentiality."
+          "description": "The asset is presented to a single prospective buyer at a fixed price. The transaction is completed only if the price is accepted, ensuring full confidentiality."
         },
         "selective": {
           "title": "Selective",
-          "description": "The property is presented at the set price to several qualified investors. The principle is simple: the first offer at the asking price gets the allocation (“first in, first served”)."
+          "description": "The asset is offered at a fixed price to several qualified investors. The principle is straightforward: the first investor to offer the asking price secures the deal ('first in, first served')."
         }
       },
       "timeline": {
         "title": "Timeline",
         "label": "Process & Timing",
-        "duration": "3 wks - 1.5 months",
+        "duration": "3 weeks – 1.5 months",
         "steps": [
           "Selection of one or more investor(s)",
-          "Sending teaser + NDA",
-          "Receipt of signed NDAs & opening of short data room",
-          "Receipt of NBO & opening of full data room",
+          "Distribution of teaser & NDA",
+          "Receipt of signed NDAs & opening of the short data room",
+          "Receipt of NBOs & opening of the full data room",
           "Due diligence",
-          "Receipt of BOs and acceptance",
+          "Receipt of binding offers (BOs) and acceptance",
           "Review of the draft notarial deed",
           "Signing & closing"
         ]
@@ -139,29 +140,29 @@
       "advantages": {
         "title": "Advantages",
         "items": [
-          "Sale price set in advance",
+          "Sale price defined in advance",
           "Targeted approach",
           "Negotiation flexibility",
-          "Fast procedure",
-          "Private treaty allocation procedure"
+          "Fast execution",
+          "Off-market / private negotiation allocation process"
         ]
       }
     },
     "callForTenders": {
       "label": "Methodology",
-      "titleLine1": "Call",
-      "titleLine2": "for Tenders",
-      "description": "A structured process to maximize value through competition. Recommended for assets with strong market potential.",
+      "titleLine1": "Bidding",
+      "titleLine2": "process",
+      "description": "A structured process designed to maximize value through competition. Recommended for assets with strong market potential.",
       "imageAlt": "Signing",
       "saleForm": {
-        "title": "Sale format",
+        "title": "Sale Structure",
         "selective": {
           "title": "Selective",
-          "description": "For highly specific assets, it is advisable to limit the pool of potential investors to a few carefully selected prospects."
+          "description": "For highly specific assets, it is appropriate to limit the circle of potential investors to a carefully selected group."
         },
         "open": {
           "title": "Open",
-          "description": "For assets that are highly sought-after by the market, it is advisable to open the investor pool as widely as possible to create competition and optimize the sale price."
+          "description": "For assets in high demand, the investor universe is opened as widely as possible in order to create competition and optimize the sale price."
         }
       },
       "timeline": {
@@ -170,11 +171,11 @@
         "duration": "2 to 3 months",
         "steps": [
           "Selection of multiple investors",
-          "Sending teaser + NDA",
-          "Receipt of signed NDAs & sending of Information Memorandum",
-          "Receipt of NBO, selection of the short list & opening of the full data room",
+          "Distribution of teaser & NDA",
+          "Receipt of signed NDAs & distribution of the Information Memorandum",
+          "Receipt of NBOs, shortlist selection & opening of the full data room",
           "Due diligence",
-          "Receipt of BO & award",
+          "Receipt of binding offers (BOs) & award of the transaction",
           "Review of the draft notarial deed",
           "Signing & closing"
         ]
@@ -182,36 +183,36 @@
       "advantages": {
         "title": "Advantages",
         "items": [
-          "Floor sale price",
+          "Minimum sale price",
           "Structured and controlled process",
-          "Strict, fixed deadlines",
-          "Competition & overbidding",
+          "Strict, predefined timelines",
+          "Competitive bidding & overbidding",
           "Suitable for institutional investors"
         ]
       }
     },
     "salesForms": {
       "label": "Structuring",
-      "title": "Sales Forms",
+      "title": "Sale Structures",
       "imageAlt": "Modern architecture",
       "assetDeal": {
         "title": "Asset Deal",
-        "subtitle": "Sale of the property",
-        "p1": "In an Asset Deal, it is the property itself that is sold.",
-        "p2": "A sale of the property involves fewer risks for the investor, since only those related to the property are transferred to the buyer.",
-        "p3": "Sale costs (notary, land registry, transfer taxes) are borne by the buyer, in accordance with customary practice."
+        "subtitle": "Direct property sale",
+        "p1": "In an Asset Deal, the property itself is sold.",
+        "p2": "A direct property sale involves lower risk for the investor, as only risks directly related to the property are transferred to the buyer.",
+        "p3": "Transaction costs (notary fees, land registry fees, transfer taxes) are borne by the buyer, in accordance with standard market practice."
       },
       "shareDeal": {
         "title": "Share Deal",
-        "subtitle": "Sale of the company",
-        "p1": "In a Share Deal, the shares of the company that owns the property are sold.",
-        "p2": "A sale of the company offers financial and tax advantages for both seller and buyer. However, a more in-depth due diligence is required, as the buyer assumes all risks related to the company’s history."
+        "subtitle": "Sale of the owning company",
+        "p1": "In a Share Deal, the shares of the company owning the property are sold.",
+        "p2": "A corporate sale offers financial and tax advantages for both the seller and the buyer. However, it requires a more in-depth due diligence, as the buyer assumes all risks related to the company's historical liabilities."
       },
       "saleLeaseback": {
         "title": "Sale & Leaseback",
-        "subtitle": "Sale-leaseback",
-        "p1": "A sale and leaseback can take the form of either an Asset Deal or a Share Deal.",
-        "p2": "In this particular case, the owner sells the property while remaining as a tenant. The most advantageous option for the principal must be determined: maximizing the sale price or, conversely, optimizing the lease terms."
+        "subtitle": "Sale and leaseback transaction",
+        "p1": "A sale and leaseback transaction may be structured either as an Asset Deal or a Share Deal.",
+        "p2": "In this specific scenario, the owner sells the property while remaining as tenant. The key consideration is to determine which option is most advantageous for the client: maximizing the sale price or, conversely, optimizing the lease terms."
       }
     }
   },
@@ -222,7 +223,7 @@
       "kicker": "Our",
       "title": "Track Record",
       "tagline": "The art of real estate transactions.",
-      "volumeValue": "2B+",
+      "volumeValue": "2bn+",
       "volumeLabel": "Cumulative transaction volume",
       "imageAlt": "Realisations background"
     },
@@ -234,7 +235,7 @@
     "cta": "Contact us",
     "projects": {
       "p1": {
-        "title": "Purely residential building",
+        "title": "Exclusively residential building",
         "seller": "Private",
         "buyer": "Institutional",
         "location": "Renens, Vaud",
@@ -245,14 +246,14 @@
         "seller": "Private",
         "buyer": "Institutional",
         "location": "Mies, Vaud",
-        "description": "Mixed-use building transaction completed under an exclusive mandate via a two-round call for tenders process."
+        "description": "Transaction of a mixed-use property completed under an exclusive mandate through a two-stage tender process."
       },
       "p3": {
-        "title": "Purely residential building",
+        "title": "Exclusively residential building",
         "seller": "Private",
         "buyer": "Private",
         "location": "Meyrin, Geneva",
-        "description": "Residential building transaction completed under an exclusive mandate via a direct sale process."
+        "description": "Transaction of a residential property completed under an exclusive mandate through a direct sale process."
       },
       "p4": {
         "title": "Hotel",
@@ -266,14 +267,14 @@
         "seller": "Private",
         "buyer": "Institutional",
         "location": "Geneva",
-        "description": "Transaction of 11 residential buildings completed through a two-round call for tenders process."
+        "description": "Transaction involving 11 residential buildings completed through a two-stage tender process."
       },
       "p6": {
         "title": "Portfolio of 15 buildings",
         "seller": "Private",
         "buyer": "Institutional",
         "location": "Geneva",
-        "description": "Transaction of 15 buildings carried out through a two-round call for tenders process."
+        "description": "Transaction involving 15 buildings carried out through a two-stage tender process."
       }
     }
   },
@@ -281,16 +282,16 @@
     "hero": {
       "label": "Investment",
       "title": "Investment Criteria",
-      "description": "Define your profile and objectives so we can propose targeted opportunities."
+      "description": "Define your profile and objectives so that we can present you with targeted investment opportunities."
     },
     "steps": {
       "identity": "Identity",
       "strategy": "Strategy",
       "target": "Target",
-      "modalities": "Terms"
+      "modalities": "Transaction Terms"
     },
     "common": {
-      "requiredOne": "At least 1 required"
+      "requiredOne": "min. 1 selection"
     },
     "errors": {
       "title": "Please correct the following errors:",
@@ -347,31 +348,36 @@
     },
     "step2": {
       "investmentVolume": {
-        "title": "Investment volume",
-        "note": "Single choice"
+        "title": "Investment Volume",
+        "note": "min. 1 selection"
       },
       "location": {
-        "title": "Asset locations"
+        "title": "Asset Location",
+        "note": "min. 1 selection"
       }
     },
     "step3": {
       "objectType": {
-        "title": "Asset type"
+        "title": "Asset Type",
+        "note": "min. 1 selection"
       },
       "assignment": {
-        "title": "Use category"
+        "title": "Asset Allocation / Use",
+        "note": "min. 1 selection"
       }
     },
     "step4": {
       "propertyForm": {
-        "title": "Ownership form"
+        "title": "Ownership Structure",
+        "note": "min. 1 selection"
       },
       "transactionNature": {
-        "title": "Transaction type"
+        "title": "Transaction Structure",
+        "note": "min. 1 selection"
       },
       "remarks": {
         "title": "Remarks",
-        "placeholder": "Any remarks..."
+        "placeholder": "Your comments…"
       }
     },
     "buttons": {
@@ -394,10 +400,10 @@
     "options": {
       "investmentVolume": {
         "lt_5": "< CHF 5 million",
-        "5_10": "Between CHF 5 and CHF 10 million",
-        "10_25": "Between CHF 10 and CHF 25 million",
-        "25_50": "Between CHF 25 and CHF 50 million",
-        "50_100": "Between CHF 50 and CHF 100 million",
+        "5_10": "CHF 5–10 million",
+        "10_25": "CHF 10–25 million",
+        "25_50": "CHF 25–50 million",
+        "50_100": "CHF 50–100 million",
         "gt_100": "> CHF 100 million"
       },
       "location": {
@@ -408,18 +414,18 @@
         "neuchatel": "Canton of Neuchâtel",
         "valais": "Canton of Valais",
         "germanSwitzerland": "German-speaking Switzerland",
-        "allSwitzerland": "Anywhere in Switzerland"
+        "allSwitzerland": "Switzerland"
       },
       "objectType": {
-        "plotNoPermit": "Plot without building permit",
-        "plotWithPermit": "Plot with building permit",
+        "plotNoPermit": "Land plot without building permit",
+        "plotWithPermit": "Land plot with building permit",
         "building": "Building",
-        "buildingLeasehold": "Building under a right of superficies",
+        "buildingLeasehold": "Building under ground lease (superficies)",
         "portfolio": "Portfolio"
       },
       "assignment": {
         "residential": "Residential",
-        "office": "Commercial — Office",
+        "office": "Commercial – Office",
         "mixed": "Mixed-use",
         "hotel": "Hotel",
         "retailSales": "Retail",
@@ -427,14 +433,14 @@
         "medicoSocial": "Healthcare / Social"
       },
       "propertyForm": {
-        "freehold": "Freehold",
+        "freehold": "Freehold ownership",
         "coownership": "Co-ownership",
         "ppe": "Condominium (PPE)"
       },
       "transactionNature": {
         "assetDeal": "Asset Deal",
         "shareDeal": "Share Deal",
-        "saleLeaseback": "Sale and lease back"
+        "saleLeaseback": "Sale and leaseback"
       }
     },
     "pdf": {
@@ -502,34 +508,34 @@
     "network": "Network",
     "networkDesc": "Key relationships",
     "trust": "Trust",
-    "trustDesc": "Lasting partnership",
+    "trustDesc": "Long-term partnership",
     "transparency": "Transparency",
     "transparencyDesc": "Clear communication",
     "flexibility": "Flexibility",
-    "flexibilityDesc": "Tailored solutions"
+    "flexibilityDesc": "Tailor-made solutions"
   },
   "team": {
     "title": "The team",
-    "realisationsLink": "Our portfolio"
+    "realisationsLink": "Track Record"
   },
   "typologie": {
     "label": "Our Sectors",
     "title1": "Asset",
-    "title2": "Classification",
-    "description": "Arcan Transactions SA specializes in real estate transactions for all types of properties.",
+    "title2": "Typology",
+    "description": "Arcan Transactions SA specializes in the transaction of properties across all types of uses / allocation.",
     "cta": "Investment Criteria",
     "residential": "Residential",
-    "residentialItems": ["Residential buildings", "Mixed-use buildings (predominantly residential)"],
+    "residentialItems": ["Residential buildings", "Mixed-use properties (predominantly residential)"],
     "commercial": "Commercial",
-    "commercialItems": ["Office buildings", "Retail space", "Shopping centers", "Mixed-use buildings (predominantly commercial)"],
+    "commercialItems": ["Office buildings", "Retail spaces", "Shopping centers", "Mixed-use properties (predominantly commercial)"],
     "hospitality": "Hospitality",
-    "hospitalityItems": ["Walls and operations", "Walls", "Operations"],
-    "healthcare": "Medical and social care",
-    "healthcareItems": ["Nursing homes / Senior care", "Student residences", "Hospitals", "Clinics"],
+    "hospitalityItems": ["Property & operations", "Property (« walls » only)", "Operations only"],
+    "healthcare": "Healthcare & Social",
+    "healthcareItems": ["Nursing homes / Senior living", "Student residences", "Hospitals", "Clinics"],
     "industrial": "Industrial",
-    "industrialItems": ["Industrial & logistics", "Artisanal", "Data centers", "Warehouses, parking lots..."],
+    "industrialItems": ["Industrial & logistics", "Light industrial / craft", "Data centers", "Warehouses, parking facilities…"],
     "land": "Land",
-    "landItems": ["Plots with or without permits", "All types of zoning"]
+    "landItems": ["Plots with or without building permits", "All types of zoning"]
   },
   "footer": {
     "description": "Contact us for any information request or to schedule an appointment.",
