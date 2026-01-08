@@ -29,7 +29,6 @@ const images = [
 
 export default function HeroSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([true, false, false, false, false]);
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean[]>([false, false, false, false, false]);
 
   useEffect(() => {
@@ -39,16 +38,6 @@ export default function HeroSlider() {
 
     return () => clearInterval(interval);
   }, []);
-
-  // Précharger l'image suivante
-  useEffect(() => {
-    const nextIndex = (currentIndex + 1) % images.length;
-    if (!imagesLoaded[nextIndex]) {
-      const newLoaded = [...imagesLoaded];
-      newLoaded[nextIndex] = true;
-      setImagesLoaded(newLoaded);
-    }
-  }, [currentIndex, imagesLoaded]);
 
   const handleImageLoad = (index: number) => {
     setImageFullyLoaded(prev => {
@@ -82,20 +71,17 @@ export default function HeroSlider() {
             index === currentIndex ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Ne charger que la première image immédiatement, les autres en lazy */}
-          {(index === 0 || imagesLoaded[index]) && (
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              className={`object-cover ${image.position || "object-center"}`}
-              priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-              quality={index === 0 ? 75 : 70}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              onLoad={() => handleImageLoad(index)}
-            />
-          )}
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className={`object-cover ${image.position || "object-center"}`}
+            priority
+            quality={85}
+            sizes="100vw"
+            unoptimized
+            onLoad={() => handleImageLoad(index)}
+          />
         </div>
       ))}
 
