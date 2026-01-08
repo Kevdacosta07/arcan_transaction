@@ -34,7 +34,8 @@ export default function Footer() {
                   fill 
                   className="object-contain object-left" 
                   sizes="320px"
-                  loading="lazy"
+                  priority
+                  unoptimized
                 />
               </div>
               <p className="text-xl text-gray-400 font-light max-w-md leading-relaxed">
