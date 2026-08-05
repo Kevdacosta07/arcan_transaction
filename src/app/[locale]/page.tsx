@@ -266,7 +266,7 @@ export default function Home() {
                       </FadeIn>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
                        {[
                          { 
                             name: "Aurèle Arthur LAYA", 
@@ -279,12 +279,6 @@ export default function Home() {
                             role: "Managing Partner", 
                             email: "a.arazi@arcan-transactions.ch",
                             linkedin: "https://www.linkedin.com/in/alexandre-arazi-a92466132/" 
-                         },
-                         { 
-                            name: "Gilles COHEN", 
-                            role: "Transaction Director", 
-                            email: "g.cohen@arcan-transactions.ch",
-                            linkedin: "https://www.linkedin.com/in/gilles-cohen-690b02210/" 
                          }
                        ].map((member, index) => (
                            <FadeIn key={index} delay={index * 150}>
